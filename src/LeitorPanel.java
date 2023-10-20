@@ -12,6 +12,7 @@ import javax.swing.JFrame;
  */
 public class LeitorPanel extends javax.swing.JFrame {
     JFrame mainFrame;
+    static Leitor leitor = null;
     
     /** Creates new form LeitorPanel */
     public LeitorPanel(JFrame main) {
