@@ -1,17 +1,16 @@
-
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author fmarques
- */
 public class LeitorSignUp extends javax.swing.JFrame {
     JFrame mainFrame;
+    JTextField ctxname;
+    JPasswordField ctxpass;
+    JPasswordField ctxrepass;
+    boolean nameValido;
+    boolean senhaValida;
+    boolean senhaRepetidaValida;
     
     /** Creates new form LeitorSignUp */
     public LeitorSignUp(JFrame main) {
@@ -66,6 +65,12 @@ public class LeitorSignUp extends javax.swing.JFrame {
         });
 
         jLabel2.setText("Password");
+
+        nameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameFieldActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Confirmar Password");
 
@@ -136,10 +141,71 @@ public class LeitorSignUp extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    public void mostraMensagem(String campo, String mensagem) {
+        JOptionPane.showMessageDialog(this, campo + ": " + mensagem, "Erro de Validação", JOptionPane.ERROR_MESSAGE);
+    }
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
-        new LeitorPanel(this.mainFrame).setVisible(true);
-        this.dispose();
+    new LeitorPanel(this.mainFrame).setVisible(true);
+    this.dispose();  
+ 
+        ctxname = nameField;
+        ctxpass = passwordField;
+        ctxrepass = confirmPasswordField;
+        nameValido = false;
+        senhaValida = false;
+        senhaRepetidaValida = false;
+
+        String s = ctxname.getText();
+        int conta = 0;
+        int contaEspacos = 0;
+
+    // Validação do nome
+    if (s.equals("")) {
+        mostraMensagem("Nome", "Preencha o campo nome");
+    } else if (s.length() < 2) {
+        mostraMensagem("Nome", "Preencha um nome válido");
+    } else {
+        for (int x = 0; x < s.length(); x++) {
+            if ((s.charAt(x) >= 65 && s.charAt(x) <= 90) || (s.charAt(x) >= 97 && s.charAt(x) <= 122)) {
+                conta++;
+            } else if (s.charAt(x) == ' ') {
+                contaEspacos++;
+            }
+        }
+        if (conta < 2 || (conta + contaEspacos) < s.length()) {
+            mostraMensagem("Nome", "Preencha um nome válido");
+        } else {
+            nameValido = true;
+        }
+    }
+
+    // Validação da senha
+    char[] senha = ctxpass.getPassword();
+    char[] senhaRepetida = ctxrepass.getPassword();
+
+    if (senha.length == 0) {
+        mostraMensagem("Senha", "Preencha o campo de senha");
+    } else {
+        String senhaString = String.valueOf(senha);
+        if (senha.length < 8) {
+            mostraMensagem("Senha", "A senha deve ter pelo menos 8 caracteres");
+        } else if (!senhaString.matches(".*[a-z].*")) {
+            mostraMensagem("Senha", "A senha deve conter pelo menos uma letra minúscula");
+        } else if (!senhaString.matches(".*[A-Z].*")) {
+            mostraMensagem("Senha", "A senha deve conter pelo menos uma letra maiúscula");
+        } else if (!senhaString.matches(".*\\d.*")) {
+            mostraMensagem("Senha", "A senha deve conter pelo menos um dígito");
+        } else if (!senhaString.matches(".*[@#$%^&+=].*")) {
+            mostraMensagem("Senha", "A senha deve conter pelo menos um caractere especial (@, #, $, %, ^, & ou +)");
+        } else if (!String.valueOf(senha).equals(String.valueOf(senhaRepetida))) {
+            mostraMensagem("Senha", "As senhas não coincidem");
+        }
+    }
     }//GEN-LAST:event_signUpButtonActionPerformed
+
+    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
+
+    }//GEN-LAST:event_nameFieldActionPerformed
 
     /**
      * @param args the command line arguments
