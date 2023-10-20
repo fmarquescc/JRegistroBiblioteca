@@ -20,7 +20,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import java.sql.*;
-
+//hhhh
 public class RegistroUtilizador extends javax.swing.JFrame {
     /** Creates new form RegistroUtilizador */
     public RegistroUtilizador() {
