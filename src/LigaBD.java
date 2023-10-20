@@ -21,10 +21,10 @@ public abstract class LigaBD {
             String sql = "INSERT INTO livros (titulo, autor, editora, anolancamento) VALUES (?, ?, ?, ?)";
             
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, livro.getTitulo());
-                preparedStatement.setString(2, livro.getAutor());
-                preparedStatement.setString(3, livro.getEditora());
-                preparedStatement.setString(4, livro.getAnolancamento());
+                preparedStatement.setString(1, livro,getTitulo());
+                preparedStatement.setString(2, livro,getAutor());
+                preparedStatement.setString(3, livro,getEditora());
+                preparedStatement.setString(4, livro,getAnolancamento());
                 
                 preparedStatement.executeUpdate();
             } finally {
@@ -59,10 +59,10 @@ public abstract class LigaBD {
             String sql = "UPDATE livros SET autor = ?, editora = ?, anolancamento = ? WHERE titulo = ?";
             
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, livro.getAutor());
-                preparedStatement.setString(2, livro.getEditora());
-                preparedStatement.setString(3, livro.getAnolancamento());
-                preparedStatement.setString(4, livro.getTitulo());
+                preparedStatement.setString(1, livro,getAutor());
+                preparedStatement.setString(2, livro,getEditora());
+                preparedStatement.setString(3, livro,getAnolancamento());
+                preparedStatement.setString(4, livro,getTitulo());
                 
                 preparedStatement.executeUpdate();
             } finally {
