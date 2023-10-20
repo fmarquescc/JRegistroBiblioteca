@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class LigaBD {
@@ -37,19 +38,87 @@ public abstract class LigaBD {
 
         @Override
         public void inserirLeitor(Leitor leitor) {
-            // TODO: Implementar Ricardo
+            try {
+                Connection connection = conectar();
+                String sql = "INSERT INTO leitores (nome, datanas, nleitor, email, telefone, login, pass) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    preparedStatement.setString(1, leitor.getNome());
+                    preparedStatement.setString(2, leitor.getDatanas());
+                    preparedStatement.setString(3, leitor.getNleitor());
+                    preparedStatement.setString(4, leitor.getEmail());
+                    preparedStatement.setString(5, leitor.getTelefone());
+                    preparedStatement.setString(6, leitor.getLogin());
+                    preparedStatement.setString(7, leitor.getPass());
+
+                    preparedStatement.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
-        @Override
+      @Override
         public List<Leitor> obterLeitors() {
-            // TODO: Implementar Ricardo
-            return null;
+            List<Leitor> leitores = new ArrayList<>();
+            try {
+                Connection connection = conectar();
+                String sql = "SELECT * FROM leitores";
+
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    ResultSet resultSet = preparedStatement.executeQuery();
+
+                    while (resultSet.next()) {
+                        Leitor leitor = new Leitor(resultSet.getString("nome"),
+                                resultSet.getString("datanas"),
+                                resultSet.getString("nleitor"),
+                                resultSet.getString("email"),
+                                resultSet.getString("telefone"),
+                                resultSet.getString("login"),
+                                resultSet.getString("pass"));
+                        leitores.add(leitor);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return leitores;
         }
 
-        @Override
+      @Override
         public List<Livro> obterLivros() {
-            // TODO: Implementar Ricardo
-            return null;
+            List<Livro> livros = new ArrayList<>();
+            try {
+                Connection connection = conectar();
+                String sql = "SELECT * FROM livros";
+
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    ResultSet resultSet = preparedStatement.executeQuery();
+
+                    while (resultSet.next()) {
+                        Livro livro = new Livro(resultSet.getString("titulo"),
+                                resultSet.getString("autor"),
+                                resultSet.getString("editora"),
+                                resultSet.getString("anolancamento"));
+                        livros.add(livro);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return livros;
         }
 
         @Override
