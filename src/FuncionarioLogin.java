@@ -1,5 +1,6 @@
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -56,6 +57,18 @@ public class FuncionarioLogin extends javax.swing.JFrame {
         jLabel1.setText("Username");
 
         jLabel2.setText("Password");
+
+        usernameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameFieldActionPerformed(evt);
+            }
+        });
+
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Login");
 
@@ -126,9 +139,24 @@ public class FuncionarioLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_formKeyPressed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        String userFunc = usernameField.getText();
+        String passFunc = passwordField.getText();
+        
+        if (userFunc.equals("admin")&&passFunc.equals("admin")){
         new FuncionarioPanel(this.mainFrame).setVisible(true);
         this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Username ou senha incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }   
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
+                
+    }//GEN-LAST:event_usernameFieldActionPerformed
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+       
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     /**
      * @param args the command line arguments

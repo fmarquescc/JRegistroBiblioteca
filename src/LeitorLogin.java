@@ -1,5 +1,6 @@
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -35,8 +36,8 @@ public class LeitorLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        usernameField = new javax.swing.JTextField();
+        PasswordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -65,6 +66,18 @@ public class LeitorLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
+        usernameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameFieldActionPerformed(evt);
+            }
+        });
+
+        PasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasswordFieldActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,8 +97,8 @@ public class LeitorLogin extends javax.swing.JFrame {
                                 .add(jButton2)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .add(jButton1))
-                            .add(jPasswordField1)
-                            .add(jTextField1))
+                            .add(PasswordField)
+                            .add(usernameField))
                         .add(22, 22, 22))))
             .add(layout.createSequentialGroup()
                 .add(83, 83, 83)
@@ -100,11 +113,11 @@ public class LeitorLogin extends javax.swing.JFrame {
                 .add(18, 18, 18)
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(usernameField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jLabel2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPasswordField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(PasswordField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(42, 42, 42)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButton1)
@@ -126,9 +139,25 @@ public class LeitorLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String userFunc = usernameField.getText();
+        String passFunc = PasswordField.getText();
+        
+        if (userFunc.equals("root")&&passFunc.equals("root")){
         new LeitorPanel(this.mainFrame).setVisible(true);
         this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Username ou senha incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }      
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_usernameFieldActionPerformed
+
+    private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PasswordFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,13 +196,13 @@ public class LeitorLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField PasswordField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 
 }
