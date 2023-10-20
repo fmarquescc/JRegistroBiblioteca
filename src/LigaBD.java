@@ -1,3 +1,5 @@
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -24,7 +26,40 @@ public abstract class LigaBD {
     public abstract void inserirLeitor(Leitor leitor);
     public abstract List<Leitor> obterLeitors();
     
-    public static class LocalLigaBD {
+    public static class LocalLigaBD extends LigaBD {
+        private static final Path LEITORES_PATH = Path.of("leitores.txt");
+        private static final Path LIVROS_PATH = Path.of("livros.txt");
+        
+        @Override
+        public void inserirLivro(Livro livro) {
+        }
+
+        @Override
+        public Livro buscarLivroPorTitulo(String titulo) {
+            return null;
+        }
+
+        @Override
+        public List<Livro> obterLivros() {
+            List<Livro> list = new ArrayList<>();
+            return list;
+        }
+
+        @Override
+        public void atualizarLivro(Livro livro) {
+        }
+
+        @Override
+        public void excluirLivro(String titulo) {
+        }
+
+        @Override
+        public void inserirLeitor(Leitor leitor) {
+        }
+
+        @Override
+        public List<Leitor> obterLeitors() {
+        }
     }
 
     public static class SqlLigaBD extends LigaBD {
