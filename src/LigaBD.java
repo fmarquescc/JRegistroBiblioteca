@@ -3,23 +3,44 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 public abstract class LigaBD {
     public abstract void inserirLivro(Livro livro);
     public abstract Livro buscarLivroPorTitulo(String titulo);
+    public abstract List<Livro> obterLivros();
     public abstract void atualizarLivro(Livro livro);
     public abstract void excluirLivro(String titulo);
+    public abstract void inserirLeitor(Leitor leitor);
+    public abstract List<Leitor> obterLeitors();
     
     public static class LocalLigaBD {
     }
 
-    public static class SqlLigaBD extends LigaBD{
+    public static class SqlLigaBD extends LigaBD {
         static String url = "jdbc:mysql://localhost:3306/utilizador?useTimezone=true&serverTimezone=UTC";
         static String user = "root";
         static String pass = "";
         
         public Connection conectar() throws SQLException {
             return DriverManager.getConnection(SqlLigaBD.url, SqlLigaBD.user, SqlLigaBD.pass);
+        }
+
+        @Override
+        public void inserirLeitor(Leitor leitor) {
+            // TODO
+        }
+
+        @Override
+        public List<Leitor> obterLeitors() {
+            // TODO
+            return null;
+        }
+
+        @Override
+        public List<Livro> obterLivros() {
+            // TODO
+            return null;
         }
 
         @Override

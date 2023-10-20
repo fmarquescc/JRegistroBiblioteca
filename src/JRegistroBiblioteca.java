@@ -8,7 +8,6 @@
  * @author fmarques
  */
 public class JRegistroBiblioteca extends javax.swing.JFrame {
-
     /** Creates new form JRegistroBiblioteca */
     public JRegistroBiblioteca() {
         initComponents();
@@ -23,7 +22,12 @@ public class JRegistroBiblioteca extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        leitorLoginButton = new javax.swing.JButton();
+        funcLoginButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        leitorSignUpButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -32,40 +36,73 @@ public class JRegistroBiblioteca extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("notas");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Biblioteca");
+
+        leitorLoginButton.setText("Log in");
+        leitorLoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                leitorLoginButtonActionPerformed(evt);
             }
         });
+
+        funcLoginButton.setText("Log in");
+
+        jLabel2.setText("Funcionario");
+
+        jLabel3.setText("Leitor");
+
+        leitorSignUpButton.setText("Sign up");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(154, 154, 154)
-                .add(jButton1)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(166, 166, 166)
+                        .add(jLabel1))
+                    .add(layout.createSequentialGroup()
+                        .add(33, 33, 33)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(funcLoginButton)
+                            .add(layout.createSequentialGroup()
+                                .add(leitorLoginButton)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(leitorSignUpButton))
+                            .add(jLabel2)
+                            .add(jLabel3))))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(200, Short.MAX_VALUE)
-                .add(jButton1)
-                .add(75, 75, 75))
+            .add(layout.createSequentialGroup()
+                .add(25, 25, 25)
+                .add(jLabel1)
+                .add(18, 18, 18)
+                .add(jLabel3)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(leitorLoginButton)
+                    .add(leitorSignUpButton))
+                .add(32, 32, 32)
+                .add(jLabel2)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(funcLoginButton)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_formKeyPressed
+
+    private void leitorLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leitorLoginButtonActionPerformed
+        new LeitorLogin().setVisible(true);
+    }//GEN-LAST:event_leitorLoginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,7 +140,12 @@ public class JRegistroBiblioteca extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton funcLoginButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton leitorLoginButton;
+    private javax.swing.JButton leitorSignUpButton;
     // End of variables declaration//GEN-END:variables
 
 }
