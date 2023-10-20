@@ -1,4 +1,3 @@
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +12,7 @@ public abstract class LigaBD {
     
     public static LigaBD getBD() {
         if (bd == null) {
-            bd = new SqlLigaBD();
+            bd = Constants.USE_SQL_DATABASE ? new SqlLigaBD() : new LocalLigaBD();
         }
         return bd;
     }
@@ -58,7 +57,8 @@ public abstract class LigaBD {
         }
 
         @Override
-        public List<Leitor> obterLeitors() {
+        public List<Leitor> obterLeitors() { 
+            return null;
         }
     }
 
