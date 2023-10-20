@@ -1,3 +1,6 @@
+
+import javax.swing.JFrame;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -8,10 +11,14 @@
  * @author fmarques
  */
 public class LeitorLogin extends javax.swing.JFrame {
-
+    JFrame mainFrame;
+    
     /** Creates new form ClientLogin */
-    public LeitorLogin() {
+    public LeitorLogin(JFrame main) {
         initComponents();
+        setLocationRelativeTo(null);
+        this.mainFrame = main;
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /** This method is called from within the constructor to
@@ -63,10 +70,6 @@ public class LeitorLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(162, 162, 162)
-                .add(jLabel3)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .add(layout.createSequentialGroup()
                 .add(22, 22, 22)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
@@ -84,13 +87,17 @@ public class LeitorLogin extends javax.swing.JFrame {
                             .add(jPasswordField1)
                             .add(jTextField1))
                         .add(22, 22, 22))))
+            .add(layout.createSequentialGroup()
+                .add(83, 83, 83)
+                .add(jLabel3)
+                .add(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(9, 9, 9)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .add(jLabel3)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 30, Short.MAX_VALUE)
+                .add(18, 18, 18)
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -114,10 +121,13 @@ public class LeitorLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.mainFrame.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        new LeitorPanel(this.mainFrame).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -151,7 +161,7 @@ public class LeitorLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LeitorLogin().setVisible(true);
+                new LeitorLogin(null).setVisible(true);
             }
         });
     }

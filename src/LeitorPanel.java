@@ -1,3 +1,6 @@
+
+import javax.swing.JFrame;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -8,10 +11,14 @@
  * @author fmarques
  */
 public class LeitorPanel extends javax.swing.JFrame {
-
+    JFrame mainFrame;
+    
     /** Creates new form LeitorPanel */
-    public LeitorPanel() {
+    public LeitorPanel(JFrame main) {
         initComponents();
+        setLocationRelativeTo(null);
+        this.mainFrame = main;
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /** This method is called from within the constructor to
@@ -70,6 +77,8 @@ public class LeitorPanel extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        this.mainFrame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -106,7 +115,7 @@ public class LeitorPanel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LeitorPanel().setVisible(true);
+                new LeitorPanel(null).setVisible(true);
             }
         });
     }

@@ -6,6 +6,15 @@ import java.sql.ResultSet;
 import java.util.List;
 
 public abstract class LigaBD {
+    public static LigaBD bd;
+    
+    public static LigaBD getBD() {
+        if (bd == null) {
+            bd = new SqlLigaBD();
+        }
+        return bd;
+    }
+    
     public abstract void inserirLivro(Livro livro);
     public abstract Livro buscarLivroPorTitulo(String titulo);
     public abstract List<Livro> obterLivros();
@@ -28,18 +37,18 @@ public abstract class LigaBD {
 
         @Override
         public void inserirLeitor(Leitor leitor) {
-            // TODO
+            // TODO: Implementar Ricardo
         }
 
         @Override
         public List<Leitor> obterLeitors() {
-            // TODO
+            // TODO: Implementar Ricardo
             return null;
         }
 
         @Override
         public List<Livro> obterLivros() {
-            // TODO
+            // TODO: Implementar Ricardo
             return null;
         }
 

@@ -1,3 +1,6 @@
+
+import javax.swing.JFrame;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -8,10 +11,14 @@
  * @author fmarques
  */
 public class LeitorSignUp extends javax.swing.JFrame {
-
+    JFrame mainFrame;
+    
     /** Creates new form LeitorSignUp */
-    public LeitorSignUp() {
+    public LeitorSignUp(JFrame main) {
         initComponents();
+        setLocationRelativeTo(null);
+        this.mainFrame = main;
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /** This method is called from within the constructor to
@@ -24,13 +31,13 @@ public class LeitorSignUp extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        signUpButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        nameField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
+        confirmPasswordField = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,19 +49,19 @@ public class LeitorSignUp extends javax.swing.JFrame {
 
         jLabel3.setText("Sign Up");
 
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancelButton.setText("Cancelar");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cancelButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Username");
+        jLabel1.setText("Name");
 
-        jButton2.setText("Sign Up");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        signUpButton.setText("Sign Up");
+        signUpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                signUpButtonActionPerformed(evt);
             }
         });
 
@@ -82,15 +89,15 @@ public class LeitorSignUp extends javax.swing.JFrame {
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(layout.createSequentialGroup()
-                                .add(jButton2)
+                                .add(signUpButton)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .add(jButton1))
-                            .add(jPasswordField1)
-                            .add(jTextField1)
+                                .add(cancelButton))
+                            .add(passwordField)
+                            .add(nameField)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                                 .add(jLabel4)
                                 .add(308, 308, 308))
-                            .add(jPasswordField2))
+                            .add(confirmPasswordField))
                         .add(22, 22, 22))))
         );
         layout.setVerticalGroup(
@@ -101,19 +108,19 @@ public class LeitorSignUp extends javax.swing.JFrame {
                 .add(18, 18, 18)
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(nameField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jLabel2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPasswordField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(passwordField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
                 .add(jLabel4)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPasswordField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(confirmPasswordField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 34, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jButton1)
-                    .add(jButton2))
+                    .add(cancelButton)
+                    .add(signUpButton))
                 .add(15, 15, 15))
         );
 
@@ -124,13 +131,15 @@ public class LeitorSignUp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formKeyPressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+       this.mainFrame.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
+        new LeitorPanel(this.mainFrame).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_signUpButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,21 +171,21 @@ public class LeitorSignUp extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LeitorSignUp().setVisible(true);
+                new LeitorSignUp(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JPasswordField confirmPasswordField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nameField;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JButton signUpButton;
     // End of variables declaration//GEN-END:variables
 
 }

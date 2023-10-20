@@ -1,3 +1,10 @@
+
+import com.formdev.flatlaf.FlatLightLaf;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -10,7 +17,18 @@
 public class JRegistroBiblioteca extends javax.swing.JFrame {
     /** Creates new form JRegistroBiblioteca */
     public JRegistroBiblioteca() {
+         try {
+            FlatLightLaf.setup();
+        } catch (Exception ex) {
+        }
         initComponents();
+        setLocationRelativeTo(null);
+        try {
+            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf");
+            SwingUtilities.updateComponentTreeUI(this);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     /** This method is called from within the constructor to
@@ -30,6 +48,7 @@ public class JRegistroBiblioteca extends javax.swing.JFrame {
         leitorSignUpButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Biblioteca");
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -47,12 +66,22 @@ public class JRegistroBiblioteca extends javax.swing.JFrame {
         });
 
         funcLoginButton.setText("Log in");
+        funcLoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                funcLoginButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Funcionario");
 
         jLabel3.setText("Leitor");
 
         leitorSignUpButton.setText("Sign up");
+        leitorSignUpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leitorSignUpButtonActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,9 +89,6 @@ public class JRegistroBiblioteca extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(166, 166, 166)
-                        .add(jLabel1))
                     .add(layout.createSequentialGroup()
                         .add(33, 33, 33)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -72,8 +98,11 @@ public class JRegistroBiblioteca extends javax.swing.JFrame {
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(leitorSignUpButton))
                             .add(jLabel2)
-                            .add(jLabel3))))
-                .addContainerGap(178, Short.MAX_VALUE))
+                            .add(jLabel3)))
+                    .add(layout.createSequentialGroup()
+                        .add(105, 105, 105)
+                        .add(jLabel1)))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -101,8 +130,19 @@ public class JRegistroBiblioteca extends javax.swing.JFrame {
     }//GEN-LAST:event_formKeyPressed
 
     private void leitorLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leitorLoginButtonActionPerformed
-        new LeitorLogin().setVisible(true);
+        this.setVisible(false);
+        new LeitorLogin(this).setVisible(true);
     }//GEN-LAST:event_leitorLoginButtonActionPerformed
+
+    private void leitorSignUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leitorSignUpButtonActionPerformed
+        this.setVisible(false);
+        new LeitorSignUp(this).setVisible(true);
+    }//GEN-LAST:event_leitorSignUpButtonActionPerformed
+
+    private void funcLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_funcLoginButtonActionPerformed
+       this.setVisible(false);
+       new FuncionarioLogin(this).setVisible(true); 
+    }//GEN-LAST:event_funcLoginButtonActionPerformed
 
     /**
      * @param args the command line arguments

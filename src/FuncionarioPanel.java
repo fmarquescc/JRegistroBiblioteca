@@ -1,3 +1,6 @@
+
+import javax.swing.JFrame;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -8,10 +11,14 @@
  * @author fmarques
  */
 public class FuncionarioPanel extends javax.swing.JFrame {
-
+    JFrame mainFrame;
+    
     /** Creates new form FuncionarioPanel */
-    public FuncionarioPanel() {
+    public FuncionarioPanel(JFrame main) {
         initComponents();
+        setLocationRelativeTo(null);
+        this.mainFrame = main;
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /** This method is called from within the constructor to
@@ -23,7 +30,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        logOutButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -33,10 +40,10 @@ public class FuncionarioPanel extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Log out");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        logOutButton.setText("Log out");
+        logOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                logOutButtonActionPerformed(evt);
             }
         });
 
@@ -48,7 +55,7 @@ public class FuncionarioPanel extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jButton1)
+                .add(logOutButton)
                 .add(31, 31, 31))
             .add(layout.createSequentialGroup()
                 .add(143, 143, 143)
@@ -61,16 +68,18 @@ public class FuncionarioPanel extends javax.swing.JFrame {
                 .add(103, 103, 103)
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 137, Short.MAX_VALUE)
-                .add(jButton1)
+                .add(logOutButton)
                 .add(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        this.mainFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
@@ -106,14 +115,14 @@ public class FuncionarioPanel extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FuncionarioPanel().setVisible(true);
+                new FuncionarioPanel(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton logOutButton;
     // End of variables declaration//GEN-END:variables
 
 }
