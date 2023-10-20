@@ -43,17 +43,17 @@ public class JRegistroBiblioteca extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(186, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .add(154, 154, 154)
                 .add(jButton1)
-                .add(144, 144, 144))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(123, 123, 123)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(200, Short.MAX_VALUE)
                 .add(jButton1)
-                .addContainerGap(152, Short.MAX_VALUE))
+                .add(75, 75, 75))
         );
 
         pack();

@@ -1,7 +1,7 @@
 
 
 
-public class Leitores {
+public class Leitor {
     private String nome;
     private String datanas;
     private String nleitor;
@@ -10,7 +10,7 @@ public class Leitores {
     private String login;
     private String pass;
 
-    public Leitores(String nome, String datanas, String nleitor, String email, String telefone, String login, String pass) {
+    public Leitor(String nome, String datanas, String nleitor, String email, String telefone, String login, String pass) {
         this.nome = nome;
         this.datanas = datanas;
         this.nleitor = nleitor;

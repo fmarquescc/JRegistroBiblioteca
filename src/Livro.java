@@ -1,12 +1,12 @@
 
 
-public class Livros {
+public class Livro {
     private String titulo;
     private String autor;
     private String editora;
     private String anolancamento;
 
-    public Livros(String titulo, String autor, String editora, String anolancamento) {
+    public Livro(String titulo, String autor, String editora, String anolancamento) {
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editora;
