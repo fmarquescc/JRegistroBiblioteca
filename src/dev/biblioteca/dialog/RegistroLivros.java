@@ -106,6 +106,11 @@ public class RegistroLivros extends javax.swing.JDialog {
 
         requesitarButton.setText("Requesitar");
         requesitarButton.setEnabled(false);
+        requesitarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requesitarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,6 +168,19 @@ public class RegistroLivros extends javax.swing.JDialog {
         // TODO add your handling code here:
         new AdicionarLivro(null, true).setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void requesitarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requesitarButtonActionPerformed
+        // TODO add your handling code here:
+        if (LigaBD.LOGGED_LEITOR!=null)
+        {  
+            requesitarButton.setEnabled(true);
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            String titulo = (String) model.getValueAt(selectedRow, 0);
+        
+        }
+        
+        
+    }//GEN-LAST:event_requesitarButtonActionPerformed
 
     /**
      * @param args the command line arguments

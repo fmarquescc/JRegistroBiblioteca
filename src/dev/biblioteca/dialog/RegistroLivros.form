@@ -147,6 +147,9 @@
         <Property name="text" type="java.lang.String" value="Requesitar"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="requesitarButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
