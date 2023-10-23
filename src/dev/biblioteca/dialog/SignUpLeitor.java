@@ -8,6 +8,8 @@ public class SignUpLeitor extends javax.swing.JDialog {
     public SignUpLeitor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -38,6 +40,12 @@ public class SignUpLeitor extends javax.swing.JDialog {
         setTitle("Sign Up - Leitor");
         setResizable(false);
 
+        nomeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeFieldActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Nome");
 
         jLabel2.setText("Email");
@@ -52,6 +60,11 @@ public class SignUpLeitor extends javax.swing.JDialog {
         jLabel6.setText("Confirmar Password");
 
         cancelButton.setText("Cancelar");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         signUpButton.setText("Sign Up");
 
@@ -116,6 +129,14 @@ public class SignUpLeitor extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeFieldActionPerformed
 
     /**
      * @param args the command line arguments
