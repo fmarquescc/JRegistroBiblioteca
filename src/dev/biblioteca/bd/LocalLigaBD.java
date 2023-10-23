@@ -111,7 +111,6 @@ public class LocalLigaBD extends LigaBD {
                 for (int i = 0; i < list.size(); ++i) {
                     Leitor leitor = list.get(i);
                     writer.write(leitor.getNome() + ';');
-                    writer.write(leitor.getDatanas() + ';');
                     writer.write(leitor.getNleitor() + ';');
                     writer.write(leitor.getEmail() + ';');
                     writer.write(leitor.getTelefone() + ';');
