@@ -218,8 +218,7 @@ CREATE TABLE livros (
 -- tabela 'leitores'
 CREATE TABLE leitores (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    datanas DATE,
+    nome VARCHAR(255) NOT NULL
     nleitor VARCHAR(10) NOT NULL,
     email VARCHAR(255),
     telefone VARCHAR(20),
