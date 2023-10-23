@@ -3,8 +3,11 @@ package dev.biblioteca;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import dev.biblioteca.dialog.AdicionarLivro;
+import dev.biblioteca.dialog.LoginFuncionario;
+import dev.biblioteca.dialog.LoginLeitor;
 import dev.biblioteca.dialog.RegistroLeitores;
 import dev.biblioteca.dialog.RegistroLivros;
+import dev.biblioteca.dialog.SignUpLeitor;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -207,20 +210,18 @@ public class Biblioteca extends javax.swing.JFrame {
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new LeitorSignUp(this).setVisible(true);
+        new SignUpLeitor(this, true).setVisible(true);
+
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new LeitorLogin(this).setVisible(true);
+        new LoginLeitor(this, true).setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new FuncionarioLogin(this).setVisible(true);
+        new LoginFuncionario(this, true).setVisible(true);
         
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 

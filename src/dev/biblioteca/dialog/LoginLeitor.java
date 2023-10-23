@@ -1,5 +1,8 @@
 package dev.biblioteca.dialog;
 
+import dev.biblioteca.LeitorPanel;
+import javax.swing.JOptionPane;
+
 public class LoginLeitor extends javax.swing.JDialog {
 
     /**
@@ -8,6 +11,7 @@ public class LoginLeitor extends javax.swing.JDialog {
     public LoginLeitor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -32,11 +36,33 @@ public class LoginLeitor extends javax.swing.JDialog {
 
         jLabel1.setText("Username");
 
+        nomeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeFieldActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Password");
 
+        nomeField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeField1ActionPerformed(evt);
+            }
+        });
+
         signUpButton.setText("Log In");
+        signUpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setText("Cancelar");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,6 +102,30 @@ public class LoginLeitor extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
+        String userFunc = nomeField.getText();
+        String passFunc = nomeField1.getText();
+        // falta gravar o login
+        if (userFunc.equals("root")&&passFunc.equals("root")){
+        this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Username ou senha incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }   
+    }//GEN-LAST:event_signUpButtonActionPerformed
+
+    private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeFieldActionPerformed
+
+    private void nomeField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeField1ActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
