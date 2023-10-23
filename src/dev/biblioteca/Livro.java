@@ -46,7 +46,4 @@ public class Livro {
     public void setAnolancamento(String anolancamento) {
         this.anolancamento = anolancamento;
     }
-    
-    
-  
 }

@@ -1,7 +1,7 @@
 package dev.biblioteca;
 
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Leitor {
     private String nome;
@@ -11,6 +11,7 @@ public class Leitor {
     private String telefone;
     private String login;
     private String pass;
+    private List<String> livroRequesitados = new ArrayList<>();
 
     public Leitor(String nome, String datanas, String nleitor, String email, String telefone, String login, String pass) {
         this.nome = nome;
@@ -22,6 +23,14 @@ public class Leitor {
         this.pass = pass;
     }
 
+    public void addLivro(Livro livro) {
+        this.livroRequesitados.add(livro.getTitulo());
+    }
+
+    public List<String> getLivroRequesitados() {
+        return livroRequesitados;
+    }
+    
     
     public String getNome() {
         return nome;

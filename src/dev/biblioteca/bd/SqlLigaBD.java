@@ -227,4 +227,4 @@ CREATE TABLE leitores (
     pass VARCHAR(255) NOT NULL
 );
 
-\*
+*/

@@ -8,6 +8,9 @@ import java.util.Optional;
 
 public abstract class LigaBD {
     public static LigaBD bd;
+   
+    public static boolean FUNCIONARIO_LOGGED = false;
+    public static Leitor LOGGED_LEITOR = null;
     
     public static LigaBD getBD() {
         if (bd == null) {
