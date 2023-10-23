@@ -186,6 +186,14 @@ public class RegistroLivros extends javax.swing.JDialog {
 
     private void requesitarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requesitarButtonActionPerformed
         // TODO add your handling code here:
+        if (LigaBD.LOGGED_LEITOR!=null)
+        {  
+            requesitarButton.setEnabled(true);
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            String titulo = (String) model.getValueAt(selectedRow, 0);
+        
+        }
+
     }//GEN-LAST:event_requesitarButtonActionPerformed
 
     /**
