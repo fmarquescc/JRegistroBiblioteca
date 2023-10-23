@@ -232,5 +232,5 @@ CREATE TABLE leitores (
 ALTER TABLE leitores
 ADD livros_registrados TEXT;
 
-\*
+*/
 
