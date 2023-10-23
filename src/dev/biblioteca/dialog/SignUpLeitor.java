@@ -8,6 +8,8 @@ public class SignUpLeitor extends javax.swing.JDialog {
     public SignUpLeitor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -70,6 +72,11 @@ public class SignUpLeitor extends javax.swing.JDialog {
         });
 
         cancelButton.setText("Cancelar");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         signUpButton.setText("Sign Up");
         signUpButton.addActionListener(new java.awt.event.ActionListener() {

@@ -3,8 +3,11 @@ package dev.biblioteca;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import dev.biblioteca.dialog.AdicionarLivro;
+import dev.biblioteca.dialog.LoginFuncionario;
+import dev.biblioteca.dialog.LoginLeitor;
 import dev.biblioteca.dialog.RegistroLeitores;
 import dev.biblioteca.dialog.RegistroLivros;
+import dev.biblioteca.dialog.SignUpLeitor;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -54,13 +57,10 @@ public class Biblioteca extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -101,12 +101,6 @@ public class Biblioteca extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
-        jMenuItem11.setText("Remover Livro");
-        jMenu2.add(jMenuItem11);
-
-        jMenuItem10.setText("Editoras");
-        jMenu2.add(jMenuItem10);
-
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Leitores");
@@ -119,25 +113,32 @@ public class Biblioteca extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem3);
 
-        jMenuItem4.setText("Adicionar Leitor");
-        jMenu4.add(jMenuItem4);
-
-        jMenuBar1.add(jMenu4);
-
-        jMenu5.setText("Conta");
-
         jMenuItem12.setText("Sign Up Leitor");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem12ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem12);
+        jMenu4.add(jMenuItem12);
+
+        jMenuBar1.add(jMenu4);
+
+        jMenu5.setText("Conta");
 
         jMenuItem6.setText("Login como Leitor");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem6);
 
         jMenuItem7.setText("Login como Funcionario");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem7);
 
         jMenuItem8.setText("Log out");
@@ -151,22 +152,19 @@ public class Biblioteca extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createSequentialGroup()
-                        .addContainerGap(333, Short.MAX_VALUE)
+                        .add(0, 0, Short.MAX_VALUE)
                         .add(accountStatusLabel))
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createSequentialGroup()
-                                .add(14, 14, 14)
-                                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
-                            .add(layout.createSequentialGroup()
-                                .addContainerGap(161, Short.MAX_VALUE)
-                                .add(jLabel1)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 149, Short.MAX_VALUE)))
-                        .add(10, 10, 10)))
-                .addContainerGap())
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .add(14, 14, 14)
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .addContainerGap(161, Short.MAX_VALUE)
+                        .add(jLabel1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 149, Short.MAX_VALUE)))
+                .add(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -200,7 +198,20 @@ public class Biblioteca extends javax.swing.JFrame {
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
+        new SignUpLeitor(this, true).setVisible(true);
+
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        new LoginLeitor(this, true).setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        new LoginFuncionario(this, true).setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,12 +259,9 @@ public class Biblioteca extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;

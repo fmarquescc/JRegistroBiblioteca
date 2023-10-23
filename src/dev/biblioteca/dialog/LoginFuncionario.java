@@ -1,5 +1,8 @@
 package dev.biblioteca.dialog;
 
+import dev.biblioteca.FuncionarioPanel;
+import javax.swing.JOptionPane;
+
 public class LoginFuncionario extends javax.swing.JDialog {
 
     /**
@@ -8,6 +11,8 @@ public class LoginFuncionario extends javax.swing.JDialog {
     public LoginFuncionario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -32,11 +37,33 @@ public class LoginFuncionario extends javax.swing.JDialog {
 
         jLabel1.setText("Username");
 
+        usernameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameFieldActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Password");
 
         loginButton.setText("Log In");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setText("Cancelar");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,6 +102,30 @@ public class LoginFuncionario extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        String userFunc = usernameField.getText();
+        String passFunc = passwordField.getText();
+        
+        if (userFunc.equals("admin")&&passFunc.equals("admin")){
+        // falta gravar o login
+        this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Username ou senha incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }        
+    }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameFieldActionPerformed
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     /**
      * @param args the command line arguments
