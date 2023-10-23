@@ -13,7 +13,7 @@ public class Leitor {
     private String pass;
     private List<String> livroRequesitados = new ArrayList<>();
 
-    public Leitor(String nome, String datanas, String nleitor, String email, String telefone, String login, String pass) {
+    public Leitor(String nome, String nleitor, String email, String telefone, String login) {
         this.nome = nome;
         this.datanas = datanas;
         this.nleitor = nleitor;

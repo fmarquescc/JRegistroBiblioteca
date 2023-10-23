@@ -158,7 +158,7 @@ public class LocalLigaBD extends LigaBD {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] data = line.split(";");
-                    list.add(new Leitor(data[0], data[1], data[2], data[3], data[4], data[5], data[6]));
+                    list.add(new Leitor(data[0], data[2], data[3], data[4], data[5]));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
