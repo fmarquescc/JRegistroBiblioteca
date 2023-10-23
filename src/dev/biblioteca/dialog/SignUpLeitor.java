@@ -247,7 +247,12 @@ public class SignUpLeitor extends javax.swing.JDialog {
       } else {
     	  passValida = true;
       }
-  }
+    }
+        if (nomeValido && emailValido && telefoneValido && loginValido && passValida) {
+            JOptionPane.showMessageDialog(this, "Campos validados", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+            }
+        
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
