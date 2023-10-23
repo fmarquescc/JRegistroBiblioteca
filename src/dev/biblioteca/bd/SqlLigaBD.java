@@ -198,3 +198,33 @@ public class SqlLigaBD extends LigaBD {
             }
         }
     }
+
+
+/*
+-- Criar a base de dados caso ela não exista
+CREATE DATABASE IF NOT EXISTS biblioteca;
+
+
+--  tabela 'livros'
+CREATE TABLE livros (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    autor VARCHAR(255),
+    editora VARCHAR(255),
+    anolancamento VARCHAR(4)
+);
+
+
+-- tabela 'leitores'
+CREATE TABLE leitores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    datanas DATE,
+    nleitor VARCHAR(10) NOT NULL,
+    email VARCHAR(255),
+    telefone VARCHAR(20),
+    login VARCHAR(255) NOT NULL,
+    pass VARCHAR(255) NOT NULL
+);
+
+\*
