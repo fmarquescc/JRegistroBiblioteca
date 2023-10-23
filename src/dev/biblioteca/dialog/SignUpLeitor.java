@@ -202,7 +202,7 @@ public class SignUpLeitor extends javax.swing.JDialog {
     } else {
         int pos_arroba = email.indexOf('@');
         int pos_ponto = email.indexOf('.', pos_arroba + 2);
-        if (pos_ponto != -1 && pos_ponto < email.length() - 3) {
+        if (pos_ponto != -1 && pos_ponto < email.length() - 1) {
             emailValido = true;
         } else {
             mostraMensagem("Email", "Preencha um email válido");
