@@ -1,0 +1,1 @@
+Ze Manel;2000-01-01;42;987654321;zemanel@gmail.com;ManelZe;Password1!
