@@ -1,6 +1,7 @@
 package dev.biblioteca.dialog;
 
 import dev.biblioteca.LeitorPanel;
+import dev.biblioteca.bd.LigaBD;
 import javax.swing.JOptionPane;
 
 public class LoginLeitor extends javax.swing.JDialog {

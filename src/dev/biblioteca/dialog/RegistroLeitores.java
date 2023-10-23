@@ -29,7 +29,7 @@ public class RegistroLeitores extends javax.swing.JDialog {
         DefaultTableModel model = (DefaultTableModel) this.table.getModel();
         this.clearTableData(model);
         for (Leitor leitor : LigaBD.getBD().obterLeitors()) {
-            model.addRow(new Object[] { leitor.getNome(), leitor.getDatanas(), leitor.getNleitor(), leitor.getTelefone(), leitor.getEmail(), leitor.getLogin(), leitor.getPass()});
+            model.addRow(new Object[] { leitor.getNome(), leitor.getNleitor(), leitor.getTelefone(), leitor.getEmail(), leitor.getLogin(), leitor.getPass()});
         }
     }
     
@@ -58,14 +58,14 @@ public class RegistroLeitores extends javax.swing.JDialog {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Data de Nascimento", "Nº de Leitor", "Telefone", "Email", "Login", "Password"
+                "Nome", "Nº de Leitor", "Telefone", "Email", "Login", "Password"
             }
         ));
         table.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
