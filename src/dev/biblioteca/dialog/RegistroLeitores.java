@@ -2,6 +2,8 @@ package dev.biblioteca.dialog;
 
 import dev.biblioteca.Leitor;
 import dev.biblioteca.bd.LigaBD;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistroLeitores extends javax.swing.JDialog {
@@ -14,6 +16,13 @@ public class RegistroLeitores extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.load();
+        this.table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                removeLeitorButton.setEnabled(true);
+            }
+            
+        });
     }
     
     private void load() {
@@ -42,6 +51,7 @@ public class RegistroLeitores extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        removeLeitorButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Leitores");
@@ -64,6 +74,9 @@ public class RegistroLeitores extends javax.swing.JDialog {
 
         jButton1.setText("Remover Todos");
 
+        removeLeitorButton.setText("Remover");
+        removeLeitorButton.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,7 +87,8 @@ public class RegistroLeitores extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(removeLeitorButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -83,7 +97,9 @@ public class RegistroLeitores extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(removeLeitorButton))
                 .addContainerGap())
         );
 
@@ -135,6 +151,7 @@ public class RegistroLeitores extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton removeLeitorButton;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
