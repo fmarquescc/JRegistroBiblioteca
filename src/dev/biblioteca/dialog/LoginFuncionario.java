@@ -1,6 +1,6 @@
 package dev.biblioteca.dialog;
 
-import dev.biblioteca.FuncionarioPanel;
+import dev.biblioteca.Constants;
 import javax.swing.JOptionPane;
 
 public class LoginFuncionario extends javax.swing.JDialog {
@@ -111,7 +111,7 @@ public class LoginFuncionario extends javax.swing.JDialog {
         String userFunc = usernameField.getText();
         String passFunc = passwordField.getText();
         
-        if (userFunc.equals("admin")&&passFunc.equals("admin")){
+        if (userFunc.equals(Constants.FUNCIONARIO_LOGIN)&&passFunc.equals(Constants.FUNCIONARIO_PASS)){
         // falta gravar o login
         this.dispose();
         }else{

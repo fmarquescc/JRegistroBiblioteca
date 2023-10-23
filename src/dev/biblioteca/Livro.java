@@ -7,6 +7,7 @@ public class Livro {
     private String autor;
     private String editora;
     private String anolancamento;
+    private boolean disponivel = true;
 
     public Livro(String titulo, String autor, String editora, String anolancamento) {
         this.titulo = titulo;
@@ -15,6 +16,14 @@ public class Livro {
         this.anolancamento = anolancamento;
     }
 
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+    
     public String getTitulo() {
         return titulo;
     }

@@ -7,7 +7,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistroLivros extends javax.swing.JDialog {
-
+    private int selectedRow = -1;
+    
     /**
      * Creates new form RegistroLivros
      */
@@ -20,6 +21,7 @@ public class RegistroLivros extends javax.swing.JDialog {
             @Override
             public void mouseClicked(MouseEvent e) {
                 removeLivroButton.setEnabled(true);
+                selectedRow = table.getSelectedRow();
             }
             
         });
@@ -29,7 +31,7 @@ public class RegistroLivros extends javax.swing.JDialog {
         DefaultTableModel model = (DefaultTableModel) this.table.getModel();
         this.clearTableData(model);
         for (Livro livro : LigaBD.getBD().obterLivros()) {
-            model.addRow(new Object[] { livro.getTitulo(), livro.getAutor(), livro.getEditora(), livro.getAnolancamento()});
+            model.addRow(new Object[] { livro.getTitulo(), livro.getAutor(), livro.getEditora(), livro.getAnolancamento(), livro.isDisponivel() ? "Disponível" : "Indisponível" });
         }
     }
     
@@ -50,30 +52,60 @@ public class RegistroLivros extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        removeAllButton = new javax.swing.JButton();
         removeLivroButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        requesitarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Livros");
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Título", "Autor", "Editora", "Ano de Lançamento"
+                "Título", "Autor", "Editora", "Ano de Lançamento", "Disponibilidade"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         table.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         jScrollPane1.setViewportView(table);
 
-        jButton1.setText("Remover Todos");
+        removeAllButton.setText("Remover Todos");
+        removeAllButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeAllButtonActionPerformed(evt);
+            }
+        });
 
         removeLivroButton.setText("Remover");
         removeLivroButton.setEnabled(false);
+        removeLivroButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeLivroButtonActionPerformed(evt);
+            }
+        });
+
+        addButton.setText("Adicionar");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        requesitarButton.setText("Requesitar");
+        requesitarButton.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,10 +114,14 @@ public class RegistroLivros extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(removeAllButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(requesitarButton)
+                        .addGap(54, 54, 54)
+                        .addComponent(addButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(removeLivroButton)))
                 .addContainerGap())
         );
@@ -96,13 +132,37 @@ public class RegistroLivros extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(removeLivroButton))
+                    .addComponent(removeAllButton)
+                    .addComponent(removeLivroButton)
+                    .addComponent(addButton)
+                    .addComponent(requesitarButton))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void removeLivroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLivroButtonActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        LigaBD.getBD().excluirLivro((String) model.getValueAt(this.selectedRow, 0));
+        model.removeRow(this.selectedRow);
+        this.removeLivroButton.setEnabled(false);
+    }//GEN-LAST:event_removeLivroButtonActionPerformed
+
+    private void removeAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeAllButtonActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        for (int rowCount = model.getRowCount(), i = rowCount - 1; i >= 0; --i) {
+            LigaBD.getBD().excluirLivro((String) model.getValueAt(i, 0));
+            model.removeRow(i);
+        }
+    }//GEN-LAST:event_removeAllButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        new AdicionarLivro(null, true).setVisible(true);
+    }//GEN-LAST:event_addButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,9 +207,11 @@ public class RegistroLivros extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton addButton;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton removeAllButton;
     private javax.swing.JButton removeLivroButton;
+    private javax.swing.JButton requesitarButton;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

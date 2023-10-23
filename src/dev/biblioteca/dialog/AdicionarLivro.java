@@ -1,6 +1,8 @@
 package dev.biblioteca.dialog;
 
 
+import dev.biblioteca.Livro;
+import dev.biblioteca.bd.LigaBD;
 import javax.swing.JOptionPane;
 
 public class AdicionarLivro extends javax.swing.JDialog {
@@ -37,7 +39,7 @@ public class AdicionarLivro extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Livro");
 
-        jLabel1.setText("Nome");
+        jLabel1.setText("Título");
 
         jLabel2.setText("Autor");
 
@@ -144,7 +146,12 @@ public class AdicionarLivro extends javax.swing.JDialog {
             } else {
                 anoLancValid = true;
             }
-        } 
+        }
+        
+        if (anoLancValid) {
+            LigaBD.getBD().inserirLivro(new Livro(this.nomeField.getText(), this.autorField.getText(), this.editoraField.getText(), this.anoLancField.getText()));
+            this.dispose();
+        }
     }//GEN-LAST:event_adicionarButtonActionPerformed
 
     private void showErrorDialog(String message) {
