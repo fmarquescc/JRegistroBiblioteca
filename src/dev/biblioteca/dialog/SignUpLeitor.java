@@ -1,5 +1,5 @@
 package dev.biblioteca.dialog;
-
+import javax.swing.JOptionPane;
 public class SignUpLeitor extends javax.swing.JDialog {
 
     /**
@@ -59,6 +59,18 @@ public class SignUpLeitor extends javax.swing.JDialog {
 
         jLabel6.setText("Confirmar Password");
 
+        confirmarPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarPasswordFieldActionPerformed(evt);
+            }
+        });
+
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
+
         cancelButton.setText("Cancelar");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +79,11 @@ public class SignUpLeitor extends javax.swing.JDialog {
         });
 
         signUpButton.setText("Sign Up");
+        signUpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,14 +147,121 @@ public class SignUpLeitor extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_cancelButtonActionPerformed
-
     private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeFieldActionPerformed
+    public void mostraMensagem(String campo, String mensagem) {
+        JOptionPane.showMessageDialog(this, campo + ": " + mensagem, "Erro de Validação", JOptionPane.ERROR_MESSAGE);
+    }
+    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
+       
+           String nome = nomeField.getText();
+    String email = emailField.getText();
+    String telefone = telefoneField.getText();
+    String login = loginField.getText();
+    char[] senha = passwordField.getPassword();
+    char[] senhaRepetida = confirmarPasswordField.getPassword();
+    
 
+   boolean nomeValido = false, emailValido = false, telefoneValido = false, loginValido = false, 
+           passValida = false;
+            
+        String s = "";
+        int conta = 0, contaEspacos = 0;
+
+
+    // Validação do nome
+     if (nome.isEmpty()) {
+        mostraMensagem("Nome", "Preencha o campo nome");
+    } else if (nome.length() < 2) {
+        mostraMensagem("Nome", "Preencha um nome válido");
+    } else {
+        for (int x = 0; x < nome.length(); x++) {
+            if ((nome.charAt(x) >= 65 && nome.charAt(x) <= 90) || (nome.charAt(x) >= 97 && nome.charAt(x) <= 122)) {
+                conta++;
+            } else if (nome.charAt(x) == ' ') {
+                contaEspacos++;
+            }
+        }
+        if (conta < 2 || (conta + contaEspacos) < nome.length()) {
+            mostraMensagem("Nome", "Preencha um nome válido");
+        } else {
+            nomeValido = true;
+        }
+    }
+     
+      // Validação do email
+      if (email.isEmpty()) {
+        mostraMensagem("Email", "Preencha o campo email");
+    } else if (email.indexOf('@') == -1) {
+        mostraMensagem("Email", "Preencha um email válido");
+    } else {
+        int pos_arroba = email.indexOf('@');
+        int pos_ponto = email.indexOf('.', pos_arroba + 2);
+        if (pos_ponto != -1 && pos_ponto < email.length() - 3) {
+            emailValido = true;
+        } else {
+            mostraMensagem("Email", "Preencha um email válido");
+        }
+    }
+        // Validação do telefone
+       if (telefone.isEmpty()) {
+        mostraMensagem("Telefone", "Preencha o campo telefone");
+        } else {
+        telefone = telefone.replaceAll("\\s", "").replaceAll("[^0-9]", "");
+        if (telefone.length() < 9) {
+            mostraMensagem("Telefone", "O número de telefone deve ter pelo menos 9 dígitos");
+        } else {
+            telefoneValido = true;
+         }
+        }
+       
+       //Validação do login
+     if (login.isEmpty()) {
+        mostraMensagem("Login", "Preencha o campo login");
+    } else if (login.length() < 4) {
+        mostraMensagem("Login", "O login deve ter pelo menos 4 caracteres");
+    } else if (login.contains(" ")) {
+        mostraMensagem("Login", "O login não pode conter espaços");
+    } else {
+        loginValido = true;
+    }
+
+    // Validação da senha
+     if (senha.length == 0) {
+      mostraMensagem("Senha", "Preencha o campo de senha");
+    } else {
+      String senhaString = String.valueOf(senha);
+      if (senha.length < 8) {
+          mostraMensagem("Senha", "A senha deve ter pelo menos 8 caracteres");
+      } else if (!senhaString.matches(".*[a-z].*")) {
+          mostraMensagem("Senha", "A senha deve conter pelo menos uma letra minúscula");
+      } else if (!senhaString.matches(".*[A-Z].*")) {
+          mostraMensagem("Senha", "A senha deve conter pelo menos uma letra maiúscula");
+      } else if (!senhaString.matches(".*\\d.*")) {
+          mostraMensagem("Senha", "A senha deve conter pelo menos um dígito");
+      } else if (!senhaString.matches(".*[@#$%^&+=].*")) {
+          mostraMensagem("Senha", "A senha deve conter pelo menos um caractere especial (@, #, $, %, ^, & ou +)");
+      } else if (!String.valueOf(senha).equals(String.valueOf(senhaRepetida))) {
+          mostraMensagem("Senha", "As senhas não coincidem");
+      } else {
+    	  passValida = true;
+      }
+  }
+    }//GEN-LAST:event_signUpButtonActionPerformed
+
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldActionPerformed
+
+    private void confirmarPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmarPasswordFieldActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
+    
     /**
      * @param args the command line arguments
      */
