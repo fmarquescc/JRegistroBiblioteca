@@ -258,6 +258,10 @@ public class SignUpLeitor extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmarPasswordFieldActionPerformed
 
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
+    
     /**
      * @param args the command line arguments
      */
