@@ -11,7 +11,6 @@ public class Leitor {
     private String login;
     private String pass;
     private List<String> livroRequesitados = new ArrayList<>();
-
     public Leitor(String nome, String nleitor, String email, String telefone, String login, String pass) {
         this.nome = nome;
         this.nleitor = nleitor;
