@@ -5,17 +5,14 @@ import java.util.List;
 
 public class Leitor {
     private String nome;
-    private String datanas;
     private String nleitor;
     private String email;
     private String telefone;
     private String login;
     private String pass;
     private List<String> livroRequesitados = new ArrayList<>();
-
-    public Leitor(String nome, String datanas, String nleitor, String email, String telefone, String login, String pass) {
+    public Leitor(String nome, String nleitor, String email, String telefone, String login, String pass) {
         this.nome = nome;
-        this.datanas = datanas;
         this.nleitor = nleitor;
         this.email = email;
         this.telefone = telefone;
@@ -38,14 +35,6 @@ public class Leitor {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getDatanas() {
-        return datanas;
-    }
-
-    public void setDatanas(String datanas) {
-        this.datanas = datanas;
     }
 
     public String getNleitor() {

@@ -1,6 +1,10 @@
 package dev.biblioteca.dialog;
+import dev.biblioteca.Leitor;
+import dev.biblioteca.bd.LigaBD;
+import java.util.Random;
 import javax.swing.JOptionPane;
 public class SignUpLeitor extends javax.swing.JDialog {
+    private static final Random RANDOM = new Random();
 
     /**
      * Creates new form LeitorSignUp
@@ -251,6 +255,8 @@ public class SignUpLeitor extends javax.swing.JDialog {
         if (nomeValido && emailValido && telefoneValido && loginValido && passValida) {
             JOptionPane.showMessageDialog(this, "Campos validados", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
+                Leitor leitor = new Leitor(nome, RANDOM.nextInt(0, Integer.MAX_VALUE) + "", email, telefone, login, this.passwordField.getText());
+                LigaBD.getBD().inserirLeitor(leitor);
             }
         
     }//GEN-LAST:event_signUpButtonActionPerformed
