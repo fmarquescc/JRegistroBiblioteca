@@ -1,6 +1,7 @@
 package dev.biblioteca.bd;
 
 import dev.biblioteca.Constants;
+import dev.biblioteca.Event;
 import dev.biblioteca.Leitor;
 import dev.biblioteca.Livro;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Optional;
 
 public abstract class LigaBD {
     public static LigaBD bd;
-   
+    
     public static boolean FUNCIONARIO_LOGGED = false;
     public static Leitor LOGGED_LEITOR = null;
     
@@ -26,4 +27,14 @@ public abstract class LigaBD {
     public abstract void excluirLivro(String titulo);
     public abstract void inserirLeitor(Leitor leitor);
     public abstract List<Leitor> obterLeitors();
+    
+    public static final Event<LivrosUpdate> LIVROS_UPDATE_EVENT = Event.create(callbacks -> () -> {
+        for (LivrosUpdate callback : callbacks) {
+            callback.changed();
+        }
+    });
+    
+    public interface LivrosUpdate {
+        void changed();
+    }
 }

@@ -4,10 +4,13 @@ import dev.biblioteca.Livro;
 import dev.biblioteca.bd.LigaBD;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistroLivros extends javax.swing.JDialog {
     private int selectedRow = -1;
+    private LigaBD.LivrosUpdate updateFunc;
     
     /**
      * Creates new form RegistroLivros
@@ -24,6 +27,18 @@ public class RegistroLivros extends javax.swing.JDialog {
                 selectedRow = table.getSelectedRow();
             }
             
+        });
+        
+        this.updateFunc = () -> {
+            this.load();
+        };
+        LigaBD.LIVROS_UPDATE_EVENT.register(this.updateFunc);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                LigaBD.LIVROS_UPDATE_EVENT.unregister(updateFunc);
+            }
         });
     }
     
@@ -106,6 +121,11 @@ public class RegistroLivros extends javax.swing.JDialog {
 
         requesitarButton.setText("Requesitar");
         requesitarButton.setEnabled(false);
+        requesitarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requesitarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,6 +183,10 @@ public class RegistroLivros extends javax.swing.JDialog {
         // TODO add your handling code here:
         new AdicionarLivro(null, true).setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void requesitarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requesitarButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_requesitarButtonActionPerformed
 
     /**
      * @param args the command line arguments

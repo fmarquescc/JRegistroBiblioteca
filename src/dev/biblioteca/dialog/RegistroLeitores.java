@@ -4,10 +4,11 @@ import dev.biblioteca.Leitor;
 import dev.biblioteca.bd.LigaBD;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistroLeitores extends javax.swing.JDialog {
-
     /**
      * Creates new form RegistroLeitores
      */
