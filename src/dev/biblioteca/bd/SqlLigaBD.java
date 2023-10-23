@@ -227,4 +227,7 @@ CREATE TABLE leitores (
     pass VARCHAR(255) NOT NULL
 );
 
+ALTER TABLE leitores
+ADD livros_registrados TEXT;
+
 \*
