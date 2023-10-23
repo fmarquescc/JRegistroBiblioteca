@@ -1,5 +1,9 @@
 package dev.biblioteca.dialog;
 
+import dev.biblioteca.Livro;
+import dev.biblioteca.bd.LigaBD;
+import javax.swing.table.DefaultTableModel;
+
 public class RegistroLivros extends javax.swing.JDialog {
 
     /**
@@ -9,6 +13,21 @@ public class RegistroLivros extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        this.load();
+    }
+    
+    private void load() {
+        DefaultTableModel model = (DefaultTableModel) this.table.getModel();
+        this.clearTableData(model);
+        for (Livro livro : LigaBD.getBD().obterLivros()) {
+            model.addRow(new Object[] { livro.getTitulo(), livro.getAutor(), livro.getEditora(), livro.getAnolancamento()});
+        }
+    }
+    
+    private void clearTableData(DefaultTableModel tableModel) {
+        for (int rowCount = tableModel.getRowCount(), i = rowCount - 1; i >= 0; --i) {
+            tableModel.removeRow(i);
+        }
     }
 
     /**
@@ -21,13 +40,13 @@ public class RegistroLivros extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Livros");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -38,8 +57,8 @@ public class RegistroLivros extends javax.swing.JDialog {
                 "Título", "Autor", "Editora", "Ano de Lançamento"
             }
         ));
-        jTable1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
-        jScrollPane1.setViewportView(jTable1);
+        table.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        jScrollPane1.setViewportView(table);
 
         jButton1.setText("Remover Todos");
 
@@ -114,6 +133,6 @@ public class RegistroLivros extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
