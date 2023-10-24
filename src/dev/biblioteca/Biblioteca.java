@@ -2,6 +2,7 @@ package dev.biblioteca;
 
 
 import com.formdev.flatlaf.FlatLightLaf;
+import dev.biblioteca.bd.LigaBD;
 import dev.biblioteca.dialog.AdicionarLivro;
 import dev.biblioteca.dialog.LoginFuncionario;
 import dev.biblioteca.dialog.LoginLeitor;
@@ -35,6 +36,9 @@ public class Biblioteca extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        LigaBD.ACTION_MESSAGE_EVENT.register(message -> {
+            this.activityTextArea.setText(message + '\n' + this.activityTextArea.getText());
+        });
     }
 
     /** This method is called from within the constructor to

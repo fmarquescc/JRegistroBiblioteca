@@ -149,8 +149,10 @@ public class AdicionarLivro extends javax.swing.JDialog {
         }
         
         if (anoLancValid) {
-            LigaBD.getBD().inserirLivro(new Livro(this.nomeField.getText(), this.autorField.getText(), this.editoraField.getText(), this.anoLancField.getText()));
-            LigaBD.LIVROS_UPDATE_EVENT.invoker().changed();
+            Livro livro = new Livro(this.nomeField.getText(), this.autorField.getText(), this.editoraField.getText(), this.anoLancField.getText());
+            LigaBD.getBD().inserirLivro(livro);
+            LigaBD.LIVROS_UPDATE_EVENT.invoker().run();
+            LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Adicionado livro '" + livro.getTitulo() + "'");
             this.dispose();
         }
     }//GEN-LAST:event_adicionarButtonActionPerformed

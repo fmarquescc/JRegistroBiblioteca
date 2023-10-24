@@ -28,13 +28,14 @@ public abstract class LigaBD {
     public abstract void inserirLeitor(Leitor leitor);
     public abstract List<Leitor> obterLeitors();
     
-    public static final Event<LivrosUpdate> LIVROS_UPDATE_EVENT = Event.create(callbacks -> () -> {
-        for (LivrosUpdate callback : callbacks) {
-            callback.changed();
+    public static final Event<Runnable> LIVROS_UPDATE_EVENT = Event.create();
+    public static final Event<ActionMessage> ACTION_MESSAGE_EVENT = Event.create(callbacks -> message -> {
+        for (ActionMessage callback : callbacks) {
+            callback.run(message);
         }
     });
     
-    public interface LivrosUpdate {
-        void changed();
+    public interface ActionMessage {
+        void run(String message);
     }
 }

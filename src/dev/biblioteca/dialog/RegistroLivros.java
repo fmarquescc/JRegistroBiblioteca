@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class RegistroLivros extends javax.swing.JDialog {
     private int selectedRow = -1;
-    private LigaBD.LivrosUpdate updateFunc;
+    private Runnable updateFunc;
     
     /**
      * Creates new form RegistroLivros
@@ -166,6 +166,7 @@ public class RegistroLivros extends javax.swing.JDialog {
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         LigaBD.getBD().excluirLivro((String) model.getValueAt(this.selectedRow, 0));
+        LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Removido livro '" + ((String) model.getValueAt(this.selectedRow, 0)) + "'");
         model.removeRow(this.selectedRow);
         this.removeLivroButton.setEnabled(false);
     }//GEN-LAST:event_removeLivroButtonActionPerformed
