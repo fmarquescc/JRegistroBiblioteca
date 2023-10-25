@@ -19,6 +19,18 @@ public abstract class LigaBD {
         LigaBD.LOGIN_STATUS_CHANGE_EVENT.invoker().run();
     }
     
+    public static void logAsFuncionario() {
+        LigaBD.FUNCIONARIO_LOGGED = true;
+        LigaBD.LOGGED_LEITOR = null;
+        LigaBD.LOGIN_STATUS_CHANGE_EVENT.invoker().run();
+    }
+    
+    public static void logAsLeitor(Leitor leitor) {
+        LigaBD.FUNCIONARIO_LOGGED = false;
+        LigaBD.LOGGED_LEITOR = leitor;
+        LigaBD.LOGIN_STATUS_CHANGE_EVENT.invoker().run();
+    }
+    
     public static LigaBD getBD() {
         if (bd == null) {
             bd = Constants.USE_SQL_DATABASE ? new SqlLigaBD() : new LocalLigaBD();
