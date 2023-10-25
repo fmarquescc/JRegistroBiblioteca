@@ -42,6 +42,7 @@ public abstract class LigaBD {
     public abstract Optional<Livro> buscarLivroPorTitulo(String titulo);
     public abstract List<Livro> obterLivros();
     public abstract void atualizarLivro(Livro livro);
+    public abstract void atualizarLeitor(Leitor leitor);
     public abstract void excluirLivro(String titulo);
     public abstract void inserirLeitor(Leitor leitor);
     public abstract List<Leitor> obterLeitors();

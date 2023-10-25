@@ -21,6 +21,11 @@ public class SqlLigaBD extends LigaBD {
     }
 
     @Override
+    public void atualizarLeitor(Leitor leitor) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
     public void inserirLeitor(Leitor leitor) {
         try {
             Connection connection = conectar();

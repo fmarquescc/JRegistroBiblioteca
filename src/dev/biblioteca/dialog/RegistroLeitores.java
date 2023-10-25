@@ -21,10 +21,26 @@ public class RegistroLeitores extends javax.swing.JDialog {
         this.table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                removeLeitorButton.setEnabled(true);
+                if (LigaBD.FUNCIONARIO_LOGGED) {
+                    removeLeitorButton.setEnabled(true);
+                }
             }
             
         });
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                LigaBD.LOGIN_STATUS_CHANGE_EVENT.unregister(RegistroLeitores.this::onLoginStatusChange);
+            }
+            
+        });
+        LigaBD.LOGIN_STATUS_CHANGE_EVENT.register(this::onLoginStatusChange);
+        this.onLoginStatusChange();
+    }
+    
+    private void onLoginStatusChange() {
+        this.removeAllButton.setEnabled(LigaBD.FUNCIONARIO_LOGGED);
     }
     
     private void load() {
@@ -58,7 +74,7 @@ public class RegistroLeitores extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        removeAllButton = new javax.swing.JButton();
         removeLeitorButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -80,7 +96,7 @@ public class RegistroLeitores extends javax.swing.JDialog {
         table.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(table);
 
-        jButton1.setText("Remover Todos");
+        removeAllButton.setText("Remover Todos");
 
         removeLeitorButton.setText("Remover");
         removeLeitorButton.setEnabled(false);
@@ -94,7 +110,7 @@ public class RegistroLeitores extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(removeAllButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(removeLeitorButton)))
                 .addContainerGap())
@@ -106,7 +122,7 @@ public class RegistroLeitores extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(removeAllButton)
                     .addComponent(removeLeitorButton))
                 .addContainerGap())
         );
@@ -157,8 +173,8 @@ public class RegistroLeitores extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton removeAllButton;
     private javax.swing.JButton removeLeitorButton;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables

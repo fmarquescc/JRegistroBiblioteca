@@ -1,17 +1,18 @@
 package dev.biblioteca.dialog;
 
+import dev.biblioteca.Leitor;
 import dev.biblioteca.bd.LigaBD;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class LoginLeitor extends javax.swing.JDialog {
-
-    /**
-     * Creates new form LeitorLogin
-     */
+    private final List<Leitor> leitores;
+    
     public LoginLeitor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        this.leitores = LigaBD.getBD().obterLeitors();
     }
 
     /**
@@ -106,8 +107,18 @@ public class LoginLeitor extends javax.swing.JDialog {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String userFunc = nomeField.getText();
         String passFunc = nomeField1.getText();
+        
+        Leitor leitor = null;
+        for (Leitor l : this.leitores) {
+            if (userFunc.equals(l.getLogin()) && passFunc.equals(l.getPass())) {
+                leitor = l;
+                break;
+            }
+        }
+        
         // falta gravar o login
-        if (userFunc.equals("root")&&passFunc.equals("root")){
+        if (leitor != null) {
+            LigaBD.logAsLeitor(leitor);
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Username ou senha incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);

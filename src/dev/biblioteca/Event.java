@@ -29,7 +29,6 @@ public class Event<T> {
     public void register(T listener) {
         this.handlers.add(listener);
         this.rebuild();
-        System.out.println(this.handlers.size());
     }
     
     public void unregister(T listener) {

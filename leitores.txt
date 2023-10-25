@@ -2,3 +2,15 @@ Ze Manel;42;zemanel@gmail.com;987654321;ManelZe;Password1!#;
 tezte;253515494;teste@qwer.com;915102149;qwertty;Q1w2e#r4;
 fdf;238710996;dfdsf@gmail.com;123456789;gfdrgfdg;Password1!#;Portug$Mat$
 cristiano;489692516;cristiano@sapo.pt;789456123;cris12;1Q2w#e4r;
+Kalm;240370269;fsdf@gmail.com;123456789;Kalm;Password1!#;
+Kalme;637464770;fesgfs@gmail.com;123456789;Kalme;Password1!#;
+Cris;1301423149;esfes@gmail.com;123456789;Cris;Password1!#;
+Xolt;557701389;sfsef@gmail.com;123456789;Xolt;Password1!#;
+Rica;486172508;dfsed@gmail.com;123456790;Rica;Password1!#;
+Nuno;1209116547;wdwe@gmail.com;123456789;Nuno;Password1!#;
+Csharp;348079715;ef4ewfgew@gmail.com;123456789;Csharp;Password1!#;
+Netbeans;1617939968;fdsfdsf@gmail.com;123456789;Netbeans;Password1!#;
+Franc;656652764;efsefe@gmail.com;123456789;Franc;Password1#;
+Dora;267264762;defdew@gmail.com;123456789;Dora;Password1!#;Java$
+Nota;1773632397;dsf2@gmail.com;123456789;Nota;Password1!#;
+Bruh;1982437286;sdef@gmail.com;123456789;Bruh;Password1!#;
