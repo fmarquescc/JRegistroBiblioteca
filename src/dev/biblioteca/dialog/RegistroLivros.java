@@ -197,7 +197,7 @@ public class RegistroLivros extends javax.swing.JDialog {
             requesitarButton.setEnabled(true);
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             String titulo = (String) model.getValueAt(selectedRow, 0);
-            
+            LigaBD.LIVROS_UPDATE_EVENT.invoker().run();
         }
 
     }//GEN-LAST:event_requesitarButtonActionPerformed
