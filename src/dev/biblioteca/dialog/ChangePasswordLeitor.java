@@ -1,18 +1,25 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ */
 package dev.biblioteca.dialog;
 
-import dev.biblioteca.Leitor;
 import dev.biblioteca.bd.LigaBD;
-import java.util.List;
 import javax.swing.JOptionPane;
 
-public class LoginLeitor extends javax.swing.JDialog {
-    private final List<Leitor> leitores;
-    
-    public LoginLeitor(java.awt.Frame parent, boolean modal) {
+/**
+ *
+ * @author fmarques
+ */
+public class ChangePasswordLeitor extends javax.swing.JDialog {
+
+    /**
+     * Creates new form ChangePasswordLeitor
+     */
+    public ChangePasswordLeitor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        this.leitores = LigaBD.getBD().obterLeitors();
     }
 
     /**
@@ -24,31 +31,20 @@ public class LoginLeitor extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        nomeField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        loginButton = new javax.swing.JButton();
+        passField = new javax.swing.JTextField();
+        confirmButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
-        nomeField1 = new javax.swing.JPasswordField();
+        confirmPassField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Log In - Leitor");
-        setResizable(false);
+        setTitle("Mudar palavra-passe");
 
-        jLabel1.setText("Username");
-
-        nomeField.addActionListener(new java.awt.event.ActionListener() {
+        confirmButton.setText("Confirmar");
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Password");
-
-        loginButton.setText("Log In");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+                confirmButtonActionPerformed(evt);
             }
         });
 
@@ -59,74 +55,82 @@ public class LoginLeitor extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setText("New Password");
+
+        jLabel2.setText("Confirmar New Password");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(loginButton)
+                        .addComponent(confirmButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelButton))
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nomeField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                    .addComponent(nomeField1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(passField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(confirmPassField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomeField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(confirmPassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelButton)
-                    .addComponent(loginButton))
+                    .addComponent(confirmButton)
+                    .addComponent(cancelButton))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        String userFunc = nomeField.getText();
-        String passFunc = nomeField1.getText();
-        
-        Leitor leitor = null;
-        for (Leitor l : this.leitores) {
-            if (userFunc.equals(l.getLogin()) && passFunc.equals(l.getPass())) {
-                leitor = l;
-                break;
-            }
-        }
-        
-        // falta gravar o login
-        if (leitor != null) {
-            LigaBD.logAsLeitor(leitor);
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Username ou senha incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
-        }   
-    }//GEN-LAST:event_loginButtonActionPerformed
-
-    private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomeFieldActionPerformed
-
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        // TODO add your handling code here:
+        String senha = this.passField.getText();
+        String senhaRepetida = this.confirmPassField.getText();
+        
+        if (senha.length() < 8) {
+            mostraMensagem("Senha", "A senha deve ter pelo menos 8 caracteres");
+        } else if (!senha.matches(".*[a-z].*")) {
+            mostraMensagem("Senha", "A senha deve conter pelo menos uma letra minúscula");
+        } else if (!senha.matches(".*[A-Z].*")) {
+            mostraMensagem("Senha", "A senha deve conter pelo menos uma letra maiúscula");
+        } else if (!senha.matches(".*\\d.*")) {
+            mostraMensagem("Senha", "A senha deve conter pelo menos um dígito");
+        } else if (!senha.matches(".*[@#$%^&+=].*")) {
+            mostraMensagem("Senha", "A senha deve conter pelo menos um caractere especial (@, #, $, %, ^, & ou +)");
+        } else if (!String.valueOf(senha).equals(String.valueOf(senhaRepetida))) {
+            mostraMensagem("Senha", "As senhas não coincidem");
+        } else {
+            LigaBD.LOGGED_LEITOR.setPass(senha);
+            LigaBD.getBD().atualizarLeitor(LigaBD.LOGGED_LEITOR);
+            LigaBD.LIVROS_UPDATE_EVENT.invoker().run();
+            this.dispose();
+        }
+    }//GEN-LAST:event_confirmButtonActionPerformed
+
+    public void mostraMensagem(String campo, String mensagem) {
+        JOptionPane.showMessageDialog(this, campo + ": " + mensagem, "Erro de Validação", JOptionPane.ERROR_MESSAGE);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -144,20 +148,20 @@ public class LoginLeitor extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginLeitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePasswordLeitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginLeitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePasswordLeitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginLeitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePasswordLeitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginLeitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePasswordLeitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                LoginLeitor dialog = new LoginLeitor(new javax.swing.JFrame(), true);
+                ChangePasswordLeitor dialog = new ChangePasswordLeitor(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -171,10 +175,10 @@ public class LoginLeitor extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
+    private javax.swing.JButton confirmButton;
+    private javax.swing.JTextField confirmPassField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton loginButton;
-    private javax.swing.JTextField nomeField;
-    private javax.swing.JPasswordField nomeField1;
+    private javax.swing.JTextField passField;
     // End of variables declaration//GEN-END:variables
 }

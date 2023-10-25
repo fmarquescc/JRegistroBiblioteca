@@ -4,6 +4,7 @@ package dev.biblioteca;
 import com.formdev.flatlaf.FlatLightLaf;
 import dev.biblioteca.bd.LigaBD;
 import dev.biblioteca.dialog.AdicionarLivro;
+import dev.biblioteca.dialog.ChangePasswordLeitor;
 import dev.biblioteca.dialog.LoginFuncionario;
 import dev.biblioteca.dialog.LoginLeitor;
 import dev.biblioteca.dialog.RegistroLeitores;
@@ -44,6 +45,7 @@ public class Biblioteca extends javax.swing.JFrame {
             this.loginLeitorMenuItem.setVisible(LigaBD.LOGGED_LEITOR == null && !LigaBD.FUNCIONARIO_LOGGED);
             this.loginFuncMenuItem.setVisible(LigaBD.LOGGED_LEITOR == null && !LigaBD.FUNCIONARIO_LOGGED);
             this.logoutMenuItem.setVisible(LigaBD.LOGGED_LEITOR != null || LigaBD.FUNCIONARIO_LOGGED);
+            this.changePassMenuItem.setVisible(LigaBD.LOGGED_LEITOR != null);
             
             if (LigaBD.FUNCIONARIO_LOGGED) {
                 this.accountStatusLabel.setText("Logged as Funcionario");
@@ -83,6 +85,7 @@ public class Biblioteca extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         signupLeitorMenuItem = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        changePassMenuItem = new javax.swing.JMenuItem();
         loginLeitorMenuItem = new javax.swing.JMenuItem();
         loginFuncMenuItem = new javax.swing.JMenuItem();
         logoutMenuItem = new javax.swing.JMenuItem();
@@ -146,6 +149,14 @@ public class Biblioteca extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Conta");
+
+        changePassMenuItem.setText("Mudar palavra-passe");
+        changePassMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePassMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu5.add(changePassMenuItem);
 
         loginLeitorMenuItem.setText("Login como Leitor");
         loginLeitorMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -244,6 +255,11 @@ public class Biblioteca extends javax.swing.JFrame {
         LigaBD.logOut();
     }//GEN-LAST:event_logoutMenuItemActionPerformed
 
+    private void changePassMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePassMenuItemActionPerformed
+        // TODO add your handling code here:
+        new ChangePasswordLeitor(this, true).setVisible(true);
+    }//GEN-LAST:event_changePassMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -283,6 +299,7 @@ public class Biblioteca extends javax.swing.JFrame {
     private javax.swing.JLabel accountStatusLabel;
     private javax.swing.JTextArea activityTextArea;
     private javax.swing.JMenuItem adicionarLivroMenuItem;
+    private javax.swing.JMenuItem changePassMenuItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

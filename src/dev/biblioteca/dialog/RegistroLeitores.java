@@ -37,6 +37,7 @@ public class RegistroLeitores extends javax.swing.JDialog {
         });
         LigaBD.LOGIN_STATUS_CHANGE_EVENT.register(this::onLoginStatusChange);
         this.onLoginStatusChange();
+        this.removeAllButton.setVisible(false);
     }
     
     private void onLoginStatusChange() {
@@ -91,7 +92,15 @@ public class RegistroLeitores extends javax.swing.JDialog {
             new String [] {
                 "Nome", "Nº de Leitor", "Telefone", "Email", "Login", "Livros"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         table.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         table.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(table);

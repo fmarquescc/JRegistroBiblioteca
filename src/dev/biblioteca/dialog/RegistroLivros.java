@@ -24,19 +24,30 @@ public class RegistroLivros extends javax.swing.JDialog {
         this.load();
         this.table.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                if (LigaBD.FUNCIONARIO_LOGGED) {
-                    removeLivroButton.setEnabled(true);
-                }
-                
+            public void mouseClicked(MouseEvent e) {              
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
                 selectedRow = table.getSelectedRow();
                 String titulo = (String) model.getValueAt(selectedRow, 0);
-                Optional<Livro> livro = LigaBD.getBD().buscarLivroPorTitulo(titulo);
-                if (LigaBD.LOGGED_LEITOR != null && livro.get().isDisponivel()) {
-                    requesitarButton.setEnabled(true);
+                Livro livro = LigaBD.getBD().buscarLivroPorTitulo(titulo).get();
+                
+                if (LigaBD.FUNCIONARIO_LOGGED && livro.isDisponivel()) {
+                    removeLivroButton.setEnabled(true);
+                } else {
+                    removeLivroButton.setEnabled(false);
                 }
-            }
+                
+                if (LigaBD.LOGGED_LEITOR != null && livro.isDisponivel()) {
+                    requesitarButton.setEnabled(true);
+                } else {
+                    requesitarButton.setEnabled(false);
+                }
+                
+                if (LigaBD.LOGGED_LEITOR != null && LigaBD.LOGGED_LEITOR.hasLivro(livro) && !livro.isDisponivel()) {
+                    devolverButton.setEnabled(true);
+                } else {
+                    devolverButton.setEnabled(false);
+                }
+             }
             
         });
         this.addWindowListener(new WindowAdapter() {
@@ -60,6 +71,7 @@ public class RegistroLivros extends javax.swing.JDialog {
         });
         LigaBD.LOGIN_STATUS_CHANGE_EVENT.register(this::onLoginStatusChange);
         this.onLoginStatusChange();
+        this.removeAllButton.setVisible(false);
     }
     
     private void onLoginStatusChange() {
@@ -96,7 +108,7 @@ public class RegistroLivros extends javax.swing.JDialog {
         removeLivroButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         requesitarButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        devolverButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Livros");
@@ -115,9 +127,16 @@ public class RegistroLivros extends javax.swing.JDialog {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         table.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
@@ -153,7 +172,13 @@ public class RegistroLivros extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setText("jButton1");
+        devolverButton.setText("Devolver");
+        devolverButton.setEnabled(false);
+        devolverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                devolverButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,7 +193,7 @@ public class RegistroLivros extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(requesitarButton)
                         .addGap(3, 3, 3)
-                        .addComponent(jButton1)
+                        .addComponent(devolverButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(addButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,7 +211,7 @@ public class RegistroLivros extends javax.swing.JDialog {
                     .addComponent(removeLivroButton)
                     .addComponent(addButton)
                     .addComponent(requesitarButton)
-                    .addComponent(jButton1))
+                    .addComponent(devolverButton))
                 .addContainerGap())
         );
 
@@ -209,6 +234,7 @@ public class RegistroLivros extends javax.swing.JDialog {
             LigaBD.getBD().excluirLivro((String) model.getValueAt(i, 0));
             model.removeRow(i);
         }
+        LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Removidos todos os livros");
     }//GEN-LAST:event_removeAllButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -233,9 +259,27 @@ public class RegistroLivros extends javax.swing.JDialog {
             });
             
             LigaBD.LIVROS_UPDATE_EVENT.invoker().run();
+            LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Requesitado '" + titulo + "' por " + LigaBD.LOGGED_LEITOR.getNome());
         }
-
     }//GEN-LAST:event_requesitarButtonActionPerformed
+
+    private void devolverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolverButtonActionPerformed
+        if (LigaBD.LOGGED_LEITOR != null) {
+            devolverButton.setEnabled(false);
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            String titulo = (String) model.getValueAt(selectedRow, 0);
+            Optional<Livro> livro = LigaBD.getBD().buscarLivroPorTitulo(titulo);
+            livro.ifPresent(vl -> {
+                vl.setDisponivel(true);
+                LigaBD.LOGGED_LEITOR.removeLivro(vl);
+                LigaBD.getBD().atualizarLivro(vl);
+                LigaBD.getBD().atualizarLeitor(LigaBD.LOGGED_LEITOR);
+            });
+            
+            LigaBD.LIVROS_UPDATE_EVENT.invoker().run();
+            LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Devolvido '" + titulo + "' por " + LigaBD.LOGGED_LEITOR.getNome());
+        }  
+    }//GEN-LAST:event_devolverButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,7 +325,7 @@ public class RegistroLivros extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton devolverButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton removeAllButton;
     private javax.swing.JButton removeLivroButton;

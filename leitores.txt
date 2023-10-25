@@ -11,6 +11,6 @@ Nuno;1209116547;wdwe@gmail.com;123456789;Nuno;Password1!#;
 Csharp;348079715;ef4ewfgew@gmail.com;123456789;Csharp;Password1!#;
 Netbeans;1617939968;fdsfdsf@gmail.com;123456789;Netbeans;Password1!#;
 Franc;656652764;efsefe@gmail.com;123456789;Franc;Password1#;
-Dora;267264762;defdew@gmail.com;123456789;Dora;Password1!#;Java$
+Dora;267264762;defdew@gmail.com;123456789;Dora;PassPavra1!#;
 Nota;1773632397;dsf2@gmail.com;123456789;Nota;Password1!#;
 Bruh;1982437286;sdef@gmail.com;123456789;Bruh;Password1!#;

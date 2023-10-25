@@ -78,6 +78,14 @@
             <Property name="text" type="java.lang.String" value="Conta"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="changePassMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Mudar palavra-passe"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changePassMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="loginLeitorMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Login como Leitor"/>

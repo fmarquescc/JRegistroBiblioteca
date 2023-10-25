@@ -22,28 +22,28 @@ public class SqlLigaBD extends LigaBD {
     }
 
     @Override
-public void atualizarLeitor(Leitor leitor) {
-    List<Leitor> list = this.obterLeitors();
-    Iterator<Leitor> iterator = list.iterator();
+    public void atualizarLeitor(Leitor leitor) {
+        List<Leitor> list = this.obterLeitors();
+        Iterator<Leitor> iterator = list.iterator();
 
-    while (iterator.hasNext()) {
-        Leitor lv = iterator.next();
-        if (lv.getNleitor().equals(leitor.getNleitor())) {
-            lv.setEmail(leitor.getEmail());
-            lv.setTelefone(leitor.getTelefone());
-            lv.setLogin(leitor.getLogin());
-            lv.setPass(leitor.getPass());
-            lv.setNome(leitor.getNome());
-            lv.getLivroRequesitados().clear();
-            for (String titulo : leitor.getLivroRequesitados()) {
-                lv.addLivro(titulo);
+        while (iterator.hasNext()) {
+            Leitor lv = iterator.next();
+            if (lv.getNleitor().equals(leitor.getNleitor())) {
+                lv.setEmail(leitor.getEmail());
+                lv.setTelefone(leitor.getTelefone());
+                lv.setLogin(leitor.getLogin());
+                lv.setPass(leitor.getPass());
+                lv.setNome(leitor.getNome());
+                lv.getLivroRequesitados().clear();
+                for (String titulo : leitor.getLivroRequesitados()) {
+                    lv.addLivro(titulo);
+                }
+                break;
             }
-            break;
         }
-    }
 
-    this.saveLeitores(list);
-}
+        this.saveLeitores(list);
+    }
 
   @Override
 public void inserirLeitor(Leitor leitor) {
@@ -58,7 +58,7 @@ public void inserirLeitor(Leitor leitor) {
             preparedStatement.setString(4, leitor.getTelefone());
             preparedStatement.setString(5, leitor.getLogin());
             preparedStatement.setString(6, leitor.getPass());
-            preparedStatement.setString(7, String.valueOf(leitor.getLivrosRequesitados()));
+            preparedStatement.setString(7, String.valueOf(leitor.getLivroRequesitados())); // DOESN'T WORK
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -82,14 +82,14 @@ public void inserirLeitor(Leitor leitor) {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 while (resultSet.next()) {
-                    Leitor leitor = new Leitor(resultSet.getString("nome"),
-                            resultSet.getString("nleitor"),
-                            resultSet.getString("email"),
-                            resultSet.getString("telefone"),
-                            resultSet.getString("login"),
-                            resultSet.getString("pass"),
-                            resultSet.getInt("livros_requesitados"));
-                    leitores.add(leitor);
+                    // Leitor leitor = new Leitor(resultSet.getString("nome"),
+                    //         resultSet.getString("nleitor"),
+                    //         resultSet.getString("email"),
+                    //         resultSet.getString("telefone"),
+                    //         resultSet.getString("login"),
+                    //         resultSet.getString("pass"),
+                    //         resultSet.getInt("livros_requesitados")); // DOESN'T WORK
+                    // leitores.add(leitor);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

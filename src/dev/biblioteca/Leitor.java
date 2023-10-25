@@ -1,6 +1,7 @@
 package dev.biblioteca;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Leitor {
@@ -23,15 +24,42 @@ public class Leitor {
     public void addLivro(Livro livro) {
         this.livroRequesitados.add(livro.getTitulo());
     }
+
+    public void removeLivro(Livro livro) {
+        this.removeLivro(livro.getTitulo());
+    }
+    
+    public void removeLivro(String titulo) {
+        Iterator<String> iter = this.livroRequesitados.iterator();
+        while (iter.hasNext()) {
+            String tl = iter.next();
+            if (titulo.equals(tl)) {
+                iter.remove();
+                break;
+            }
+        }
+    }
     
     public void addLivro(String titulo) {
         this.livroRequesitados.add(titulo);
+    }
+    
+    public boolean hasLivro(Livro livro) {
+        return this.hasLivro(livro.getTitulo());
+    }
+    
+    public boolean hasLivro(String titulo) {
+        for (String livro : this.livroRequesitados) {
+            if (livro.equals(titulo)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<String> getLivroRequesitados() {
         return livroRequesitados;
     }
-    
     
     public String getNome() {
         return nome;
