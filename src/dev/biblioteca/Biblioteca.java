@@ -39,6 +39,31 @@ public class Biblioteca extends javax.swing.JFrame {
         LigaBD.ACTION_MESSAGE_EVENT.register(message -> {
             this.activityTextArea.setText(message + '\n' + this.activityTextArea.getText());
         });
+        LigaBD.LOGIN_STATUS_CHANGE_EVENT.register(() -> {
+            if (LigaBD.FUNCIONARIO_LOGGED) {
+                this.accountStatusLabel.setText("Logged as Funcionario");
+                this.signupLeitorMenuItem.setVisible(false);
+                this.loginLeitorMenuItem.setVisible(false);
+                this.loginFuncMenuItem.setVisible(false);
+                this.logoutMenuItem.setVisible(true);
+                this.adicionarLivroMenuItem.setVisible(true);
+            } else if (LigaBD.LOGGED_LEITOR != null) {
+                this.accountStatusLabel.setText("Logged as Leitor: " + LigaBD.LOGGED_LEITOR.getNome());
+                this.signupLeitorMenuItem.setVisible(false);
+                this.loginLeitorMenuItem.setVisible(false);
+                this.loginFuncMenuItem.setVisible(false);
+                this.logoutMenuItem.setVisible(true);
+                this.adicionarLivroMenuItem.setVisible(false);
+            } else {
+                this.accountStatusLabel.setText("Not logged");
+                this.signupLeitorMenuItem.setVisible(true);
+                this.loginLeitorMenuItem.setVisible(true);
+                this.loginFuncMenuItem.setVisible(true);
+                this.logoutMenuItem.setVisible(false);
+                this.adicionarLivroMenuItem.setVisible(false);
+            }
+        });
+        LigaBD.LOGIN_STATUS_CHANGE_EVENT.invoker().run();
     }
 
     /** This method is called from within the constructor to
@@ -60,14 +85,14 @@ public class Biblioteca extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        adicionarLivroMenuItem = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        signupLeitorMenuItem = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        loginLeitorMenuItem = new javax.swing.JMenuItem();
+        loginFuncMenuItem = new javax.swing.JMenuItem();
+        logoutMenuItem = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -97,13 +122,13 @@ public class Biblioteca extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem1);
 
-        jMenuItem2.setText("Adicionar Livro");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        adicionarLivroMenuItem.setText("Adicionar Livro");
+        adicionarLivroMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                adicionarLivroMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMenu2.add(adicionarLivroMenuItem);
 
         jMenuBar1.add(jMenu2);
 
@@ -117,36 +142,41 @@ public class Biblioteca extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem3);
 
-        jMenuItem12.setText("Sign Up Leitor");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+        signupLeitorMenuItem.setText("Sign Up Leitor");
+        signupLeitorMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
+                signupLeitorMenuItemActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem12);
+        jMenu4.add(signupLeitorMenuItem);
 
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Conta");
 
-        jMenuItem6.setText("Login como Leitor");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        loginLeitorMenuItem.setText("Login como Leitor");
+        loginLeitorMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                loginLeitorMenuItemActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem6);
+        jMenu5.add(loginLeitorMenuItem);
 
-        jMenuItem7.setText("Login como Funcionario");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        loginFuncMenuItem.setText("Login como Funcionario");
+        loginFuncMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                loginFuncMenuItemActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem7);
+        jMenu5.add(loginFuncMenuItem);
 
-        jMenuItem8.setText("Log out");
-        jMenu5.add(jMenuItem8);
+        logoutMenuItem.setText("Log out");
+        logoutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu5.add(logoutMenuItem);
 
         jMenuBar1.add(jMenu5);
 
@@ -190,32 +220,36 @@ public class Biblioteca extends javax.swing.JFrame {
         new RegistroLivros(this, true).setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void adicionarLivroMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarLivroMenuItemActionPerformed
         // TODO add your handling code here:
          new AdicionarLivro(this, true).setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_adicionarLivroMenuItemActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         new RegistroLeitores(this, true).setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+    private void signupLeitorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupLeitorMenuItemActionPerformed
         // TODO add your handling code here:
         new SignUpLeitor(this, true).setVisible(true);
 
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
+    }//GEN-LAST:event_signupLeitorMenuItemActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void loginLeitorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginLeitorMenuItemActionPerformed
         // TODO add your handling code here:
         new LoginLeitor(this, true).setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_loginLeitorMenuItemActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void loginFuncMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginFuncMenuItemActionPerformed
         // TODO add your handling code here:
         new LoginFuncionario(this, true).setVisible(true);
         
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_loginFuncMenuItemActionPerformed
+
+    private void logoutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutMenuItemActionPerformed
+        LigaBD.logOut();
+    }//GEN-LAST:event_logoutMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,6 +289,7 @@ public class Biblioteca extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accountStatusLabel;
     private javax.swing.JTextArea activityTextArea;
+    private javax.swing.JMenuItem adicionarLivroMenuItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -263,14 +298,13 @@ public class Biblioteca extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem loginFuncMenuItem;
+    private javax.swing.JMenuItem loginLeitorMenuItem;
+    private javax.swing.JMenuItem logoutMenuItem;
+    private javax.swing.JMenuItem signupLeitorMenuItem;
     // End of variables declaration//GEN-END:variables
 
 }

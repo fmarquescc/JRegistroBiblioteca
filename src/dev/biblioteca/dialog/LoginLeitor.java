@@ -1,5 +1,6 @@
 package dev.biblioteca.dialog;
 
+import dev.biblioteca.bd.LigaBD;
 import javax.swing.JOptionPane;
 
 public class LoginLeitor extends javax.swing.JDialog {
@@ -26,7 +27,7 @@ public class LoginLeitor extends javax.swing.JDialog {
         nomeField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         nomeField1 = new javax.swing.JTextField();
-        signUpButton = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -49,10 +50,10 @@ public class LoginLeitor extends javax.swing.JDialog {
             }
         });
 
-        signUpButton.setText("Log In");
-        signUpButton.addActionListener(new java.awt.event.ActionListener() {
+        loginButton.setText("Log In");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpButtonActionPerformed(evt);
+                loginButtonActionPerformed(evt);
             }
         });
 
@@ -71,7 +72,7 @@ public class LoginLeitor extends javax.swing.JDialog {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(signUpButton)
+                        .addComponent(loginButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelButton))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,23 +96,23 @@ public class LoginLeitor extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
-                    .addComponent(signUpButton))
+                    .addComponent(loginButton))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String userFunc = nomeField.getText();
         String passFunc = nomeField1.getText();
         // falta gravar o login
         if (userFunc.equals("root")&&passFunc.equals("root")){
-        this.dispose();
+            this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Username ou senha incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
         }   
-    }//GEN-LAST:event_signUpButtonActionPerformed
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
         // TODO add your handling code here:
@@ -172,8 +173,8 @@ public class LoginLeitor extends javax.swing.JDialog {
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton loginButton;
     private javax.swing.JTextField nomeField;
     private javax.swing.JTextField nomeField1;
-    private javax.swing.JButton signUpButton;
     // End of variables declaration//GEN-END:variables
 }

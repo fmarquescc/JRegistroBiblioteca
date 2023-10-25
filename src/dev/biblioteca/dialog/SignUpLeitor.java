@@ -258,6 +258,7 @@ public class SignUpLeitor extends javax.swing.JDialog {
                 Leitor leitor = new Leitor(nome, RANDOM.nextInt(0, Integer.MAX_VALUE) + "", email, telefone, login, this.passwordField.getText());
                 LigaBD.getBD().inserirLeitor(leitor);
                 LigaBD.LOGGED_LEITOR = leitor;
+                LigaBD.LOGIN_STATUS_CHANGE_EVENT.invoker().run();
             }
         
     }//GEN-LAST:event_signUpButtonActionPerformed

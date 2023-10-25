@@ -13,6 +13,12 @@ public abstract class LigaBD {
     public static boolean FUNCIONARIO_LOGGED = false;
     public static Leitor LOGGED_LEITOR = null;
     
+    public static void logOut() {
+        LigaBD.FUNCIONARIO_LOGGED = false;
+        LigaBD.LOGGED_LEITOR = null;
+        LigaBD.LOGIN_STATUS_CHANGE_EVENT.invoker().run();
+    }
+    
     public static LigaBD getBD() {
         if (bd == null) {
             bd = Constants.USE_SQL_DATABASE ? new SqlLigaBD() : new LocalLigaBD();
@@ -34,6 +40,7 @@ public abstract class LigaBD {
             callback.run(message);
         }
     });
+    public static final Event<Runnable> LOGIN_STATUS_CHANGE_EVENT = Event.create();
     
     public interface ActionMessage {
         void run(String message);

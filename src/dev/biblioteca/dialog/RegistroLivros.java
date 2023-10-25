@@ -25,6 +25,9 @@ public class RegistroLivros extends javax.swing.JDialog {
             public void mouseClicked(MouseEvent e) {
                 removeLivroButton.setEnabled(true);
                 selectedRow = table.getSelectedRow();
+                if (LigaBD.LOGGED_LEITOR != null) {
+                    requesitarButton.setEnabled(true);
+                }
             }
             
         });
