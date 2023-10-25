@@ -40,26 +40,19 @@ public class Biblioteca extends javax.swing.JFrame {
             this.activityTextArea.setText(message + '\n' + this.activityTextArea.getText());
         });
         LigaBD.LOGIN_STATUS_CHANGE_EVENT.register(() -> {
+            this.signupLeitorMenuItem.setVisible(LigaBD.LOGGED_LEITOR == null && !LigaBD.FUNCIONARIO_LOGGED);
+            this.loginLeitorMenuItem.setVisible(LigaBD.LOGGED_LEITOR == null && !LigaBD.FUNCIONARIO_LOGGED);
+            this.loginFuncMenuItem.setVisible(LigaBD.LOGGED_LEITOR == null && !LigaBD.FUNCIONARIO_LOGGED);
+            this.logoutMenuItem.setVisible(LigaBD.LOGGED_LEITOR != null || LigaBD.FUNCIONARIO_LOGGED);
+            
             if (LigaBD.FUNCIONARIO_LOGGED) {
                 this.accountStatusLabel.setText("Logged as Funcionario");
-                this.signupLeitorMenuItem.setVisible(false);
-                this.loginLeitorMenuItem.setVisible(false);
-                this.loginFuncMenuItem.setVisible(false);
-                this.logoutMenuItem.setVisible(true);
                 this.adicionarLivroMenuItem.setVisible(true);
             } else if (LigaBD.LOGGED_LEITOR != null) {
                 this.accountStatusLabel.setText("Logged as Leitor: " + LigaBD.LOGGED_LEITOR.getNome());
-                this.signupLeitorMenuItem.setVisible(false);
-                this.loginLeitorMenuItem.setVisible(false);
-                this.loginFuncMenuItem.setVisible(false);
-                this.logoutMenuItem.setVisible(true);
                 this.adicionarLivroMenuItem.setVisible(false);
             } else {
                 this.accountStatusLabel.setText("Not logged");
-                this.signupLeitorMenuItem.setVisible(true);
-                this.loginLeitorMenuItem.setVisible(true);
-                this.loginFuncMenuItem.setVisible(true);
-                this.logoutMenuItem.setVisible(false);
                 this.adicionarLivroMenuItem.setVisible(false);
             }
         });

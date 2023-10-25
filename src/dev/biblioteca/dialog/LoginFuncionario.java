@@ -115,8 +115,7 @@ public class LoginFuncionario extends javax.swing.JDialog {
         if (userFunc.equals(Constants.FUNCIONARIO_LOGIN)&&passFunc.equals(Constants.FUNCIONARIO_PASS)){
         // falta gravar o login
         this.dispose();
-            LigaBD.FUNCIONARIO_LOGGED = true;
-            LigaBD.LOGIN_STATUS_CHANGE_EVENT.invoker().run();
+            LigaBD.logAsFuncionario();
         }else{
             JOptionPane.showMessageDialog(null, "Username ou senha incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
         }        
