@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistroLeitores extends javax.swing.JDialog {
@@ -30,7 +31,13 @@ public class RegistroLeitores extends javax.swing.JDialog {
         DefaultTableModel model = (DefaultTableModel) this.table.getModel();
         this.clearTableData(model);
         for (Leitor leitor : LigaBD.getBD().obterLeitors()) {
-            model.addRow(new Object[] { leitor.getNome(), leitor.getNleitor(), leitor.getTelefone(), leitor.getEmail(), leitor.getLogin(), leitor.getPass()});
+            List<String> livros = leitor.getLivroRequesitados();
+            String lvs = "";
+            for (String titulo : livros) {
+                lvs += titulo + " ; ";
+            }
+            
+            model.addRow(new Object[] { leitor.getNome(), leitor.getNleitor(), leitor.getTelefone(), leitor.getEmail(), leitor.getLogin(), lvs });
         }
     }
     
@@ -66,7 +73,7 @@ public class RegistroLeitores extends javax.swing.JDialog {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Nº de Leitor", "Telefone", "Email", "Login", "Password"
+                "Nome", "Nº de Leitor", "Telefone", "Email", "Login", "Livros"
             }
         ));
         table.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));

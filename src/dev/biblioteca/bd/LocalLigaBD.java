@@ -115,7 +115,13 @@ public class LocalLigaBD extends LigaBD {
                     writer.write(leitor.getEmail() + ';');
                     writer.write(leitor.getTelefone() + ';');
                     writer.write(leitor.getLogin() + ';');
-                    writer.write(leitor.getPass());
+                    writer.write(leitor.getPass() + ";");
+                    
+                    List<String> livros = leitor.getLivroRequesitados();
+                    
+                    for (String livro : livros) {
+                        writer.write(livro + "$");
+                    }
                     
                     if (i + 1 < list.size()) {
                         writer.write('\n');
@@ -157,7 +163,15 @@ public class LocalLigaBD extends LigaBD {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] data = line.split(";");
-                    list.add(new Leitor(data[0], data[1], data[2], data[3], data[4], data[5]));
+                    Leitor leitor = new Leitor(data[0], data[1], data[2], data[3], data[4], data[5]);
+                    list.add(leitor);
+                    
+                    if (data.length > 6) {
+                        String[] livros = data[6].split("\\$");
+                        for (String livro : livros) {
+                            leitor.addLivro(livro);
+                        }
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();

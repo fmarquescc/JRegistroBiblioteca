@@ -23,6 +23,10 @@ public class Leitor {
     public void addLivro(Livro livro) {
         this.livroRequesitados.add(livro.getTitulo());
     }
+    
+    public void addLivro(String titulo) {
+        this.livroRequesitados.add(titulo);
+    }
 
     public List<String> getLivroRequesitados() {
         return livroRequesitados;
