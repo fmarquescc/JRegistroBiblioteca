@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,35 +22,54 @@ public class SqlLigaBD extends LigaBD {
     }
 
     @Override
-    public void atualizarLeitor(Leitor leitor) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    @Override
-    public void inserirLeitor(Leitor leitor) {
-        try {
-            Connection connection = conectar();
-            String sql = "INSERT INTO leitores (nome, nleitor, email, telefone, login, pass, livros_requesitados) VALUES (?, ?, ?, ?, ?, ?, ?)";
+public void atualizarLeitor(Leitor leitor) {
+    List<Leitor> list = this.obterLeitors();
+    Iterator<Leitor> iterator = list.iterator();
 
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, leitor.getNome());
-                preparedStatement.setString(2, leitor.getNleitor());
-                preparedStatement.setString(3, leitor.getEmail());
-                preparedStatement.setString(4, leitor.getTelefone());
-                preparedStatement.setString(5, leitor.getLogin());
-                preparedStatement.setString(6, leitor.getPass());
-                preparedStatement.setInt(7, leitor.getLivrosRequesitados());
-
-                preparedStatement.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                connection.close();
+    while (iterator.hasNext()) {
+        Leitor lv = iterator.next();
+        if (lv.getNleitor().equals(leitor.getNleitor())) {
+            lv.setEmail(leitor.getEmail());
+            lv.setTelefone(leitor.getTelefone());
+            lv.setLogin(leitor.getLogin());
+            lv.setPass(leitor.getPass());
+            lv.setNome(leitor.getNome());
+            lv.getLivroRequesitados().clear();
+            for (String titulo : leitor.getLivroRequesitados()) {
+                lv.addLivro(titulo);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            break;
         }
     }
+
+    this.saveLeitores(list);
+}
+
+  @Override
+public void inserirLeitor(Leitor leitor) {
+    try {
+        Connection connection = conectar();
+        String sql = "INSERT INTO leitores (nome, nleitor, email, telefone, login, pass, livros_requesitados) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, leitor.getNome());
+            preparedStatement.setString(2, leitor.getNleitor());
+            preparedStatement.setString(3, leitor.getEmail());
+            preparedStatement.setString(4, leitor.getTelefone());
+            preparedStatement.setString(5, leitor.getLogin());
+            preparedStatement.setString(6, leitor.getPass());
+            preparedStatement.setString(7, String.valueOf(leitor.getLivrosRequesitados()));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connection.close();
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
 
     @Override
     public List<Leitor> obterLeitors() {
@@ -201,6 +221,10 @@ public class SqlLigaBD extends LigaBD {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private void saveLeitores(List<Leitor> list) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
 
