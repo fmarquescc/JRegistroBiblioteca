@@ -7,13 +7,19 @@ public class Livro {
     private String autor;
     private String editora;
     private String anolancamento;
-    private boolean disponivel = true;
+    private boolean disponivel;
 
+    
     public Livro(String titulo, String autor, String editora, String anolancamento) {
+        this(titulo, autor, editora, anolancamento, true);
+    }
+    
+    public Livro(String titulo, String autor, String editora, String anolancamento, boolean disponivel) {
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editora;
         this.anolancamento = anolancamento;
+        this.disponivel = disponivel;
     }
 
     public boolean isDisponivel() {

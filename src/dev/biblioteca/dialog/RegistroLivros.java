@@ -23,7 +23,10 @@ public class RegistroLivros extends javax.swing.JDialog {
         this.table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                removeLivroButton.setEnabled(true);
+                if (LigaBD.FUNCIONARIO_LOGGED) {
+                    removeLivroButton.setEnabled(true);
+                }
+                
                 selectedRow = table.getSelectedRow();
                 if (LigaBD.LOGGED_LEITOR != null) {
                     requesitarButton.setEnabled(true);
@@ -31,7 +34,6 @@ public class RegistroLivros extends javax.swing.JDialog {
             }
             
         });
-        
         this.updateFunc = () -> {
             this.load();
         };
@@ -195,7 +197,7 @@ public class RegistroLivros extends javax.swing.JDialog {
             requesitarButton.setEnabled(true);
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             String titulo = (String) model.getValueAt(selectedRow, 0);
-        
+            
         }
 
     }//GEN-LAST:event_requesitarButtonActionPerformed
