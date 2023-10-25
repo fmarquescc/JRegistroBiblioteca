@@ -15,7 +15,7 @@ public class SqlLigaBD extends LigaBD {
     static String url = "jdbc:mysql://localhost:3306/utilizador?useTimezone=true&serverTimezone=UTC";
     static String user = "root";
     static String pass = "";
-    
+
     public Connection conectar() throws SQLException {
         return DriverManager.getConnection(SqlLigaBD.url, SqlLigaBD.user, SqlLigaBD.pass);
     }
@@ -29,7 +29,7 @@ public class SqlLigaBD extends LigaBD {
     public void inserirLeitor(Leitor leitor) {
         try {
             Connection connection = conectar();
-            String sql = "INSERT INTO leitores (nome, nleitor, email, telefone, login, pass) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO leitores (nome, nleitor, email, telefone, login, pass, livros_requesitados) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, leitor.getNome());
@@ -38,6 +38,7 @@ public class SqlLigaBD extends LigaBD {
                 preparedStatement.setString(4, leitor.getTelefone());
                 preparedStatement.setString(5, leitor.getLogin());
                 preparedStatement.setString(6, leitor.getPass());
+                preparedStatement.setInt(7, leitor.getLivrosRequesitados());
 
                 preparedStatement.executeUpdate();
             } catch (SQLException e) {
@@ -66,7 +67,8 @@ public class SqlLigaBD extends LigaBD {
                             resultSet.getString("email"),
                             resultSet.getString("telefone"),
                             resultSet.getString("login"),
-                            resultSet.getString("pass"));
+                            resultSet.getString("pass"),
+                            resultSet.getInt("livros_requesitados"));
                     leitores.add(leitor);
                 }
             } catch (SQLException e) {
@@ -151,7 +153,7 @@ public class SqlLigaBD extends LigaBD {
                     return Optional.empty();
                 }
             } catch (SQLException e) {
-                    e.printStackTrace();
+                e.printStackTrace();
             } finally {
                 connection.close();
             }
@@ -203,6 +205,7 @@ public class SqlLigaBD extends LigaBD {
 }
 
 
+
 /*
 -- Criar a base de dados caso ela não exista
 CREATE DATABASE IF NOT EXISTS biblioteca;
@@ -215,6 +218,7 @@ CREATE TABLE livros (
     autor VARCHAR(255),
     editora VARCHAR(255),
     anolancamento VARCHAR(4)
+    disponibilidade INT
 );
 
 
@@ -227,6 +231,7 @@ CREATE TABLE leitores (
     telefone VARCHAR(20),
     login VARCHAR(255) NOT NULL,
     pass VARCHAR(255) NOT NULL
+    livros_requesitados INT 
 );
 
 
