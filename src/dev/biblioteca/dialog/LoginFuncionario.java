@@ -33,10 +33,10 @@ public class LoginFuncionario extends javax.swing.JDialog {
         passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Log In - Funcionario");
+        setTitle("Entrar - Funcionário");
         setResizable(false);
 
-        jLabel1.setText("Username");
+        jLabel1.setText("Utilizador");
 
         usernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,9 +44,9 @@ public class LoginFuncionario extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Password");
+        jLabel2.setText("Palavra-Passe");
 
-        loginButton.setText("Log In");
+        loginButton.setText("Entrar");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginButtonActionPerformed(evt);

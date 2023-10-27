@@ -41,7 +41,7 @@ public class SignUpLeitor extends javax.swing.JDialog {
         signUpButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Sign Up - Leitor");
+        setTitle("Adicionar - Leitor");
         setResizable(false);
 
         nomeField.addActionListener(new java.awt.event.ActionListener() {
@@ -56,12 +56,12 @@ public class SignUpLeitor extends javax.swing.JDialog {
 
         jLabel3.setText("Telefone");
 
-        jLabel4.setText("Login");
+        jLabel4.setText("Nome de Utilizador");
 
-        jLabel5.setText("Password");
+        jLabel5.setText("Palavra-Passe");
         jLabel5.setToolTipText("Mais de 8 caracteres");
 
-        jLabel6.setText("Confirmar Password");
+        jLabel6.setText("Confirmar Palavra-Passe");
 
         confirmarPasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +82,7 @@ public class SignUpLeitor extends javax.swing.JDialog {
             }
         });
 
-        signUpButton.setText("Sign Up");
+        signUpButton.setText("Registar");
         signUpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signUpButtonActionPerformed(evt);

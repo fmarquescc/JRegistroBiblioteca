@@ -39,7 +39,7 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Mudar palavra-passe");
+        setTitle("Mudar Palavra-Passe");
 
         confirmButton.setText("Confirmar");
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
@@ -55,9 +55,9 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("New Password");
+        jLabel1.setText("Nova Palavra-Passe");
 
-        jLabel2.setText("Confirmar New Password");
+        jLabel2.setText("Confirmar Palavra-Passe");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

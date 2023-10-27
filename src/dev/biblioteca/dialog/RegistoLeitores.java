@@ -90,7 +90,7 @@ public class RegistoLeitores extends javax.swing.JDialog {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Nº de Leitor", "Telefone", "Email", "Login", "Livros"
+                "Nome", "Nº de Leitor", "Telefone", "Email", "Nome de Utilizador", "Livros"
             }
         ) {
             boolean[] canEdit = new boolean [] {
