@@ -179,6 +179,8 @@ public class LocalLigaBD extends LigaBD {
         return list;
     }
 
+    
+    
     private List<Leitor> loadLeitores() {
         if (!Files.exists(LEITORES_PATH)) {
             return Collections.emptyList();
@@ -205,5 +207,12 @@ public class LocalLigaBD extends LigaBD {
         }
 
         return list;
+    }
+
+    @Override
+    public void atualizarEstadoLivro(String titulo, LivroEstado estado) {
+        Livro livro = buscarLivroPorTitulo(titulo).get();
+        livro.setDisponivel(estado == LivroEstado.DISPONIVEL);
+        this.atualizarLivro(livro);
     }
 }

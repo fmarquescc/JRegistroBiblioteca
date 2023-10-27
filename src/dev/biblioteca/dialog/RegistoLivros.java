@@ -2,11 +2,11 @@ package dev.biblioteca.dialog;
 
 import dev.biblioteca.Livro;
 import dev.biblioteca.bd.LigaBD;
+import dev.biblioteca.bd.LigaBD.LivroEstado;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.List;
 import java.util.Optional;
 import javax.swing.table.DefaultTableModel;
 
@@ -254,8 +254,10 @@ public class RegistoLivros extends javax.swing.JDialog {
             livro.ifPresent((vl) -> {
                 vl.setDisponivel(false);
                 LigaBD.LOGGED_LEITOR.addLivro(vl);
-                LigaBD.getBD().atualizarLivro(vl);
-                LigaBD.getBD().atualizarLeitor(LigaBD.LOGGED_LEITOR);
+           //     LigaBD.getBD().atualizarLivro(vl);
+           //     LigaBD.getBD().atualizarLeitor(LigaBD.LOGGED_LEITOR);
+                LigaBD.getBD().atualizarLeitor(LigaBD.getBD().obterLeitors().get(0));
+                LigaBD.getBD().atualizarEstadoLivro(vl.getTitulo(), LivroEstado.INDISPONIVEL);
             });
             
             LigaBD.LIVROS_UPDATE_EVENT.invoker().run();
@@ -272,8 +274,11 @@ public class RegistoLivros extends javax.swing.JDialog {
             livro.ifPresent(vl -> {
                 vl.setDisponivel(true);
                 LigaBD.LOGGED_LEITOR.removeLivro(vl);
-                LigaBD.getBD().atualizarLivro(vl);
-                LigaBD.getBD().atualizarLeitor(LigaBD.LOGGED_LEITOR);
+                //LigaBD.getBD().atualizarLivro(vl);
+                //LigaBD.getBD().atualizarLeitor(LigaBD.LOGGED_LEITOR);
+                LigaBD.getBD().atualizarLeitor(LigaBD.getBD().obterLeitors().get(0));
+                LigaBD.getBD().atualizarEstadoLivro(vl.getTitulo(), LivroEstado.DISPONIVEL);
+
             });
             
             LigaBD.LIVROS_UPDATE_EVENT.invoker().run();

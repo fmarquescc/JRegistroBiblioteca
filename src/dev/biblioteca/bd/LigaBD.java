@@ -46,7 +46,19 @@ public abstract class LigaBD {
     public abstract void excluirLivro(String titulo);
     public abstract void inserirLeitor(Leitor leitor);
     public abstract List<Leitor> obterLeitors();
-    
+    public abstract void atualizarEstadoLivro(String titulo, LivroEstado estado);
+
+    public enum LivroEstado {
+        DISPONIVEL,
+        INDISPONIVEL;
+        
+        public static LivroEstado getById(int id) {
+            if (id == 1) {
+                return DISPONIVEL;
+            }
+            return INDISPONIVEL;
+        }
+    }
     public static final Event<Runnable> LIVROS_UPDATE_EVENT = Event.create();
     public static final Event<ActionMessage> ACTION_MESSAGE_EVENT = Event.create(callbacks -> message -> {
         for (ActionMessage callback : callbacks) {

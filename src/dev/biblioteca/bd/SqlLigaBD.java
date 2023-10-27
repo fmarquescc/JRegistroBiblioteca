@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class SqlLigaBD extends LigaBD {
-    static String url = "jdbc:mysql://localhost:3306/utilizador?useTimezone=true&serverTimezone=UTC";
+    static String url = "jdbc:mysql://localhost:3306/biblioteca?useTimezone=true&serverTimezone=UTC";
     static String user = "root";
     static String pass = "";
 
@@ -21,6 +21,8 @@ public class SqlLigaBD extends LigaBD {
         return DriverManager.getConnection(SqlLigaBD.url, SqlLigaBD.user, SqlLigaBD.pass);
     }
 
+    
+    
     @Override
     public void atualizarLeitor(Leitor leitor) {
         List<Leitor> list = this.obterLeitors();
@@ -49,7 +51,7 @@ public class SqlLigaBD extends LigaBD {
 public void inserirLeitor(Leitor leitor) {
     try {
         Connection connection = conectar();
-        String sql = "INSERT INTO leitores (nome, nleitor, email, telefone, login, pass, livros_requesitados) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO leitores (nome, nleitor, email, telefone, login, pass) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, leitor.getNome());
@@ -58,7 +60,6 @@ public void inserirLeitor(Leitor leitor) {
             preparedStatement.setString(4, leitor.getTelefone());
             preparedStatement.setString(5, leitor.getLogin());
             preparedStatement.setString(6, leitor.getPass());
-            preparedStatement.setString(7, String.valueOf(leitor.getLivroRequesitados())); // DOESN'T WORK
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -82,14 +83,13 @@ public void inserirLeitor(Leitor leitor) {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 while (resultSet.next()) {
-                    // Leitor leitor = new Leitor(resultSet.getString("nome"),
-                    //         resultSet.getString("nleitor"),
-                    //         resultSet.getString("email"),
-                    //         resultSet.getString("telefone"),
-                    //         resultSet.getString("login"),
-                    //         resultSet.getString("pass"),
-                    //         resultSet.getInt("livros_requesitados")); // DOESN'T WORK
-                    // leitores.add(leitor);
+                     Leitor leitor = new Leitor(resultSet.getString("nome"),
+                             resultSet.getString("nleitor"),
+                             resultSet.getString("email"),
+                             resultSet.getString("telefone"),
+                             resultSet.getString("login"),
+                           resultSet.getString("pass"));
+                     leitores.add(leitor);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -102,6 +102,9 @@ public void inserirLeitor(Leitor leitor) {
         return leitores;
     }
 
+    
+    
+    
     @Override
     public List<Livro> obterLivros() {
         List<Livro> livros = new ArrayList<>();
@@ -117,6 +120,7 @@ public void inserirLeitor(Leitor leitor) {
                             resultSet.getString("autor"),
                             resultSet.getString("editora"),
                             resultSet.getString("anolancamento"));
+                    livro.setDisponivel(LivroEstado.getById(resultSet.getInt("estado_id_estado")) == LivroEstado.DISPONIVEL);
                     livros.add(livro);
                 }
             } catch (SQLException e) {
@@ -128,6 +132,24 @@ public void inserirLeitor(Leitor leitor) {
             e.printStackTrace();
         }
         return livros;
+    }
+    
+    private void saberEstadoLivro(Livro livro) {
+       String sql = "SELECT titulo FROM livro WHERE ";
+       try {
+        Connection connection = conectar();
+     
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            ResultSet res = preparedStatement.executeQuery();
+            livro.setDisponivel(LivroEstado.getById(res.getInt(1)) == LivroEstado.DISPONIVEL);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connection.close();
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
     }
 
     @Override
@@ -226,6 +248,22 @@ public void inserirLeitor(Leitor leitor) {
     private void saveLeitores(List<Leitor> list) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public void atualizarEstadoLivro(String titulo, LivroEstado estado) {
+        try {
+            Connection connection = conectar();
+            String query= "UPDATE livros SET estado_id_estado="+(estado.ordinal()+1) + " WHERE titulo=?";    
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, titulo);
+                preparedStatement.executeUpdate();
+            } finally {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 
@@ -239,10 +277,10 @@ CREATE DATABASE IF NOT EXISTS biblioteca;
 CREATE TABLE livros (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
-    autor VARCHAR(255),
-    editora VARCHAR(255),
-    anolancamento VARCHAR(4)
-    disponibilidade INT
+    autor VARCHAR(255)NOT NULL,
+    editora VARCHAR(255) NOT NULL,
+    anolancamento VARCHAR(4) NOT NULL,
+    disponibilidade INT NOT NULL,
 );
 
 
@@ -251,11 +289,11 @@ CREATE TABLE leitores (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     nleitor VARCHAR(10) NOT NULL,
-    email VARCHAR(255),
-    telefone VARCHAR(20),
+    email VARCHAR(255) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
     login VARCHAR(255) NOT NULL,
-    pass VARCHAR(255) NOT NULL
-    livros_requesitados INT 
+    pass VARCHAR(255) NOT NULL,
+    livros_requesitados INT ,
 );
 
 

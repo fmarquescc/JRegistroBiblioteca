@@ -1,4 +1,4 @@
-Ze Manel;42;zemanel@gmail.com;987654321;ManelZe;Password1!#;
+Ze Manel;42;zemanel@gmail.com;987654321;ManelZe;Password1!#;Java$
 tezte;253515494;teste@qwer.com;915102149;qwertty;Q1w2e#r4;
 fdf;238710996;dfdsf@gmail.com;123456789;gfdrgfdg;Password1!#;Portug$Mat$
 cristiano;489692516;cristiano@sapo.pt;789456123;cris12;1Q2w#e4r;
