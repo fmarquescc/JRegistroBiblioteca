@@ -41,7 +41,22 @@ public class LocalLigaBD extends LigaBD {
         this.saveLeitores(list);
     }
 
+    @Override
+    public void excluirLeitor(String nleitor) {
+        List<Leitor> list = this.obterLeitors();
+        Iterator<Leitor> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            Leitor leitor = iterator.next();
+            if (leitor.getNleitor().equals(nleitor)) {
+                iterator.remove();
+                break;
+            }
+        }
 
+        this.saveLeitores(list);
+    }
+
+    
     @Override
     public void inserirLivro(Livro livro) {
         List<Livro> list = this.obterLivros();
@@ -213,6 +228,7 @@ public class LocalLigaBD extends LigaBD {
     public void atualizarEstadoLivro(String titulo, LivroEstado estado) {
         Livro livro = buscarLivroPorTitulo(titulo).get();
         livro.setDisponivel(estado == LivroEstado.DISPONIVEL);
+        this.atualizarLeitor(LOGGED_LEITOR);
         this.atualizarLivro(livro);
     }
 }

@@ -10,6 +10,7 @@ import dev.biblioteca.dialog.LoginLeitor;
 import dev.biblioteca.dialog.RegistoLeitores;
 import dev.biblioteca.dialog.RegistoLivros;
 import dev.biblioteca.dialog.SignUpLeitor;
+import java.awt.Color;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -59,6 +60,11 @@ public class Biblioteca extends javax.swing.JFrame {
             }
         });
         LigaBD.LOGIN_STATUS_CHANGE_EVENT.invoker().run();
+        this.jScrollPane1.getViewport().setOpaque(false);
+        this.jScrollPane1.setOpaque(false);
+          this.activityTextArea.setBackground(new Color(0, 0, 0,50));
+        this.activityTextArea.setHighlighter( null );
+        this.activityTextArea.getCaret().deinstall( this.activityTextArea );
     }
 
     /** This method is called from within the constructor to
@@ -73,8 +79,9 @@ public class Biblioteca extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jLabel1 = new javax.swing.JLabel();
         accountStatusLabel = new javax.swing.JLabel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         activityTextArea = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -99,19 +106,56 @@ public class Biblioteca extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        accountStatusLabel.setText("Sem Conta");
+
         jLabel1.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/IonLibrary.png"))); // NOI18N
         jLabel1.setText("Biblioteca");
         jLabel1.setToolTipText("");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
-        accountStatusLabel.setText("Sem Conta");
+        jLabel1.setPreferredSize(new java.awt.Dimension(0, 0));
 
         activityTextArea.setEditable(false);
         activityTextArea.setColumns(20);
+        activityTextArea.setForeground(new java.awt.Color(255, 255, 255));
         activityTextArea.setRows(5);
+        activityTextArea.setHighlighter(null);
         jScrollPane1.setViewportView(activityTextArea);
+
+        jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        org.jdesktop.layout.GroupLayout jLayeredPane1Layout = new org.jdesktop.layout.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 498, Short.MAX_VALUE)
+            .add(jLayeredPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(jLayeredPane1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .add(jLayeredPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(jLayeredPane1Layout.createSequentialGroup()
+                    .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 358, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 319, Short.MAX_VALUE)
+            .add(jLayeredPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(jLayeredPane1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                    .addContainerGap()))
+            .add(jLayeredPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(jLayeredPane1Layout.createSequentialGroup()
+                    .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 234, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         jMenu2.setText("Livros");
 
@@ -204,25 +248,22 @@ public class Biblioteca extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(64, 64, 64)
-                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 295, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                    .add(layout.createSequentialGroup()
                         .add(0, 0, Short.MAX_VALUE)
-                        .add(accountStatusLabel)))
+                        .add(accountStatusLabel))
+                    .add(layout.createSequentialGroup()
+                        .add(jLayeredPane1)
+                        .add(1, 1, 1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 144, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(16, 16, 16)
+                .add(jLayeredPane1)
+                .add(1, 1, 1)
                 .add(accountStatusLabel)
                 .addContainerGap())
         );
@@ -312,6 +353,7 @@ public class Biblioteca extends javax.swing.JFrame {
     private javax.swing.JMenuItem adicionarLivroMenuItem;
     private javax.swing.JMenuItem changePassMenuItem;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
