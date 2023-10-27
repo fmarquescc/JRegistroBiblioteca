@@ -6,13 +6,11 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class LoginLeitor extends javax.swing.JDialog {
-    private final List<Leitor> leitores;
     
     public LoginLeitor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        this.leitores = LigaBD.getBD().obterLeitors();
     }
 
     /**
@@ -102,7 +100,7 @@ public class LoginLeitor extends javax.swing.JDialog {
         String passFunc = nomeField1.getText();
         
         Leitor leitor = null;
-        for (Leitor l : this.leitores) {
+        for (Leitor l : LigaBD.getBD().obterLeitors()) {
             if (userFunc.equals(l.getLogin()) && passFunc.equals(l.getPass())) {
                 leitor = l;
                 break;

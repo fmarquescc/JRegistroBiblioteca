@@ -83,12 +83,12 @@ public void inserirLeitor(Leitor leitor) {
                 ResultSet resultSet = preparedStatement.executeQuery();
 
                 while (resultSet.next()) {
-                     Leitor leitor = new Leitor(resultSet.getString("nome"),
-                             resultSet.getString("nleitor"),
-                             resultSet.getString("email"),
-                             resultSet.getString("telefone"),
-                             resultSet.getString("login"),
-                           resultSet.getString("pass"));
+                    Leitor leitor = new Leitor(resultSet.getString("nome"),
+                         resultSet.getString("nleitor"),
+                         resultSet.getString("email"),
+                         resultSet.getString("telefone"),
+                         resultSet.getString("login"),
+                       resultSet.getString("pass"));
                      leitores.add(leitor);
                 }
             } catch (SQLException e) {
@@ -99,6 +99,35 @@ public void inserirLeitor(Leitor leitor) {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        try {
+            Connection connection = conectar();
+            String sql = "SELECT leitores.nome,leitores.email,leitores.nleitor,leitores.telefone,leitores.login,leitores.pass, livros.titulo FROM emprestimos INNER JOIN leitores ON emprestimos.idleitor = leitores.id INNER JOIN livros ON emprestimos.idlivro = livros.id;";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()) {
+                    Leitor leitor = null;
+                    for (Leitor l : leitores) {
+                        if (l.getNome().equals(resultSet.getString("nome"))) {
+                            leitor = l;
+                            break;
+                        }
+                    }
+                    if (leitor != null) {
+                        leitor.addLivro(resultSet.getString("titulo"));
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+        
         return leitores;
     }
 
@@ -190,6 +219,7 @@ public void inserirLeitor(Leitor leitor) {
                             resultSet.getString("autor"),
                             resultSet.getString("editora"),
                             resultSet.getString("anolancamento"));
+                    livro.setDisponivel(LivroEstado.getById(resultSet.getInt("estado_id_estado")) == LivroEstado.DISPONIVEL);
                     return Optional.of(livro);
                 } else {
                     return Optional.empty();
@@ -251,17 +281,35 @@ public void inserirLeitor(Leitor leitor) {
 
     @Override
     public void atualizarEstadoLivro(String titulo, LivroEstado estado) {
+        Connection connection = null;
         try {
-            Connection connection = conectar();
+           connection = conectar();
+           
             String query= "UPDATE livros SET estado_id_estado="+(estado.ordinal()+1) + " WHERE titulo=?";    
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setString(1, titulo);
                 preparedStatement.executeUpdate();
-            } finally {
-                connection.close();
+            }
+            
+            if (estado == LivroEstado.DISPONIVEL) {
+                String sql = "DELETE FROM emprestimos WHERE idleitor IN (SELECT idleitor FROM leitores WHERE nleitor = \"" + LOGGED_LEITOR.getNleitor() + "\") AND idlivro IN (SELECT idlivro FROM livros WHERE titulo = \"" + titulo + "\")";
+
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    preparedStatement.executeUpdate();
+                }
+            } else {
+                String sql = "INSERT INTO emprestimos (idestado,idlivro,idleitor) VALUES (2, (SELECT id FROM livros WHERE titulo = \"" + titulo + "\"), (SELECT id FROM leitores WHERE nleitor = \"" + LOGGED_LEITOR.getNleitor() +"\"))";
+            
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    preparedStatement.executeUpdate();
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) connection.close();
+            } catch (SQLException e1){}
         }
     }
 }

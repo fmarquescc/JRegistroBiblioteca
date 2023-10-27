@@ -42,6 +42,8 @@ public class RegistoLivros extends javax.swing.JDialog {
                     requesitarButton.setEnabled(false);
                 }
                 
+                System.out.println(livro.getTitulo());
+                System.out.println(livro.isDisponivel());
                 if (LigaBD.LOGGED_LEITOR != null && LigaBD.LOGGED_LEITOR.hasLivro(livro) && !livro.isDisponivel()) {
                     devolverButton.setEnabled(true);
                 } else {
@@ -256,7 +258,6 @@ public class RegistoLivros extends javax.swing.JDialog {
                 LigaBD.LOGGED_LEITOR.addLivro(vl);
            //     LigaBD.getBD().atualizarLivro(vl);
            //     LigaBD.getBD().atualizarLeitor(LigaBD.LOGGED_LEITOR);
-                LigaBD.getBD().atualizarLeitor(LigaBD.getBD().obterLeitors().get(0));
                 LigaBD.getBD().atualizarEstadoLivro(vl.getTitulo(), LivroEstado.INDISPONIVEL);
             });
             
@@ -276,7 +277,6 @@ public class RegistoLivros extends javax.swing.JDialog {
                 LigaBD.LOGGED_LEITOR.removeLivro(vl);
                 //LigaBD.getBD().atualizarLivro(vl);
                 //LigaBD.getBD().atualizarLeitor(LigaBD.LOGGED_LEITOR);
-                LigaBD.getBD().atualizarLeitor(LigaBD.getBD().obterLeitors().get(0));
                 LigaBD.getBD().atualizarEstadoLivro(vl.getTitulo(), LivroEstado.DISPONIVEL);
 
             });
