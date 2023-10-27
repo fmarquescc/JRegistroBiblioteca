@@ -98,10 +98,14 @@ public class Biblioteca extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/IonLibrary.png"))); // NOI18N
         jLabel1.setText("Biblioteca");
+        jLabel1.setToolTipText("");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        accountStatusLabel.setText("Not Logged");
+        accountStatusLabel.setText("Não Registado");
 
         activityTextArea.setEditable(false);
         activityTextArea.setColumns(20);
@@ -110,6 +114,7 @@ public class Biblioteca extends javax.swing.JFrame {
 
         jMenu2.setText("Livros");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FluentBook20Filled (3).png"))); // NOI18N
         jMenuItem1.setText("Registro");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +123,7 @@ public class Biblioteca extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem1);
 
+        adicionarLivroMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FluentBookAdd20Filled.png"))); // NOI18N
         adicionarLivroMenuItem.setText("Adicionar Livro");
         adicionarLivroMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +136,7 @@ public class Biblioteca extends javax.swing.JFrame {
 
         jMenu4.setText("Leitores");
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PixelarticonsContact.png"))); // NOI18N
         jMenuItem3.setText("Registo");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +145,8 @@ public class Biblioteca extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem3);
 
-        signupLeitorMenuItem.setText("Sign Up Leitor");
+        signupLeitorMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PixelarticonsContactPlus.png"))); // NOI18N
+        signupLeitorMenuItem.setText("Adicionar Leitor");
         signupLeitorMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signupLeitorMenuItemActionPerformed(evt);
@@ -150,7 +158,8 @@ public class Biblioteca extends javax.swing.JFrame {
 
         jMenu5.setText("Conta");
 
-        changePassMenuItem.setText("Mudar palavra-passe");
+        changePassMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TablerPasswordUser.png"))); // NOI18N
+        changePassMenuItem.setText("Mudar Palavra-Passe");
         changePassMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 changePassMenuItemActionPerformed(evt);
@@ -158,7 +167,8 @@ public class Biblioteca extends javax.swing.JFrame {
         });
         jMenu5.add(changePassMenuItem);
 
-        loginLeitorMenuItem.setText("Login como Leitor");
+        loginLeitorMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MaterialSymbolsPasskeyOutline.png"))); // NOI18N
+        loginLeitorMenuItem.setText("Entrar - Leitor");
         loginLeitorMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginLeitorMenuItemActionPerformed(evt);
@@ -166,7 +176,8 @@ public class Biblioteca extends javax.swing.JFrame {
         });
         jMenu5.add(loginLeitorMenuItem);
 
-        loginFuncMenuItem.setText("Login como Funcionario");
+        loginFuncMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MaterialSymbolsPasskey.png"))); // NOI18N
+        loginFuncMenuItem.setText("Entrar - Funcionario");
         loginFuncMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginFuncMenuItemActionPerformed(evt);
@@ -174,7 +185,8 @@ public class Biblioteca extends javax.swing.JFrame {
         });
         jMenu5.add(loginFuncMenuItem);
 
-        logoutMenuItem.setText("Log out");
+        logoutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/HeroiconsOutlineLogout.png"))); // NOI18N
+        logoutMenuItem.setText("Sair");
         logoutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutMenuItemActionPerformed(evt);
@@ -190,27 +202,25 @@ public class Biblioteca extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
+                .add(64, 64, 64)
+                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 295, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(87, Short.MAX_VALUE))
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane1)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(0, 0, Short.MAX_VALUE)
-                        .add(accountStatusLabel))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(14, 14, 14)
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .addContainerGap(161, Short.MAX_VALUE)
-                        .add(jLabel1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 149, Short.MAX_VALUE)))
-                .add(16, 16, 16))
+                        .add(accountStatusLabel)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jLabel1)
+                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 144, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 92, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(accountStatusLabel)
                 .addContainerGap())
