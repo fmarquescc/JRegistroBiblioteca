@@ -43,7 +43,17 @@ public class LocalLigaBD extends LigaBD {
 
     @Override
     public void excluirLeitor(String nleitor) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Leitor> list = this.obterLeitors();
+        Iterator<Leitor> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            Leitor leitor = iterator.next();
+            if (leitor.getNleitor().equals(nleitor)) {
+                iterator.remove();
+                break;
+            }
+        }
+
+        this.saveLeitores(list);
     }
 
     
@@ -218,6 +228,7 @@ public class LocalLigaBD extends LigaBD {
     public void atualizarEstadoLivro(String titulo, LivroEstado estado) {
         Livro livro = buscarLivroPorTitulo(titulo).get();
         livro.setDisponivel(estado == LivroEstado.DISPONIVEL);
+        this.atualizarLeitor(LOGGED_LEITOR);
         this.atualizarLivro(livro);
     }
 }

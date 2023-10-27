@@ -63,6 +63,8 @@ public class Biblioteca extends javax.swing.JFrame {
         this.jScrollPane1.getViewport().setOpaque(false);
         this.jScrollPane1.setOpaque(false);
           this.activityTextArea.setBackground(new Color(0, 0, 0,50));
+        this.activityTextArea.setHighlighter( null );
+        this.activityTextArea.getCaret().deinstall( this.activityTextArea );
     }
 
     /** This method is called from within the constructor to
@@ -118,6 +120,7 @@ public class Biblioteca extends javax.swing.JFrame {
         activityTextArea.setColumns(20);
         activityTextArea.setForeground(new java.awt.Color(255, 255, 255));
         activityTextArea.setRows(5);
+        activityTextArea.setHighlighter(null);
         jScrollPane1.setViewportView(activityTextArea);
 
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);

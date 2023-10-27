@@ -195,20 +195,22 @@ public class SignUpLeitor extends javax.swing.JDialog {
     }
      
       // Validação do email
+      if (nomeValido) {
       if (email.isEmpty()) {
-        mostraMensagem("Email", "Preencha o campo email");
-    } else if (email.indexOf('@') == -1) {
-        mostraMensagem("Email", "Preencha um email válido");
-    } else {
-        int pos_arroba = email.indexOf('@');
-        int pos_ponto = email.indexOf('.', pos_arroba + 2);
-        if (pos_ponto != -1 && pos_ponto < email.length() - 1) {
-            emailValido = true;
-        } else {
-            mostraMensagem("Email", "Preencha um email válido");
-        }
-    }
+          mostraMensagem("Email", "Preencha o campo email");
+      } else if (email.indexOf('@') == -1) {
+          mostraMensagem("Email", "Preencha um email válido");
+      } else {
+          int pos_arroba = email.indexOf('@');
+          int pos_ponto = email.indexOf('.', pos_arroba + 2);
+          if (pos_ponto != -1 && pos_ponto < email.length() - 1) {
+              emailValido = true;
+          } else {
+              mostraMensagem("Email", "Preencha um email válido");
+          }
+      }
         // Validação do telefone
+        if (emailValido) {
        if (telefone.isEmpty()) {
         mostraMensagem("Telefone", "Preencha o campo telefone");
         } else {
@@ -219,9 +221,12 @@ public class SignUpLeitor extends javax.swing.JDialog {
             telefoneValido = true;
          }
         }
+      }
+      }
        
        //Validação do login
-     if (login.isEmpty()) {
+      if (telefoneValido) {
+       if (login.isEmpty()) {
         mostraMensagem("Login", "Preencha o campo login");
     } else if (login.length() < 4) {
         mostraMensagem("Login", "O login deve ter pelo menos 4 caracteres");
@@ -230,9 +235,11 @@ public class SignUpLeitor extends javax.swing.JDialog {
     } else {
         loginValido = true;
     }
+      }
 
     // Validação da senha
-     if (senha.length == 0) {
+    if (loginValido) { 
+    if (senha.length == 0) {
       mostraMensagem("Senha", "Preencha o campo de senha");
     } else {
       String senhaString = String.valueOf(senha);
@@ -251,6 +258,7 @@ public class SignUpLeitor extends javax.swing.JDialog {
       } else {
     	  passValida = true;
       }
+    }
     }
         if (nomeValido && emailValido && telefoneValido && loginValido && passValida) {
             JOptionPane.showMessageDialog(this, "Campos validados", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
