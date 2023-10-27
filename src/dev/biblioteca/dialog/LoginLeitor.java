@@ -32,10 +32,10 @@ public class LoginLeitor extends javax.swing.JDialog {
         nomeField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Log In - Leitor");
+        setTitle("Entrar - Leitor");
         setResizable(false);
 
-        jLabel1.setText("Username");
+        jLabel1.setText("Utilizador");
 
         nomeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -43,9 +43,9 @@ public class LoginLeitor extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Password");
+        jLabel2.setText("Palavra-Passe");
 
-        loginButton.setText("Log In");
+        loginButton.setText("Entrar");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginButtonActionPerformed(evt);
@@ -114,7 +114,7 @@ public class LoginLeitor extends javax.swing.JDialog {
             LigaBD.logAsLeitor(leitor);
             this.dispose();
         }else{
-            JOptionPane.showMessageDialog(null, "Username ou senha incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Utilizador ou Palavra-Passe incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
         }   
     }//GEN-LAST:event_loginButtonActionPerformed
 

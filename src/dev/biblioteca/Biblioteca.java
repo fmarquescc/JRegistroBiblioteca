@@ -97,6 +97,7 @@ public class Biblioteca extends javax.swing.JFrame {
         jMenuItem5.setText("jMenuItem5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -115,7 +116,7 @@ public class Biblioteca extends javax.swing.JFrame {
         jMenu2.setText("Livros");
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FluentBook20Filled (3).png"))); // NOI18N
-        jMenuItem1.setText("Registro");
+        jMenuItem1.setText("Registo");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -177,7 +178,7 @@ public class Biblioteca extends javax.swing.JFrame {
         jMenu5.add(loginLeitorMenuItem);
 
         loginFuncMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MaterialSymbolsPasskey.png"))); // NOI18N
-        loginFuncMenuItem.setText("Entrar - Funcionario");
+        loginFuncMenuItem.setText("Entrar - Funcionário");
         loginFuncMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginFuncMenuItemActionPerformed(evt);
@@ -205,11 +206,11 @@ public class Biblioteca extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(64, 64, 64)
                 .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 295, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(0, 0, Short.MAX_VALUE)
                         .add(accountStatusLabel)))
@@ -220,7 +221,7 @@ public class Biblioteca extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 144, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 92, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(accountStatusLabel)
                 .addContainerGap())
