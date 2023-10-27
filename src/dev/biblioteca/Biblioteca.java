@@ -48,13 +48,13 @@ public class Biblioteca extends javax.swing.JFrame {
             this.changePassMenuItem.setVisible(LigaBD.LOGGED_LEITOR != null);
             
             if (LigaBD.FUNCIONARIO_LOGGED) {
-                this.accountStatusLabel.setText("Logged as Funcionario");
+                this.accountStatusLabel.setText("Conta: Funcionario");
                 this.adicionarLivroMenuItem.setVisible(true);
             } else if (LigaBD.LOGGED_LEITOR != null) {
-                this.accountStatusLabel.setText("Logged as Leitor: " + LigaBD.LOGGED_LEITOR.getNome());
+                this.accountStatusLabel.setText("Conta: " + LigaBD.LOGGED_LEITOR.getNome());
                 this.adicionarLivroMenuItem.setVisible(false);
             } else {
-                this.accountStatusLabel.setText("Not logged");
+                this.accountStatusLabel.setText("Sem Conta");
                 this.adicionarLivroMenuItem.setVisible(false);
             }
         });
@@ -105,7 +105,7 @@ public class Biblioteca extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        accountStatusLabel.setText("Não Registado");
+        accountStatusLabel.setText("Sem Conta");
 
         activityTextArea.setEditable(false);
         activityTextArea.setColumns(20);
