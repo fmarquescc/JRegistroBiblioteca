@@ -9,11 +9,11 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-public class RegistroLeitores extends javax.swing.JDialog {
+public class RegistoLeitores extends javax.swing.JDialog {
     /**
      * Creates new form RegistroLeitores
      */
-    public RegistroLeitores(java.awt.Frame parent, boolean modal) {
+    public RegistoLeitores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -31,7 +31,7 @@ public class RegistroLeitores extends javax.swing.JDialog {
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
-                LigaBD.LOGIN_STATUS_CHANGE_EVENT.unregister(RegistroLeitores.this::onLoginStatusChange);
+                LigaBD.LOGIN_STATUS_CHANGE_EVENT.unregister(RegistoLeitores.this::onLoginStatusChange);
             }
             
         });
@@ -79,7 +79,7 @@ public class RegistroLeitores extends javax.swing.JDialog {
         removeLeitorButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Registro de Leitores");
+        setTitle("Registo de Leitores");
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -156,20 +156,21 @@ public class RegistroLeitores extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroLeitores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistoLeitores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroLeitores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistoLeitores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroLeitores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistoLeitores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroLeitores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistoLeitores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RegistroLeitores dialog = new RegistroLeitores(new javax.swing.JFrame(), true);
+                RegistoLeitores dialog = new RegistoLeitores(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

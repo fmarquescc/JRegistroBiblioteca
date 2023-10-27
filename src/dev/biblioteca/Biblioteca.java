@@ -7,8 +7,8 @@ import dev.biblioteca.dialog.AdicionarLivro;
 import dev.biblioteca.dialog.ChangePasswordLeitor;
 import dev.biblioteca.dialog.LoginFuncionario;
 import dev.biblioteca.dialog.LoginLeitor;
-import dev.biblioteca.dialog.RegistroLeitores;
-import dev.biblioteca.dialog.RegistroLivros;
+import dev.biblioteca.dialog.RegistoLeitores;
+import dev.biblioteca.dialog.RegistoLivros;
 import dev.biblioteca.dialog.SignUpLeitor;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -130,7 +130,7 @@ public class Biblioteca extends javax.swing.JFrame {
 
         jMenu4.setText("Leitores");
 
-        jMenuItem3.setText("Registro");
+        jMenuItem3.setText("Registo");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -221,7 +221,7 @@ public class Biblioteca extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        new RegistroLivros(this, true).setVisible(true);
+        new RegistoLivros(this, true).setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void adicionarLivroMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarLivroMenuItemActionPerformed
@@ -231,7 +231,7 @@ public class Biblioteca extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        new RegistroLeitores(this, true).setVisible(true);
+        new RegistoLeitores(this, true).setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void signupLeitorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupLeitorMenuItemActionPerformed
