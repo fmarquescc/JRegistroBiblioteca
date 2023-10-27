@@ -55,6 +55,12 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
             }
         });
 
+        confirmPassField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                confirmPassFieldKeyPressed(evt);
+            }
+        });
+
         jLabel1.setText("Nova Palavra-Passe");
 
         jLabel2.setText("Confirmar Palavra-Passe");
@@ -126,6 +132,10 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
             this.dispose();
         }
     }//GEN-LAST:event_confirmButtonActionPerformed
+
+    private void confirmPassFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmPassFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmPassFieldKeyPressed
 
     public void mostraMensagem(String campo, String mensagem) {
         JOptionPane.showMessageDialog(this, campo + ": " + mensagem, "Erro de Validação", JOptionPane.ERROR_MESSAGE);

@@ -2,6 +2,7 @@ package dev.biblioteca.dialog;
 
 import dev.biblioteca.Leitor;
 import dev.biblioteca.bd.LigaBD;
+import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -11,7 +12,7 @@ public class LoginLeitor extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-    }
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,6 +58,17 @@ public class LoginLeitor extends javax.swing.JDialog {
             }
         });
 
+        nomeField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeField1ActionPerformed(evt);
+            }
+        });
+        nomeField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nomeField1KeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,6 +107,7 @@ public class LoginLeitor extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String userFunc = nomeField.getText();
         String passFunc = nomeField1.getText();
@@ -107,13 +120,13 @@ public class LoginLeitor extends javax.swing.JDialog {
             }
         }
         
-        // falta gravar o login
         if (leitor != null) {
             LigaBD.logAsLeitor(leitor);
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Utilizador ou Palavra-Passe incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
-        }   
+        } 
+        
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
@@ -124,6 +137,15 @@ public class LoginLeitor extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void nomeField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeField1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeField1KeyPressed
+
+    private void nomeField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeField1ActionPerformed
+        // TODO add your handling code here:
+        loginButtonActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
+    }//GEN-LAST:event_nomeField1ActionPerformed
 
     /**
      * @param args the command line arguments

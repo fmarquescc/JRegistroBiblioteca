@@ -2,6 +2,7 @@ package dev.biblioteca.dialog;
 
 import dev.biblioteca.Constants;
 import dev.biblioteca.bd.LigaBD;
+import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
 public class LoginFuncionario extends javax.swing.JDialog {
@@ -63,6 +64,11 @@ public class LoginFuncionario extends javax.swing.JDialog {
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordFieldActionPerformed(evt);
+            }
+        });
+        passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordFieldKeyPressed(evt);
             }
         });
 
@@ -127,7 +133,12 @@ public class LoginFuncionario extends javax.swing.JDialog {
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
+        loginButtonActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
     }//GEN-LAST:event_passwordFieldActionPerformed
+
+    private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldKeyPressed
 
     /**
      * @param args the command line arguments

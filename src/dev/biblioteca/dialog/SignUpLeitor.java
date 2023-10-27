@@ -1,6 +1,7 @@
 package dev.biblioteca.dialog;
 import dev.biblioteca.Leitor;
 import dev.biblioteca.bd.LigaBD;
+import java.awt.event.ActionEvent;
 import java.util.Random;
 import javax.swing.JOptionPane;
 public class SignUpLeitor extends javax.swing.JDialog {
@@ -66,6 +67,11 @@ public class SignUpLeitor extends javax.swing.JDialog {
         confirmarPasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmarPasswordFieldActionPerformed(evt);
+            }
+        });
+        confirmarPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                confirmarPasswordFieldKeyPressed(evt);
             }
         });
 
@@ -269,11 +275,17 @@ public class SignUpLeitor extends javax.swing.JDialog {
 
     private void confirmarPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPasswordFieldActionPerformed
         // TODO add your handling code here:
+        signUpButtonActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
     }//GEN-LAST:event_confirmarPasswordFieldActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void confirmarPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmarPasswordFieldKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_confirmarPasswordFieldKeyPressed
     
     /**
      * @param args the command line arguments
