@@ -43,6 +43,7 @@ public abstract class LigaBD {
     public abstract List<Livro> obterLivros();
     public abstract void atualizarLivro(Livro livro);
     public abstract void atualizarLeitor(Leitor leitor);
+    public abstract void excluirLeitor(String nleitor);
     public abstract void excluirLivro(String titulo);
     public abstract void inserirLeitor(Leitor leitor);
     public abstract List<Leitor> obterLeitors();
@@ -60,6 +61,7 @@ public abstract class LigaBD {
         }
     }
     public static final Event<Runnable> LIVROS_UPDATE_EVENT = Event.create();
+    public static final Event<Runnable> LEITORES_UPDATE_EVENT = Event.create();
     public static final Event<ActionMessage> ACTION_MESSAGE_EVENT = Event.create(callbacks -> message -> {
         for (ActionMessage callback : callbacks) {
             callback.run(message);

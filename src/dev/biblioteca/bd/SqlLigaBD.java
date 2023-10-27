@@ -185,13 +185,14 @@ public void inserirLeitor(Leitor leitor) {
     public void inserirLivro(Livro livro) {
         try {
             Connection connection = conectar();
-            String sql = "INSERT INTO livros (titulo, autor, editora, anolancamento) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO livros (titulo, autor, editora, anolancamento, estado_id_estado) VALUES (?, ?, ?, ?, ?)";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, livro.getTitulo());
                 preparedStatement.setString(2, livro.getAutor());
                 preparedStatement.setString(3, livro.getEditora());
                 preparedStatement.setString(4, livro.getAnolancamento());
+                preparedStatement.setInt(5, LivroEstado.DISPONIVEL.ordinal() + 1);
 
                 preparedStatement.executeUpdate();
             } catch (SQLException e) {
@@ -280,6 +281,25 @@ public void inserirLeitor(Leitor leitor) {
     }
 
     @Override
+    public void excluirLeitor(String nleitor) {
+        try {
+            Connection connection = conectar();
+            String sql = "DELETE FROM leitores WHERE nleitor = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, nleitor);
+                preparedStatement.executeUpdate();
+            } finally {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+
+    @Override
     public void atualizarEstadoLivro(String titulo, LivroEstado estado) {
         Connection connection = null;
         try {
@@ -292,7 +312,7 @@ public void inserirLeitor(Leitor leitor) {
             }
             
             if (estado == LivroEstado.DISPONIVEL) {
-                String sql = "DELETE FROM emprestimos WHERE idleitor IN (SELECT idleitor FROM leitores WHERE nleitor = \"" + LOGGED_LEITOR.getNleitor() + "\") AND idlivro IN (SELECT idlivro FROM livros WHERE titulo = \"" + titulo + "\")";
+                String sql = "DELETE FROM emprestimos WHERE idleitor IN (SELECT id FROM leitores WHERE nleitor = \"" + LOGGED_LEITOR.getNleitor() + "\") AND idlivro IN (SELECT id FROM livros WHERE titulo = \"" + titulo + "\")";
 
                 try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                     preparedStatement.executeUpdate();

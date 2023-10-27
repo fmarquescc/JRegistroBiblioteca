@@ -13,6 +13,9 @@ public class RegistoLeitores extends javax.swing.JDialog {
     /**
      * Creates new form RegistroLeitores
      */
+    private Runnable updateFunc;
+    private int selectedRow;
+    
     public RegistoLeitores(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -21,8 +24,22 @@ public class RegistoLeitores extends javax.swing.JDialog {
         this.table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (LigaBD.FUNCIONARIO_LOGGED) {
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                selectedRow = table.getSelectedRow();
+                String nleitor = (String) model.getValueAt(selectedRow, 1);
+                
+                Leitor leitor = null;
+                for (Leitor l : LigaBD.getBD().obterLeitors()) {
+                    if (l.getNleitor().equals(nleitor)) {
+                        leitor = l;
+                        break;
+                    }
+                }
+                
+                if (LigaBD.FUNCIONARIO_LOGGED && leitor != null && leitor.getLivroRequesitados().isEmpty()) {
                     removeLeitorButton.setEnabled(true);
+                } else {
+                     removeLeitorButton.setEnabled(false);
                 }
             }
             
@@ -32,9 +49,14 @@ public class RegistoLeitores extends javax.swing.JDialog {
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
                 LigaBD.LOGIN_STATUS_CHANGE_EVENT.unregister(RegistoLeitores.this::onLoginStatusChange);
+                LigaBD.LEITORES_UPDATE_EVENT.unregister(RegistoLeitores.this.updateFunc);
             }
             
         });
+        this.updateFunc = () -> {
+            this.load();
+        };
+        LigaBD.LEITORES_UPDATE_EVENT.register(this.updateFunc);
         LigaBD.LOGIN_STATUS_CHANGE_EVENT.register(this::onLoginStatusChange);
         this.onLoginStatusChange();
         this.removeAllButton.setVisible(false);
@@ -109,6 +131,11 @@ public class RegistoLeitores extends javax.swing.JDialog {
 
         removeLeitorButton.setText("Remover");
         removeLeitorButton.setEnabled(false);
+        removeLeitorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeLeitorButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,6 +165,15 @@ public class RegistoLeitores extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void removeLeitorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLeitorButtonActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        LigaBD.getBD().excluirLeitor((String) model.getValueAt(this.selectedRow, 1));
+        LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Removido leitor '" + ((String) model.getValueAt(this.selectedRow, 0)) + "'");
+        model.removeRow(this.selectedRow);
+        this.removeLeitorButton.setEnabled(false);
+    }//GEN-LAST:event_removeLeitorButtonActionPerformed
 
     /**
      * @param args the command line arguments

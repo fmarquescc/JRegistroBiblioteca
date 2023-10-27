@@ -41,7 +41,12 @@ public class LocalLigaBD extends LigaBD {
         this.saveLeitores(list);
     }
 
+    @Override
+    public void excluirLeitor(String nleitor) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
+    
     @Override
     public void inserirLivro(Livro livro) {
         List<Livro> list = this.obterLivros();
