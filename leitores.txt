@@ -1,4 +1,3 @@
 Ze Manel;42;zemanel@gmail.com;987654321;ManelZe;Password1!#;Java$
 fdf;238710996;dfdsf@gmail.com;123456789;gfdrgfdg;Password1!#;Portug$Mat$
-gfhdfghf;84922425;dgdrg@gmail.com;123456789;fgfgf;Password1!#;
 Kalme;943688195;fsedf@gmail.com;123456789;Kalme;Password1!#;Mein Kamf$

@@ -105,7 +105,7 @@ public class Biblioteca extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMinimumSize(new java.awt.Dimension(500, 300));
+        setMinimumSize(new java.awt.Dimension(800, 600));
 
         accountStatusLabel.setText("Sem Conta");
 
