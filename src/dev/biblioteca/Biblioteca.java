@@ -105,8 +105,11 @@ public class Biblioteca extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMinimumSize(new java.awt.Dimension(500, 300));
 
         accountStatusLabel.setText("Sem Conta");
+
+        jLayeredPane1.setMinimumSize(new java.awt.Dimension(300, 200));
 
         jLabel1.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -121,6 +124,8 @@ public class Biblioteca extends javax.swing.JFrame {
         activityTextArea.setForeground(new java.awt.Color(255, 255, 255));
         activityTextArea.setRows(5);
         activityTextArea.setHighlighter(null);
+        activityTextArea.setMinimumSize(new java.awt.Dimension(300, 300));
+        activityTextArea.setName(""); // NOI18N
         jScrollPane1.setViewportView(activityTextArea);
 
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -130,7 +135,7 @@ public class Biblioteca extends javax.swing.JFrame {
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 498, Short.MAX_VALUE)
+            .add(0, 487, Short.MAX_VALUE)
             .add(jLayeredPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(jLayeredPane1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -144,7 +149,7 @@ public class Biblioteca extends javax.swing.JFrame {
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 319, Short.MAX_VALUE)
+            .add(0, 246, Short.MAX_VALUE)
             .add(jLayeredPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(jLayeredPane1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -254,7 +259,7 @@ public class Biblioteca extends javax.swing.JFrame {
                         .add(0, 0, Short.MAX_VALUE)
                         .add(accountStatusLabel))
                     .add(layout.createSequentialGroup()
-                        .add(jLayeredPane1)
+                        .add(jLayeredPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(1, 1, 1)))
                 .addContainerGap())
         );
@@ -262,7 +267,7 @@ public class Biblioteca extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(16, 16, 16)
-                .add(jLayeredPane1)
+                .add(jLayeredPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(1, 1, 1)
                 .add(accountStatusLabel)
                 .addContainerGap())

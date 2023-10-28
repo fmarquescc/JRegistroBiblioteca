@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Optional;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistoLivros extends javax.swing.JDialog {
@@ -222,21 +223,31 @@ public class RegistoLivros extends javax.swing.JDialog {
 
     private void removeLivroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLivroButtonActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        LigaBD.getBD().excluirLivro((String) model.getValueAt(this.selectedRow, 0));
-        LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Removido livro '" + ((String) model.getValueAt(this.selectedRow, 0)) + "'");
-        model.removeRow(this.selectedRow);
-        this.removeLivroButton.setEnabled(false);
+        String[] opcoes = {"Continuar", "Cancelar"};
+        int resposta = JOptionPane.showOptionDialog(this, "Tem certeza de que deseja realizar esta ação?", "Confirmação", 
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
+        if (resposta== JOptionPane.YES_OPTION){
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            LigaBD.getBD().excluirLivro((String) model.getValueAt(this.selectedRow, 0));
+            LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Removido livro '" + ((String) model.getValueAt(this.selectedRow, 0)) + "'");
+            model.removeRow(this.selectedRow);
+            this.removeLivroButton.setEnabled(false);
+        }
     }//GEN-LAST:event_removeLivroButtonActionPerformed
 
     private void removeAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeAllButtonActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        for (int rowCount = model.getRowCount(), i = rowCount - 1; i >= 0; --i) {
-            LigaBD.getBD().excluirLivro((String) model.getValueAt(i, 0));
-            model.removeRow(i);
+        String[] opcoes = {"Continuar", "Cancelar"};
+        int resposta = JOptionPane.showOptionDialog(this, "Tem certeza de que deseja realizar esta ação?", "Confirmação", 
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
+        if (resposta== JOptionPane.YES_OPTION){
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            for (int rowCount = model.getRowCount(), i = rowCount - 1; i >= 0; --i) {
+                LigaBD.getBD().excluirLivro((String) model.getValueAt(i, 0));
+                model.removeRow(i);
+            }
+            LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Removidos todos os livros");
         }
-        LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Removidos todos os livros");
     }//GEN-LAST:event_removeAllButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed

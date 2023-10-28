@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistoLeitores extends javax.swing.JDialog {
@@ -128,6 +129,11 @@ public class RegistoLeitores extends javax.swing.JDialog {
         jScrollPane1.setViewportView(table);
 
         removeAllButton.setText("Remover Todos");
+        removeAllButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeAllButtonActionPerformed(evt);
+            }
+        });
 
         removeLeitorButton.setText("Remover");
         removeLeitorButton.setEnabled(false);
@@ -168,12 +174,23 @@ public class RegistoLeitores extends javax.swing.JDialog {
 
     private void removeLeitorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLeitorButtonActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        LigaBD.getBD().excluirLeitor((String) model.getValueAt(this.selectedRow, 1));
-        LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Removido leitor '" + ((String) model.getValueAt(this.selectedRow, 0)) + "'");
-        model.removeRow(this.selectedRow);
-        this.removeLeitorButton.setEnabled(false);
+        String[] opcoes = {"Continuar", "Cancelar"};
+        int resposta = JOptionPane.showOptionDialog(this, "Tem certeza de que deseja realizar esta ação?", "Confirmação", 
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
+        if (resposta== JOptionPane.YES_OPTION){
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            LigaBD.getBD().excluirLeitor((String) model.getValueAt(this.selectedRow, 1));
+            LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Removido leitor '" + ((String) model.getValueAt(this.selectedRow, 0)) + "'");
+            model.removeRow(this.selectedRow);
+            this.removeLeitorButton.setEnabled(false);
+        }
     }//GEN-LAST:event_removeLeitorButtonActionPerformed
+
+    private void removeAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeAllButtonActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_removeAllButtonActionPerformed
 
     /**
      * @param args the command line arguments
