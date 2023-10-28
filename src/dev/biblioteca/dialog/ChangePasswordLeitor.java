@@ -5,6 +5,7 @@
 package dev.biblioteca.dialog;
 
 import dev.biblioteca.bd.LigaBD;
+import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,6 +41,7 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mudar Palavra-Passe");
+        setIconImage(null);
 
         confirmButton.setText("Confirmar");
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
@@ -55,6 +57,11 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
             }
         });
 
+        confirmPassField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmPassFieldActionPerformed(evt);
+            }
+        });
         confirmPassField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 confirmPassFieldKeyPressed(evt);
@@ -136,6 +143,11 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
     private void confirmPassFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmPassFieldKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmPassFieldKeyPressed
+
+    private void confirmPassFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPassFieldActionPerformed
+        // TODO add your handling code here:
+        confirmButtonActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
+    }//GEN-LAST:event_confirmPassFieldActionPerformed
 
     public void mostraMensagem(String campo, String mensagem) {
         JOptionPane.showMessageDialog(this, campo + ": " + mensagem, "Erro de Validação", JOptionPane.ERROR_MESSAGE);
