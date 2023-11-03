@@ -120,7 +120,6 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        // TODO add your handling code here:
         String senha = this.passField.getText();
         String senhaRepetida = this.confirmPassField.getText();
         
@@ -145,13 +144,10 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void confirmPassFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPassFieldActionPerformed
-        // TODO add your handling code here:
-                confirmButtonActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
-
+        confirmButtonActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
     }//GEN-LAST:event_confirmPassFieldActionPerformed
 
     private void passFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_passFieldActionPerformed
 
     public void mostraMensagem(String campo, String mensagem) {

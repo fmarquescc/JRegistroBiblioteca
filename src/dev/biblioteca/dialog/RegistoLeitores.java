@@ -171,7 +171,6 @@ public class RegistoLeitores extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void removeLeitorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLeitorButtonActionPerformed
-        // TODO add your handling code here:
         String[] opcoes = {"Continuar", "Cancelar"};
         int resposta = JOptionPane.showOptionDialog(this, "Tem certeza de que deseja realizar esta ação?", "Confirmação", 
         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);

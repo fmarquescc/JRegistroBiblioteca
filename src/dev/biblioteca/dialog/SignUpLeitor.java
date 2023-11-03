@@ -173,8 +173,7 @@ public class SignUpLeitor extends javax.swing.JDialog {
 
         boolean nomeValido = false, emailValido = false, telefoneValido = false, loginValido = false, 
            passValida = false;
-            
-        String s = "";
+
         int conta = 0, contaEspacos = 0;
 
 
