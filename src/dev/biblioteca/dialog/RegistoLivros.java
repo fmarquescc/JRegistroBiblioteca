@@ -231,11 +231,10 @@ public class RegistoLivros extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void removeLivroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLivroButtonActionPerformed
-        // TODO add your handling code here:
         String[] opcoes = {"Continuar", "Cancelar"};
         int resposta = JOptionPane.showOptionDialog(this, "Tem certeza de que deseja realizar esta ação?", "Confirmação", 
         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
-        if (resposta== JOptionPane.YES_OPTION){
+        if (resposta == JOptionPane.YES_OPTION) {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             LigaBD.getBD().excluirLivro((String) model.getValueAt(this.selectedRow, 0));
             this.selectedRow = -1;
@@ -246,11 +245,10 @@ public class RegistoLivros extends javax.swing.JDialog {
     }//GEN-LAST:event_removeLivroButtonActionPerformed
 
     private void removeAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeAllButtonActionPerformed
-        // TODO add your handling code here:
         String[] opcoes = {"Continuar", "Cancelar"};
         int resposta = JOptionPane.showOptionDialog(this, "Tem certeza de que deseja realizar esta ação?", "Confirmação", 
         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
-        if (resposta== JOptionPane.YES_OPTION){
+        if (resposta == JOptionPane.YES_OPTION) {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             for (int rowCount = model.getRowCount(), i = rowCount - 1; i >= 0; --i) {
                 LigaBD.getBD().excluirLivro((String) model.getValueAt(i, 0));
@@ -261,14 +259,11 @@ public class RegistoLivros extends javax.swing.JDialog {
     }//GEN-LAST:event_removeAllButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
         new AdicionarLivro(null, true).setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void requesitarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requesitarButtonActionPerformed
-        // TODO add your handling code here:
-        if (LigaBD.LOGGED_LEITOR!=null)
-        {              
+        if (LigaBD.LOGGED_LEITOR != null) {              
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             String titulo = (String) model.getValueAt(selectedRow, 0);
             Optional<Livro> livro = LigaBD.getBD().buscarLivroPorTitulo(titulo);
@@ -276,8 +271,6 @@ public class RegistoLivros extends javax.swing.JDialog {
             livro.ifPresent((vl) -> {
                 vl.setDisponivel(false);
                 LigaBD.LOGGED_LEITOR.addLivro(vl);
-           //     LigaBD.getBD().atualizarLivro(vl);
-           //     LigaBD.getBD().atualizarLeitor(LigaBD.LOGGED_LEITOR);
                 LigaBD.getBD().atualizarEstadoLivro(vl.getTitulo(), LivroEstado.INDISPONIVEL);
             });
             
@@ -291,11 +284,10 @@ public class RegistoLivros extends javax.swing.JDialog {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             String titulo = (String) model.getValueAt(selectedRow, 0);
             Optional<Livro> livro = LigaBD.getBD().buscarLivroPorTitulo(titulo);
+            
             livro.ifPresent(vl -> {
                 vl.setDisponivel(true);
                 LigaBD.LOGGED_LEITOR.removeLivro(vl);
-                //LigaBD.getBD().atualizarLivro(vl);
-                //LigaBD.getBD().atualizarLeitor(LigaBD.LOGGED_LEITOR);
                 LigaBD.getBD().atualizarEstadoLivro(vl.getTitulo(), LivroEstado.DISPONIVEL);
 
             });

@@ -39,12 +39,6 @@ public class LoginFuncionario extends javax.swing.JDialog {
 
         jLabel1.setText("Utilizador");
 
-        usernameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameFieldActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Palavra-Passe");
 
         loginButton.setText("Entrar");
@@ -64,11 +58,6 @@ public class LoginFuncionario extends javax.swing.JDialog {
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordFieldActionPerformed(evt);
-            }
-        });
-        passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                passwordFieldKeyPressed(evt);
             }
         });
 
@@ -119,26 +108,17 @@ public class LoginFuncionario extends javax.swing.JDialog {
         String passFunc = passwordField.getText();
         
         if (userFunc.equals(Constants.FUNCIONARIO_LOGIN)&&passFunc.equals(Constants.FUNCIONARIO_PASS)){
-        // falta gravar o login
-        this.dispose();
+            // falta gravar o login
+            this.dispose();
             LigaBD.logAsFuncionario();
         }else{
             JOptionPane.showMessageDialog(null, "Username ou senha incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
         }        
     }//GEN-LAST:event_loginButtonActionPerformed
 
-    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameFieldActionPerformed
-
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
         loginButtonActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
     }//GEN-LAST:event_passwordFieldActionPerformed
-
-    private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldKeyPressed
 
     /**
      * @param args the command line arguments

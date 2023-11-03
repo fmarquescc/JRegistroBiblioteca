@@ -11,7 +11,8 @@ public class Leitor {
     private String telefone;
     private String login;
     private String pass;
-    private List<String> livroRequesitados = new ArrayList<>();
+    private final List<String> livroRequesitados = new ArrayList<>();
+
     public Leitor(String nome, String nleitor, String email, String telefone, String login, String pass) {
         this.nome = nome;
         this.nleitor = nleitor;
@@ -108,6 +109,4 @@ public class Leitor {
     public void setPass(String pass) {
         this.pass = pass;
     }
-    
-    
 }

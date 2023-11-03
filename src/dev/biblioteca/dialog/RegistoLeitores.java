@@ -129,11 +129,6 @@ public class RegistoLeitores extends javax.swing.JDialog {
         jScrollPane1.setViewportView(table);
 
         removeAllButton.setText("Remover Todos");
-        removeAllButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeAllButtonActionPerformed(evt);
-            }
-        });
 
         removeLeitorButton.setText("Remover");
         removeLeitorButton.setEnabled(false);
@@ -185,12 +180,6 @@ public class RegistoLeitores extends javax.swing.JDialog {
             this.removeLeitorButton.setEnabled(false);
         }
     }//GEN-LAST:event_removeLeitorButtonActionPerformed
-
-    private void removeAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeAllButtonActionPerformed
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_removeAllButtonActionPerformed
 
     /**
      * @param args the command line arguments

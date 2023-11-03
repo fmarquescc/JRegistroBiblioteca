@@ -53,11 +53,6 @@ public class AdicionarLivro extends javax.swing.JDialog {
                 anoLancFieldActionPerformed(evt);
             }
         });
-        anoLancField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                anoLancFieldKeyPressed(evt);
-            }
-        });
 
         cancelButton.setText("Cancelar");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -172,15 +167,8 @@ public class AdicionarLivro extends javax.swing.JDialog {
     }//GEN-LAST:event_adicionarButtonActionPerformed
 
     private void anoLancFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anoLancFieldActionPerformed
-        // TODO add your handling code here:
         adicionarButtonActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
-
     }//GEN-LAST:event_anoLancFieldActionPerformed
-
-    private void anoLancFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_anoLancFieldKeyPressed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_anoLancFieldKeyPressed
 
     private void showErrorDialog(String message) {
         JOptionPane.showMessageDialog(this, message, "Erro", JOptionPane.ERROR_MESSAGE);

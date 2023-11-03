@@ -60,11 +60,6 @@ public class Biblioteca extends javax.swing.JFrame {
             }
         });
         LigaBD.LOGIN_STATUS_CHANGE_EVENT.invoker().run();
-        // this.jScrollPane1.getViewport().setOpaque(false);
-        // this.jScrollPane1.setOpaque(false);
-        // this.activityTextArea.setBackground(new Color(0, 0, 0,50));
-        // this.activityTextArea.setHighlighter( null );
-        // this.activityTextArea.getCaret().deinstall( this.activityTextArea );
     }
 
     /** This method is called from within the constructor to
