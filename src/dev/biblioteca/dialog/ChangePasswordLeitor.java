@@ -61,14 +61,12 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
 
         jLabel2.setText("Confirmar Palavra-Passe");
 
-        passField.setText("jPasswordField1");
         passField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passFieldActionPerformed(evt);
             }
         });
 
-        confirmPassField.setText("jPasswordField2");
         confirmPassField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmPassFieldActionPerformed(evt);
@@ -92,8 +90,7 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
                             .addComponent(confirmPassField, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
-                            .addComponent(passField))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(passField))))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
