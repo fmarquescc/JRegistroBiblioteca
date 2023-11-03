@@ -155,6 +155,8 @@ public class AdicionarLivro extends javax.swing.JDialog {
         if (editoraValid) {
             if (this.anoLancField.getText().length() == 0) {
                 this.showErrorDialog("Campo ano de lançamento não pode estar vazio!");
+            } else if (this.anoLancField.getText().length() > 4) {
+                this.showErrorDialog("O ano não pode ter mais de 4 digitos!");
             } else {
                 anoLancValid = true;
             }
