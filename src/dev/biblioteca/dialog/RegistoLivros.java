@@ -1,5 +1,6 @@
 package dev.biblioteca.dialog;
 
+import dev.biblioteca.LanguageManager;
 import dev.biblioteca.Livro;
 import dev.biblioteca.Utils;
 import dev.biblioteca.bd.LigaBD;
@@ -56,6 +57,20 @@ public class RegistoLivros extends javax.swing.JDialog {
         LigaBD.LOGIN_STATUS_CHANGE_EVENT.register(this::onLoginStatusChange);
         this.onLoginStatusChange();
         this.removeAllButton.setVisible(false);
+        this.updateTranslations();
+    }
+    
+    private void updateTranslations() {
+        this.setTitle(LanguageManager.translate("menu.book_registry.title"));
+        this.addButton.setText(LanguageManager.translate("menu.add"));
+        this.removeLivroButton.setText(LanguageManager.translate("menu.remove"));
+        this.requisitarButton.setText(LanguageManager.translate("menu.borrow"));
+        this.devolverButton.setText(LanguageManager.translate("menu.return"));
+        this.table.getColumnModel().getColumn(0).setHeaderValue(LanguageManager.translate("menu.book.title"));
+        this.table.getColumnModel().getColumn(1).setHeaderValue(LanguageManager.translate("menu.book.author"));
+        this.table.getColumnModel().getColumn(2).setHeaderValue(LanguageManager.translate("menu.book.editora"));
+        this.table.getColumnModel().getColumn(3).setHeaderValue(LanguageManager.translate("menu.book.release_year"));
+        this.table.getColumnModel().getColumn(4).setHeaderValue(LanguageManager.translate("menu.book.availability"));
     }
     
     private void onLoginStatusChange() {

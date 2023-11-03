@@ -1,6 +1,7 @@
 package dev.biblioteca.dialog;
 
 
+import dev.biblioteca.LanguageManager;
 import dev.biblioteca.Livro;
 import dev.biblioteca.Utils;
 import dev.biblioteca.bd.LigaBD;
@@ -16,6 +17,17 @@ public class AdicionarLivro extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        this.updateTranslations();
+    }
+    
+    private void updateTranslations() {
+        this.setTitle(LanguageManager.translate("menu.add_book"));
+        this.tituloLabel.setText(LanguageManager.translate("menu.book.title"));
+        this.autorLabel.setText(LanguageManager.translate("menu.book.author"));
+        this.editoraLabel.setText(LanguageManager.translate("menu.book.editora"));
+        this.anolancLabel.setText(LanguageManager.translate("menu.book.release_year"));
+        this.adicionarButton.setText(LanguageManager.translate("menu.add"));
+        this.cancelButton.setText(LanguageManager.translate("menu.cancel"));
     }
 
     /**
@@ -27,10 +39,10 @@ public class AdicionarLivro extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        tituloLabel = new javax.swing.JLabel();
+        autorLabel = new javax.swing.JLabel();
+        editoraLabel = new javax.swing.JLabel();
+        anolancLabel = new javax.swing.JLabel();
         editoraField = new javax.swing.JTextField();
         nomeField = new javax.swing.JTextField();
         anoLancField = new javax.swing.JTextField();
@@ -41,13 +53,13 @@ public class AdicionarLivro extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Livro");
 
-        jLabel1.setText("Título");
+        tituloLabel.setText("Título");
 
-        jLabel2.setText("Autor");
+        autorLabel.setText("Autor");
 
-        jLabel3.setText("Editora");
+        editoraLabel.setText("Editora");
 
-        jLabel4.setText("Ano de lançamento");
+        anolancLabel.setText("Ano de lançamento");
 
         anoLancField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,10 +92,10 @@ public class AdicionarLivro extends javax.swing.JDialog {
                         .addComponent(adicionarButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelButton))
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
+                    .addComponent(anolancLabel)
+                    .addComponent(editoraLabel)
+                    .addComponent(autorLabel)
+                    .addComponent(tituloLabel)
                     .addComponent(autorField, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
                     .addComponent(editoraField)
                     .addComponent(anoLancField)
@@ -94,19 +106,19 @@ public class AdicionarLivro extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addComponent(tituloLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addComponent(jLabel2)
+                .addComponent(autorLabel)
                 .addGap(5, 5, 5)
                 .addComponent(autorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(editoraLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(editoraField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(anolancLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(anoLancField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
@@ -220,13 +232,13 @@ public class AdicionarLivro extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionarButton;
     private javax.swing.JTextField anoLancField;
+    private javax.swing.JLabel anolancLabel;
     private javax.swing.JTextField autorField;
+    private javax.swing.JLabel autorLabel;
     private javax.swing.JButton cancelButton;
     private javax.swing.JTextField editoraField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel editoraLabel;
     private javax.swing.JTextField nomeField;
+    private javax.swing.JLabel tituloLabel;
     // End of variables declaration//GEN-END:variables
 }

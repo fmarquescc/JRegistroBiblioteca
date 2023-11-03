@@ -10,7 +10,6 @@ import dev.biblioteca.dialog.LoginLeitor;
 import dev.biblioteca.dialog.RegistoLeitores;
 import dev.biblioteca.dialog.RegistoLivros;
 import dev.biblioteca.dialog.SignUpLeitor;
-import java.awt.Color;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -38,6 +37,7 @@ public class Biblioteca extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
         LigaBD.ACTION_MESSAGE_EVENT.register(message -> {
             this.activityTextArea.setText(message + '\n' + this.activityTextArea.getText());
         });
@@ -49,17 +49,63 @@ public class Biblioteca extends javax.swing.JFrame {
             this.changePassMenuItem.setVisible(LigaBD.LOGGED_LEITOR != null);
             
             if (LigaBD.FUNCIONARIO_LOGGED) {
-                this.accountStatusLabel.setText("Conta: Funcionario");
                 this.adicionarLivroMenuItem.setVisible(true);
             } else if (LigaBD.LOGGED_LEITOR != null) {
-                this.accountStatusLabel.setText("Conta: " + LigaBD.LOGGED_LEITOR.getNome());
                 this.adicionarLivroMenuItem.setVisible(false);
             } else {
-                this.accountStatusLabel.setText("Sem Conta");
                 this.adicionarLivroMenuItem.setVisible(false);
             }
+            this.updateAccountStatusTranslations();
         });
         LigaBD.LOGIN_STATUS_CHANGE_EVENT.invoker().run();
+        
+        LigaBD.LANGUAGE_UPDATE_EVENT.register(this::updateTranslations);
+        
+        var directionGroup = new javax.swing.ButtonGroup();
+        for (String[] lang : LanguageManager.LANGUAGES) {
+            var langRB0 = new javax.swing.JRadioButtonMenuItem();
+            langRB0.setText(lang[1]);
+            directionGroup.add(langRB0);
+            this.idiomaMenu.add(langRB0);
+            
+            if (lang[0] == LanguageManager.currentLanguage) {
+                langRB0.setSelected(true);
+            }
+            
+            langRB0.addActionListener((ev) -> {
+                if (lang[0] != LanguageManager.currentLanguage) {
+                    LanguageManager.switchLanguage(lang[0]);
+                    LigaBD.LANGUAGE_UPDATE_EVENT.invoker().run();
+                }
+            });
+        }
+    }
+    
+    private void updateTranslations() {
+        this.jLabel1.setText(LanguageManager.translate("menu.library"));
+        this.livrosMenu.setText(LanguageManager.translate("menu.books"));
+        this.leitoresMenu.setText(LanguageManager.translate("menu.readers"));
+        this.contaMenu.setText(LanguageManager.translate("menu.account"));
+        this.idiomaMenu.setText(LanguageManager.translate("menu.language"));
+        this.registoLivrosMenuItem.setText(LanguageManager.translate("menu.registry"));
+        this.adicionarLivroMenuItem.setText(LanguageManager.translate("menu.add_book"));
+        this.registoLeitoresMenuItem.setText(LanguageManager.translate("menu.registry"));
+        this.signupLeitorMenuItem.setText(LanguageManager.translate("menu.add_reader"));
+        this.changePassMenuItem.setText(LanguageManager.translate("menu.change_password"));
+        this.loginLeitorMenuItem.setText(LanguageManager.translate("menu.login_as_reader"));
+        this.loginFuncMenuItem.setText(LanguageManager.translate("menu.login_as_staff"));
+        this.logoutMenuItem.setText(LanguageManager.translate("menu.logout"));
+        this.updateAccountStatusTranslations();
+    }
+    
+    private void updateAccountStatusTranslations() {
+        if (LigaBD.FUNCIONARIO_LOGGED) {
+            this.accountStatusLabel.setText(LanguageManager.translate("menu.account_status.staff"));
+        } else if (LigaBD.LOGGED_LEITOR != null) {
+            this.accountStatusLabel.setText(LanguageManager.translate("menu.account_status.reader", LigaBD.LOGGED_LEITOR.getNome()));
+        } else {
+            this.accountStatusLabel.setText(LanguageManager.translate("menu.account_status.none"));
+        }
     }
 
     /** This method is called from within the constructor to
@@ -74,28 +120,36 @@ public class Biblioteca extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         accountStatusLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         activityTextArea = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        livrosMenu = new javax.swing.JMenu();
+        registoLivrosMenuItem = new javax.swing.JMenuItem();
         adicionarLivroMenuItem = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        leitoresMenu = new javax.swing.JMenu();
+        registoLeitoresMenuItem = new javax.swing.JMenuItem();
         signupLeitorMenuItem = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        contaMenu = new javax.swing.JMenu();
         changePassMenuItem = new javax.swing.JMenuItem();
         loginLeitorMenuItem = new javax.swing.JMenuItem();
         loginFuncMenuItem = new javax.swing.JMenuItem();
         logoutMenuItem = new javax.swing.JMenuItem();
+        idiomaMenu = new javax.swing.JMenu();
 
         jMenu3.setText("jMenu3");
 
         jMenu1.setText("jMenu1");
 
         jMenuItem5.setText("jMenuItem5");
+
+        jMenuItem2.setText("jMenuItem2");
+
+        jRadioButtonMenuItem1.setSelected(true);
+        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -108,7 +162,7 @@ public class Biblioteca extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/IonLibrarySharp.png"))); // NOI18N
         jLabel1.setText("Biblioteca");
         jLabel1.setToolTipText("");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jLabel1.setPreferredSize(new java.awt.Dimension(0, 0));
 
         activityTextArea.setEditable(false);
@@ -120,16 +174,16 @@ public class Biblioteca extends javax.swing.JFrame {
         activityTextArea.setName(""); // NOI18N
         jScrollPane1.setViewportView(activityTextArea);
 
-        jMenu2.setText("Livros");
+        livrosMenu.setText("Livros");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FluentBook20Filled (3).png"))); // NOI18N
-        jMenuItem1.setText("Registo");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        registoLivrosMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FluentBook20Filled (3).png"))); // NOI18N
+        registoLivrosMenuItem.setText("Registo");
+        registoLivrosMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                registoLivrosMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        livrosMenu.add(registoLivrosMenuItem);
 
         adicionarLivroMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/FluentBookAdd20Filled.png"))); // NOI18N
         adicionarLivroMenuItem.setText("Adicionar Livro");
@@ -138,20 +192,20 @@ public class Biblioteca extends javax.swing.JFrame {
                 adicionarLivroMenuItemActionPerformed(evt);
             }
         });
-        jMenu2.add(adicionarLivroMenuItem);
+        livrosMenu.add(adicionarLivroMenuItem);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(livrosMenu);
 
-        jMenu4.setText("Leitores");
+        leitoresMenu.setText("Leitores");
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PixelarticonsContact.png"))); // NOI18N
-        jMenuItem3.setText("Registo");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        registoLeitoresMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PixelarticonsContact.png"))); // NOI18N
+        registoLeitoresMenuItem.setText("Registo");
+        registoLeitoresMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                registoLeitoresMenuItemActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem3);
+        leitoresMenu.add(registoLeitoresMenuItem);
 
         signupLeitorMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PixelarticonsContactPlus.png"))); // NOI18N
         signupLeitorMenuItem.setText("Adicionar Leitor");
@@ -160,11 +214,11 @@ public class Biblioteca extends javax.swing.JFrame {
                 signupLeitorMenuItemActionPerformed(evt);
             }
         });
-        jMenu4.add(signupLeitorMenuItem);
+        leitoresMenu.add(signupLeitorMenuItem);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(leitoresMenu);
 
-        jMenu5.setText("Conta");
+        contaMenu.setText("Conta");
 
         changePassMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TablerPasswordUser.png"))); // NOI18N
         changePassMenuItem.setText("Mudar Palavra-Passe");
@@ -173,7 +227,7 @@ public class Biblioteca extends javax.swing.JFrame {
                 changePassMenuItemActionPerformed(evt);
             }
         });
-        jMenu5.add(changePassMenuItem);
+        contaMenu.add(changePassMenuItem);
 
         loginLeitorMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MaterialSymbolsPasskeyOutline.png"))); // NOI18N
         loginLeitorMenuItem.setText("Entrar - Leitor");
@@ -182,7 +236,7 @@ public class Biblioteca extends javax.swing.JFrame {
                 loginLeitorMenuItemActionPerformed(evt);
             }
         });
-        jMenu5.add(loginLeitorMenuItem);
+        contaMenu.add(loginLeitorMenuItem);
 
         loginFuncMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MaterialSymbolsPasskey.png"))); // NOI18N
         loginFuncMenuItem.setText("Entrar - Funcionário");
@@ -191,7 +245,7 @@ public class Biblioteca extends javax.swing.JFrame {
                 loginFuncMenuItemActionPerformed(evt);
             }
         });
-        jMenu5.add(loginFuncMenuItem);
+        contaMenu.add(loginFuncMenuItem);
 
         logoutMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/HeroiconsOutlineLogout.png"))); // NOI18N
         logoutMenuItem.setText("Sair");
@@ -200,9 +254,12 @@ public class Biblioteca extends javax.swing.JFrame {
                 logoutMenuItemActionPerformed(evt);
             }
         });
-        jMenu5.add(logoutMenuItem);
+        contaMenu.add(logoutMenuItem);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(contaMenu);
+
+        idiomaMenu.setText("Idioma");
+        jMenuBar1.add(idiomaMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -216,12 +273,12 @@ public class Biblioteca extends javax.swing.JFrame {
                         .add(0, 0, Short.MAX_VALUE)
                         .add(accountStatusLabel))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(84, 84, 84)
-                        .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 363, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 0, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(15, 15, 15)
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 363, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(0, 0, Short.MAX_VALUE))
+                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE))))
                 .add(15, 15, 15))
         );
         layout.setVerticalGroup(
@@ -238,20 +295,20 @@ public class Biblioteca extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void registoLivrosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registoLivrosMenuItemActionPerformed
         // TODO add your handling code here:
         new RegistoLivros(this, true).setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_registoLivrosMenuItemActionPerformed
 
     private void adicionarLivroMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarLivroMenuItemActionPerformed
         // TODO add your handling code here:
          new AdicionarLivro(this, true).setVisible(true);
     }//GEN-LAST:event_adicionarLivroMenuItemActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void registoLeitoresMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registoLeitoresMenuItemActionPerformed
         // TODO add your handling code here:
         new RegistoLeitores(this, true).setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_registoLeitoresMenuItemActionPerformed
 
     private void signupLeitorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupLeitorMenuItemActionPerformed
         // TODO add your handling code here:
@@ -319,20 +376,23 @@ public class Biblioteca extends javax.swing.JFrame {
     private javax.swing.JTextArea activityTextArea;
     private javax.swing.JMenuItem adicionarLivroMenuItem;
     private javax.swing.JMenuItem changePassMenuItem;
+    private javax.swing.JMenu contaMenu;
+    private javax.swing.JMenu idiomaMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenu leitoresMenu;
+    private javax.swing.JMenu livrosMenu;
     private javax.swing.JMenuItem loginFuncMenuItem;
     private javax.swing.JMenuItem loginLeitorMenuItem;
     private javax.swing.JMenuItem logoutMenuItem;
+    private javax.swing.JMenuItem registoLeitoresMenuItem;
+    private javax.swing.JMenuItem registoLivrosMenuItem;
     private javax.swing.JMenuItem signupLeitorMenuItem;
     // End of variables declaration//GEN-END:variables
 

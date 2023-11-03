@@ -1,6 +1,7 @@
 package dev.biblioteca.dialog;
 
 import dev.biblioteca.Constants;
+import dev.biblioteca.LanguageManager;
 import dev.biblioteca.Utils;
 import dev.biblioteca.bd.LigaBD;
 import java.awt.event.ActionEvent;
@@ -15,7 +16,16 @@ public class LoginFuncionario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        this.updateTranslations();
 
+    }
+    
+    private void updateTranslations() {
+        this.setTitle(LanguageManager.translate("menu.login_as_staff"));
+        this.utilizadorLabel.setText(LanguageManager.translate("menu.username"));
+        this.passwordLabel.setText(LanguageManager.translate("menu.password"));
+        this.loginButton.setText(LanguageManager.translate("menu.login"));
+        this.cancelButton.setText(LanguageManager.translate("menu.cancel"));
     }
 
     /**
@@ -27,9 +37,9 @@ public class LoginFuncionario extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        utilizadorLabel = new javax.swing.JLabel();
         usernameField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
@@ -38,9 +48,9 @@ public class LoginFuncionario extends javax.swing.JDialog {
         setTitle("Entrar - Funcionário");
         setResizable(false);
 
-        jLabel1.setText("Utilizador");
+        utilizadorLabel.setText("Utilizador");
 
-        jLabel2.setText("Palavra-Passe");
+        passwordLabel.setText("Palavra-Passe");
 
         loginButton.setText("Entrar");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -73,8 +83,8 @@ public class LoginFuncionario extends javax.swing.JDialog {
                         .addComponent(loginButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelButton))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(utilizadorLabel, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usernameField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                     .addComponent(passwordField, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -83,11 +93,11 @@ public class LoginFuncionario extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel1)
+                .addComponent(utilizadorLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(passwordLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -166,10 +176,10 @@ public class LoginFuncionario extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton loginButton;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField usernameField;
+    private javax.swing.JLabel utilizadorLabel;
     // End of variables declaration//GEN-END:variables
 }

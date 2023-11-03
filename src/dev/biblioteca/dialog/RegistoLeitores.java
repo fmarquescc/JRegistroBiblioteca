@@ -1,5 +1,6 @@
 package dev.biblioteca.dialog;
 
+import dev.biblioteca.LanguageManager;
 import dev.biblioteca.Leitor;
 import dev.biblioteca.Utils;
 import dev.biblioteca.bd.LigaBD;
@@ -63,6 +64,18 @@ public class RegistoLeitores extends javax.swing.JDialog {
         LigaBD.LOGIN_STATUS_CHANGE_EVENT.register(this::onLoginStatusChange);
         this.onLoginStatusChange();
         this.removeAllButton.setVisible(false);
+        this.updateTranslations();
+    }
+    
+    private void updateTranslations() {
+        this.table.getColumnModel().getColumn(0).setHeaderValue(LanguageManager.translate("menu.reader.name"));
+        this.table.getColumnModel().getColumn(1).setHeaderValue(LanguageManager.translate("menu.reader.reader_n"));
+        this.table.getColumnModel().getColumn(2).setHeaderValue(LanguageManager.translate("menu.reader.phonenumber"));
+        this.table.getColumnModel().getColumn(3).setHeaderValue(LanguageManager.translate("menu.reader.email"));
+        this.table.getColumnModel().getColumn(4).setHeaderValue(LanguageManager.translate("menu.reader.username"));
+        this.table.getColumnModel().getColumn(5).setHeaderValue(LanguageManager.translate("menu.reader.books"));
+        this.setTitle(LanguageManager.translate("menu.reader_registry.title"));
+        this.removeLeitorButton.setText(LanguageManager.translate("menu.remove"));
     }
     
     private void onLoginStatusChange() {

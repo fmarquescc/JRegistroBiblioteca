@@ -1,4 +1,5 @@
 package dev.biblioteca.dialog;
+import dev.biblioteca.LanguageManager;
 import dev.biblioteca.Leitor;
 import dev.biblioteca.bd.LigaBD;
 import java.awt.event.ActionEvent;
@@ -14,7 +15,20 @@ public class SignUpLeitor extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-
+        this.updateTranslations();
+    }
+    
+    private void updateTranslations() {
+        this.setTitle(LanguageManager.translate("menu.add_reader"));
+        this.nomeLabel.setText(LanguageManager.translate("menu.reader.name"));
+        this.emailLabel.setText(LanguageManager.translate("menu.reader.email"));
+        this.telefoneLabel.setText(LanguageManager.translate("menu.reader.phonenumber"));
+        this.utilizadorLabel.setText(LanguageManager.translate("menu.reader.username"));
+        this.passwordLabel.setText(LanguageManager.translate("menu.password"));
+        this.confirmPassLabel.setText(LanguageManager.translate("menu.confirm_password"));
+        this.nomeLabel.setText(LanguageManager.translate("menu.reader.name"));
+        this.signUpButton.setText(LanguageManager.translate("menu.register"));
+        this.cancelButton.setText(LanguageManager.translate("menu.cancel"));
     }
 
     /**
@@ -28,14 +42,14 @@ public class SignUpLeitor extends javax.swing.JDialog {
 
         nomeField = new javax.swing.JTextField();
         emailField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        nomeLabel = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
         telefoneField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        telefoneLabel = new javax.swing.JLabel();
         loginField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        utilizadorLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        confirmPassLabel = new javax.swing.JLabel();
         confirmarPasswordField = new javax.swing.JPasswordField();
         passwordField = new javax.swing.JPasswordField();
         cancelButton = new javax.swing.JButton();
@@ -45,18 +59,18 @@ public class SignUpLeitor extends javax.swing.JDialog {
         setTitle("Adicionar - Leitor");
         setResizable(false);
 
-        jLabel1.setText("Nome");
+        nomeLabel.setText("Nome");
 
-        jLabel2.setText("Email");
+        emailLabel.setText("Email");
 
-        jLabel3.setText("Telefone");
+        telefoneLabel.setText("Telefone");
 
-        jLabel4.setText("Nome de Utilizador");
+        utilizadorLabel.setText("Nome de Utilizador");
 
-        jLabel5.setText("Palavra-Passe");
-        jLabel5.setToolTipText("Mais de 8 caracteres");
+        passwordLabel.setText("Palavra-Passe");
+        passwordLabel.setToolTipText("Mais de 8 caracteres");
 
-        jLabel6.setText("Confirmar Palavra-Passe");
+        confirmPassLabel.setText("Confirmar Palavra-Passe");
 
         confirmarPasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,12 +100,12 @@ public class SignUpLeitor extends javax.swing.JDialog {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
+                    .addComponent(confirmPassLabel)
+                    .addComponent(passwordLabel)
+                    .addComponent(utilizadorLabel)
+                    .addComponent(telefoneLabel)
+                    .addComponent(emailLabel)
+                    .addComponent(nomeLabel)
                     .addComponent(confirmarPasswordField)
                     .addComponent(loginField)
                     .addComponent(telefoneField)
@@ -107,27 +121,27 @@ public class SignUpLeitor extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addComponent(nomeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(emailLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(telefoneLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(telefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(utilizadorLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addComponent(passwordLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jLabel6)
+                .addComponent(confirmPassLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(confirmarPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -307,18 +321,18 @@ public class SignUpLeitor extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel confirmPassLabel;
     private javax.swing.JPasswordField confirmarPasswordField;
     private javax.swing.JTextField emailField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField loginField;
     private javax.swing.JTextField nomeField;
+    private javax.swing.JLabel nomeLabel;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JButton signUpButton;
     private javax.swing.JTextField telefoneField;
+    private javax.swing.JLabel telefoneLabel;
+    private javax.swing.JLabel utilizadorLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,6 @@
 package dev.biblioteca.dialog;
 
+import dev.biblioteca.LanguageManager;
 import dev.biblioteca.Leitor;
 import dev.biblioteca.Utils;
 import dev.biblioteca.bd.LigaBD;
@@ -12,7 +13,16 @@ public class LoginLeitor extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        this.updateTranslations();
    }
+    
+    private void updateTranslations() {
+        this.setTitle(LanguageManager.translate("menu.login_as_reader"));
+        this.utilizadorLabel.setText(LanguageManager.translate("menu.username"));
+        this.passwordLabel.setText(LanguageManager.translate("menu.password"));
+        this.loginButton.setText(LanguageManager.translate("menu.login"));
+        this.cancelButton.setText(LanguageManager.translate("menu.cancel"));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -23,9 +33,9 @@ public class LoginLeitor extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        utilizadorLabel = new javax.swing.JLabel();
         nomeField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         nomeField1 = new javax.swing.JPasswordField();
@@ -34,9 +44,9 @@ public class LoginLeitor extends javax.swing.JDialog {
         setTitle("Entrar - Leitor");
         setResizable(false);
 
-        jLabel1.setText("Utilizador");
+        utilizadorLabel.setText("Utilizador");
 
-        jLabel2.setText("Palavra-Passe");
+        passwordLabel.setText("Palavra-Passe");
 
         loginButton.setText("Entrar");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -69,8 +79,8 @@ public class LoginLeitor extends javax.swing.JDialog {
                         .addComponent(loginButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelButton))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(utilizadorLabel, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nomeField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                     .addComponent(nomeField1, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -79,11 +89,11 @@ public class LoginLeitor extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel1)
+                .addComponent(utilizadorLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(passwordLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nomeField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -169,10 +179,10 @@ public class LoginLeitor extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton loginButton;
     private javax.swing.JTextField nomeField;
     private javax.swing.JPasswordField nomeField1;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JLabel utilizadorLabel;
     // End of variables declaration//GEN-END:variables
 }

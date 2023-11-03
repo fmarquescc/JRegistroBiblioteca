@@ -4,6 +4,7 @@
  */
 package dev.biblioteca.dialog;
 
+import dev.biblioteca.LanguageManager;
 import dev.biblioteca.Utils;
 import dev.biblioteca.bd.LigaBD;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,15 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        this.updateTranslations();
+    }
+    
+    private void updateTranslations() {
+        this.setTitle(LanguageManager.translate("menu.change_password"));
+        this.newPassLabel.setText(LanguageManager.translate("menu.new_password"));
+        this.confirmPassLabel.setText(LanguageManager.translate("menu.confirm_password"));
+        this.confirmButton.setText(LanguageManager.translate("menu.confirm"));
+        this.cancelButton.setText(LanguageManager.translate("menu.cancel"));
     }
 
     /**
@@ -35,8 +45,8 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
 
         confirmButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        newPassLabel = new javax.swing.JLabel();
+        confirmPassLabel = new javax.swing.JLabel();
         passField = new javax.swing.JPasswordField();
         confirmPassField = new javax.swing.JPasswordField();
 
@@ -58,9 +68,9 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Nova Palavra-Passe");
+        newPassLabel.setText("Nova Palavra-Passe");
 
-        jLabel2.setText("Confirmar Palavra-Passe");
+        confirmPassLabel.setText("Confirmar Palavra-Passe");
 
         confirmPassField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,8 +93,8 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(confirmPassField, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
+                            .addComponent(confirmPassLabel)
+                            .addComponent(newPassLabel)
                             .addComponent(passField))))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -92,11 +102,11 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabel1)
+                .addComponent(newPassLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(confirmPassLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(confirmPassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 25, Short.MAX_VALUE)
@@ -188,8 +198,8 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton confirmButton;
     private javax.swing.JPasswordField confirmPassField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel confirmPassLabel;
+    private javax.swing.JLabel newPassLabel;
     private javax.swing.JPasswordField passField;
     // End of variables declaration//GEN-END:variables
 }
