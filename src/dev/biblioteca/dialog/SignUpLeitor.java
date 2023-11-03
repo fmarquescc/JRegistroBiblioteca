@@ -218,9 +218,10 @@ public class SignUpLeitor extends javax.swing.JDialog {
                 if (telefone.isEmpty()) {
                     mostraMensagem("Telefone", "Preencha o campo telefone");
                 } else {
-                    telefone = telefone.replaceAll("\\s", "").replaceAll("[^0-9]", "");
                     if (telefone.length() < 9) {
                          mostraMensagem("Telefone", "O número de telefone deve ter pelo menos 9 dígitos");
+                    } else if (!telefone.matches("[0-9]{9}")) {
+                        mostraMensagem("Telefone", "O número de telefone só pode conter digitos!");
                     } else {
                         telefoneValido = true;
                     }
