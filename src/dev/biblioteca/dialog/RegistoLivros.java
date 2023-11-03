@@ -43,8 +43,6 @@ public class RegistoLivros extends javax.swing.JDialog {
                     requesitarButton.setEnabled(false);
                 }
                 
-                System.out.println(livro.getTitulo());
-                System.out.println(livro.isDisponivel());
                 if (LigaBD.LOGGED_LEITOR != null && LigaBD.LOGGED_LEITOR.hasLivro(livro) && !livro.isDisponivel()) {
                     devolverButton.setEnabled(true);
                 } else {
