@@ -277,7 +277,25 @@ public void inserirLeitor(Leitor leitor) {
     }
 
     private void saveLeitores(List<Leitor> list) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        for (Leitor leitor : list) {
+            try {
+                Connection connection = conectar();
+                String sql = "UPDATE leitores SET pass = ? WHERE login = ?";
+
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    preparedStatement.setString(1, leitor.getPass());
+                    preparedStatement.setString(2, leitor.getLogin());
+
+                    preparedStatement.executeUpdate();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override

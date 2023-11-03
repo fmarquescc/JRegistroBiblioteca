@@ -36,12 +36,6 @@ public class LoginLeitor extends javax.swing.JDialog {
 
         jLabel1.setText("Utilizador");
 
-        nomeField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeFieldActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Palavra-Passe");
 
         loginButton.setText("Entrar");
@@ -61,11 +55,6 @@ public class LoginLeitor extends javax.swing.JDialog {
         nomeField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nomeField1ActionPerformed(evt);
-            }
-        });
-        nomeField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                nomeField1KeyPressed(evt);
             }
         });
 
@@ -123,27 +112,16 @@ public class LoginLeitor extends javax.swing.JDialog {
         if (leitor != null) {
             LigaBD.logAsLeitor(leitor);
             this.dispose();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Utilizador ou Palavra-Passe incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
-        } 
-        
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
-    private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomeFieldActionPerformed
-
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void nomeField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeField1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomeField1KeyPressed
-
     private void nomeField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeField1ActionPerformed
-        // TODO add your handling code here:
         loginButtonActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
     }//GEN-LAST:event_nomeField1ActionPerformed
 

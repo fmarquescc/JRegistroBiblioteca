@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -70,7 +71,8 @@ public class RegistoLeitores extends javax.swing.JDialog {
     private void load() {
         DefaultTableModel model = (DefaultTableModel) this.table.getModel();
         this.clearTableData(model);
-        for (Leitor leitor : LigaBD.getBD().obterLeitors()) {
+        List<Leitor> leitores = LigaBD.getBD().obterLeitors();
+        for (Leitor leitor : leitores) {
             List<String> livros = leitor.getLivroRequesitados();
             String lvs = "";
             for (String titulo : livros) {
@@ -79,6 +81,7 @@ public class RegistoLeitores extends javax.swing.JDialog {
             
             model.addRow(new Object[] { leitor.getNome(), leitor.getNleitor(), leitor.getTelefone(), leitor.getEmail(), leitor.getLogin(), lvs });
         }
+        this.setTitle("Registo de Leitores (" + leitores.size() + ")");
     }
     
     private void clearTableData(DefaultTableModel tableModel) {
@@ -129,11 +132,6 @@ public class RegistoLeitores extends javax.swing.JDialog {
         jScrollPane1.setViewportView(table);
 
         removeAllButton.setText("Remover Todos");
-        removeAllButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeAllButtonActionPerformed(evt);
-            }
-        });
 
         removeLeitorButton.setText("Remover");
         removeLeitorButton.setEnabled(false);
@@ -185,12 +183,6 @@ public class RegistoLeitores extends javax.swing.JDialog {
             this.removeLeitorButton.setEnabled(false);
         }
     }//GEN-LAST:event_removeLeitorButtonActionPerformed
-
-    private void removeAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeAllButtonActionPerformed
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_removeAllButtonActionPerformed
 
     /**
      * @param args the command line arguments

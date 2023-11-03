@@ -31,7 +31,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="removeAllButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="requesitarButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="requisitarButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       <Component id="devolverButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -54,7 +54,7 @@
                   <Component id="removeAllButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="removeLivroButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="addButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="requesitarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="requisitarButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="devolverButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -145,13 +145,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="requesitarButton">
+    <Component class="javax.swing.JButton" name="requisitarButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Requesitar"/>
+        <Property name="text" type="java.lang.String" value="Requisitar"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="requesitarButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="requisitarButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="devolverButton">
