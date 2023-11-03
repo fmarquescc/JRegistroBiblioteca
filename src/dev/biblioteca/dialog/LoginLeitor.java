@@ -1,9 +1,9 @@
 package dev.biblioteca.dialog;
 
 import dev.biblioteca.Leitor;
+import dev.biblioteca.Utils;
 import dev.biblioteca.bd.LigaBD;
 import java.awt.event.ActionEvent;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 public class LoginLeitor extends javax.swing.JDialog {
@@ -113,7 +113,7 @@ public class LoginLeitor extends javax.swing.JDialog {
             LigaBD.logAsLeitor(leitor);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Utilizador ou Palavra-Passe incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
+            Utils.showWarnMessage("Alerta", "Utilizador ou Palavra-Passe incorretos. Tente novamente.");
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 

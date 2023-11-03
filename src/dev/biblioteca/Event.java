@@ -6,8 +6,8 @@ import java.util.function.Function;
 
 public class Event<T> {
     private T invoker;
-    private Function<List<T>, T> invokerFactory;
-    private List<T> handlers = new ArrayList<>();
+    private final Function<List<T>, T> invokerFactory;
+    private final List<T> handlers = new ArrayList<>();
     
     public Event(Function<List<T>, T> invokerFactory) {
         this.invokerFactory = invokerFactory;

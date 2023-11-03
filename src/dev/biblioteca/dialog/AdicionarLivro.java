@@ -2,6 +2,7 @@ package dev.biblioteca.dialog;
 
 
 import dev.biblioteca.Livro;
+import dev.biblioteca.Utils;
 import dev.biblioteca.bd.LigaBD;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
@@ -122,18 +123,18 @@ public class AdicionarLivro extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void adicionarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarButtonActionPerformed
+    private void validateAndAddBook() {
         boolean nomeValid = false, autorValid = false, editoraValid = false, anoLancValid = false;
         
         if (this.nomeField.getText().length() == 0) {
-            this.showErrorDialog("Campo nome não pode estar vazio!");
+            Utils.showErrorMessage("Erro", "Campo nome não pode estar vazio!");
         } else {
             nomeValid = true;
         }
         
         if (nomeValid) {
             if (this.autorField.getText().length() == 0) {
-                this.showErrorDialog("Campo autor não pode estar vazio!");
+                Utils.showErrorMessage("Erro", "Campo autor não pode estar vazio!");
             } else {
                 autorValid = true;
             }
@@ -141,7 +142,7 @@ public class AdicionarLivro extends javax.swing.JDialog {
         
         if (autorValid) {
             if (this.editoraField.getText().length() == 0) {
-                this.showErrorDialog("Campo editora não pode estar vazio!");
+                Utils.showErrorMessage("Erro", "Campo editora não pode estar vazio!");
             } else {
                 editoraValid = true;
             }
@@ -149,9 +150,9 @@ public class AdicionarLivro extends javax.swing.JDialog {
         
         if (editoraValid) {
             if (this.anoLancField.getText().length() == 0) {
-                this.showErrorDialog("Campo ano de lançamento não pode estar vazio!");
+                Utils.showErrorMessage("Erro", "Campo ano de lançamento não pode estar vazio!");
             } else if (this.anoLancField.getText().length() > 4) {
-                this.showErrorDialog("O ano não pode ter mais de 4 digitos!");
+                Utils.showErrorMessage("Erro", "O ano não pode ter mais de 4 digitos!");
             } else {
                 anoLancValid = true;
             }
@@ -164,15 +165,15 @@ public class AdicionarLivro extends javax.swing.JDialog {
             LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Adicionado livro '" + livro.getTitulo() + "'");
             this.dispose();
         }
+    }
+    
+    private void adicionarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarButtonActionPerformed
+        this.validateAndAddBook();
     }//GEN-LAST:event_adicionarButtonActionPerformed
 
     private void anoLancFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anoLancFieldActionPerformed
-        adicionarButtonActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
+        this.validateAndAddBook();
     }//GEN-LAST:event_anoLancFieldActionPerformed
-
-    private void showErrorDialog(String message) {
-        JOptionPane.showMessageDialog(this, message, "Erro", JOptionPane.ERROR_MESSAGE);
-    }
     
     /**
      * @param args the command line arguments

@@ -1,6 +1,7 @@
 package dev.biblioteca.dialog;
 
 import dev.biblioteca.Constants;
+import dev.biblioteca.Utils;
 import dev.biblioteca.bd.LigaBD;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
@@ -107,12 +108,12 @@ public class LoginFuncionario extends javax.swing.JDialog {
         String userFunc = usernameField.getText();
         String passFunc = passwordField.getText();
         
-        if (userFunc.equals(Constants.FUNCIONARIO_LOGIN)&&passFunc.equals(Constants.FUNCIONARIO_PASS)){
+        if (userFunc.equals(Constants.FUNCIONARIO_LOGIN)&&passFunc.equals(Constants.FUNCIONARIO_PASS)) {
             // falta gravar o login
-            this.dispose();
             LigaBD.logAsFuncionario();
-        }else{
-            JOptionPane.showMessageDialog(null, "Username ou senha incorretos. Tente novamente.", "Alerta", JOptionPane.WARNING_MESSAGE);
+            this.dispose();
+        } else {
+            Utils.showWarnMessage("Alerta", "Username ou senha incorretos. Tente novamente.");
         }        
     }//GEN-LAST:event_loginButtonActionPerformed
 

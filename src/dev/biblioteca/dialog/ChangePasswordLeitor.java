@@ -4,6 +4,7 @@
  */
 package dev.biblioteca.dialog;
 
+import dev.biblioteca.Utils;
 import dev.biblioteca.bd.LigaBD;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
@@ -60,12 +61,6 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
         jLabel1.setText("Nova Palavra-Passe");
 
         jLabel2.setText("Confirmar Palavra-Passe");
-
-        passField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passFieldActionPerformed(evt);
-            }
-        });
 
         confirmPassField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,17 +119,17 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
         String senhaRepetida = this.confirmPassField.getText();
         
         if (senha.length() < 8) {
-            mostraMensagem("Senha", "A senha deve ter pelo menos 8 caracteres");
+            Utils.showErrorMessage("Erro de Validação", "Senha: A senha deve ter pelo menos 8 caracteres");
         } else if (!senha.matches(".*[a-z].*")) {
-            mostraMensagem("Senha", "A senha deve conter pelo menos uma letra minúscula");
+            Utils.showErrorMessage("Erro de Validação", "Senha: A senha deve conter pelo menos uma letra minúscula");
         } else if (!senha.matches(".*[A-Z].*")) {
-            mostraMensagem("Senha", "A senha deve conter pelo menos uma letra maiúscula");
+            Utils.showErrorMessage("Erro de Validação", "Senha: A senha deve conter pelo menos uma letra maiúscula");
         } else if (!senha.matches(".*\\d.*")) {
-            mostraMensagem("Senha", "A senha deve conter pelo menos um dígito");
+            Utils.showErrorMessage("Erro de Validação", "Senha: A senha deve conter pelo menos um dígito");
         } else if (!senha.matches(".*[@#$%^&+=].*")) {
-            mostraMensagem("Senha", "A senha deve conter pelo menos um caractere especial (@, #, $, %, ^, & ou +)");
+            Utils.showErrorMessage("Erro de Validação", "Senha: A senha deve conter pelo menos um caractere especial (@, #, $, %, ^, & ou +)");
         } else if (!String.valueOf(senha).equals(String.valueOf(senhaRepetida))) {
-            mostraMensagem("Senha", "As senhas não coincidem");
+            Utils.showErrorMessage("Erro de Validação", "Senha: As senhas não coincidem");
         } else {
             LigaBD.LOGGED_LEITOR.setPass(senha);
             LigaBD.getBD().atualizarLeitor(LigaBD.LOGGED_LEITOR);
@@ -146,13 +141,6 @@ public class ChangePasswordLeitor extends javax.swing.JDialog {
     private void confirmPassFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPassFieldActionPerformed
         confirmButtonActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
     }//GEN-LAST:event_confirmPassFieldActionPerformed
-
-    private void passFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passFieldActionPerformed
-    }//GEN-LAST:event_passFieldActionPerformed
-
-    public void mostraMensagem(String campo, String mensagem) {
-        JOptionPane.showMessageDialog(this, campo + ": " + mensagem, "Erro de Validação", JOptionPane.ERROR_MESSAGE);
-    }
     
     /**
      * @param args the command line arguments

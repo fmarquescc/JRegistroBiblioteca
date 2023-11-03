@@ -1,6 +1,7 @@
 package dev.biblioteca.dialog;
 
 import dev.biblioteca.Leitor;
+import dev.biblioteca.Utils;
 import dev.biblioteca.bd.LigaBD;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -69,8 +70,8 @@ public class RegistoLeitores extends javax.swing.JDialog {
     }
     
     private void load() {
+        Utils.clearTableContents(this.table);
         DefaultTableModel model = (DefaultTableModel) this.table.getModel();
-        this.clearTableData(model);
         List<Leitor> leitores = LigaBD.getBD().obterLeitors();
         for (Leitor leitor : leitores) {
             List<String> livros = leitor.getLivroRequesitados();
@@ -82,12 +83,6 @@ public class RegistoLeitores extends javax.swing.JDialog {
             model.addRow(new Object[] { leitor.getNome(), leitor.getNleitor(), leitor.getTelefone(), leitor.getEmail(), leitor.getLogin(), lvs });
         }
         this.setTitle("Registo de Leitores (" + leitores.size() + ")");
-    }
-    
-    private void clearTableData(DefaultTableModel tableModel) {
-        for (int rowCount = tableModel.getRowCount(), i = rowCount - 1; i >= 0; --i) {
-            tableModel.removeRow(i);
-        }
     }
 
     /**
@@ -174,7 +169,7 @@ public class RegistoLeitores extends javax.swing.JDialog {
         String[] opcoes = {"Continuar", "Cancelar"};
         int resposta = JOptionPane.showOptionDialog(this, "Tem certeza de que deseja realizar esta ação?", "Confirmação", 
         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[1]);
-        if (resposta== JOptionPane.YES_OPTION){
+        if (resposta == JOptionPane.YES_OPTION){
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             LigaBD.getBD().excluirLeitor((String) model.getValueAt(this.selectedRow, 1));
             LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Removido leitor '" + ((String) model.getValueAt(this.selectedRow, 0)) + "'");

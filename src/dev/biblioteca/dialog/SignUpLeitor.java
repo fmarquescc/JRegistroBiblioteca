@@ -45,12 +45,6 @@ public class SignUpLeitor extends javax.swing.JDialog {
         setTitle("Adicionar - Leitor");
         setResizable(false);
 
-        nomeField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeFieldActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Nome");
 
         jLabel2.setText("Email");
@@ -67,17 +61,6 @@ public class SignUpLeitor extends javax.swing.JDialog {
         confirmarPasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmarPasswordFieldActionPerformed(evt);
-            }
-        });
-        confirmarPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                confirmarPasswordFieldKeyPressed(evt);
-            }
-        });
-
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
             }
         });
 
@@ -156,10 +139,6 @@ public class SignUpLeitor extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomeFieldActionPerformed
     public void mostraMensagem(String campo, String mensagem) {
         JOptionPane.showMessageDialog(this, campo + ": " + mensagem, "Erro de Validação", JOptionPane.ERROR_MESSAGE);
     }
@@ -275,23 +254,13 @@ public class SignUpLeitor extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_signUpButtonActionPerformed
 
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
-
     private void confirmarPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPasswordFieldActionPerformed
-        // TODO add your handling code here:
         signUpButtonActionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
     }//GEN-LAST:event_confirmarPasswordFieldActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
-
-    private void confirmarPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmarPasswordFieldKeyPressed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_confirmarPasswordFieldKeyPressed
     
     /**
      * @param args the command line arguments

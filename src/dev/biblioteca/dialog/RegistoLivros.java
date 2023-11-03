@@ -1,6 +1,7 @@
 package dev.biblioteca.dialog;
 
 import dev.biblioteca.Livro;
+import dev.biblioteca.Utils;
 import dev.biblioteca.bd.LigaBD;
 import dev.biblioteca.bd.LigaBD.LivroEstado;
 import java.awt.event.MouseAdapter;
@@ -92,8 +93,8 @@ public class RegistoLivros extends javax.swing.JDialog {
     }
     
     private void load() {
+        Utils.clearTableContents(this.table);
         DefaultTableModel model = (DefaultTableModel) this.table.getModel();
-        this.clearTableData(model);
         List<Livro> livros = LigaBD.getBD().obterLivros();
         for (Livro livro : livros) {
             model.addRow(new Object[] { livro.getTitulo(), livro.getAutor(), livro.getEditora(), livro.getAnolancamento(), livro.isDisponivel() ? "Disponível" : "Indisponível" });
@@ -101,13 +102,7 @@ public class RegistoLivros extends javax.swing.JDialog {
         if (this.selectedRow != -1) table.setRowSelectionInterval(this.selectedRow, this.selectedRow);
         this.setTitle("Registo de Livros (" + livros.size() + ")");
     }
-    
-    private void clearTableData(DefaultTableModel tableModel) {
-        for (int rowCount = tableModel.getRowCount(), i = rowCount - 1; i >= 0; --i) {
-            tableModel.removeRow(i);
-        }
-    }
-
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -20,8 +20,6 @@ public class SqlLigaBD extends LigaBD {
     public Connection conectar() throws SQLException {
         return DriverManager.getConnection(SqlLigaBD.url, SqlLigaBD.user, SqlLigaBD.pass);
     }
-
-    
     
     @Override
     public void atualizarLeitor(Leitor leitor) {
@@ -47,30 +45,30 @@ public class SqlLigaBD extends LigaBD {
         this.saveLeitores(list);
     }
 
-  @Override
-public void inserirLeitor(Leitor leitor) {
-    try {
-        Connection connection = conectar();
-        String sql = "INSERT INTO leitores (nome, nleitor, email, telefone, login, pass) VALUES (?, ?, ?, ?, ?, ?)";
+    @Override
+    public void inserirLeitor(Leitor leitor) {
+        try {
+            Connection connection = conectar();
+            String sql = "INSERT INTO leitores (nome, nleitor, email, telefone, login, pass) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, leitor.getNome());
-            preparedStatement.setString(2, leitor.getNleitor());
-            preparedStatement.setString(3, leitor.getEmail());
-            preparedStatement.setString(4, leitor.getTelefone());
-            preparedStatement.setString(5, leitor.getLogin());
-            preparedStatement.setString(6, leitor.getPass());
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, leitor.getNome());
+                preparedStatement.setString(2, leitor.getNleitor());
+                preparedStatement.setString(3, leitor.getEmail());
+                preparedStatement.setString(4, leitor.getTelefone());
+                preparedStatement.setString(5, leitor.getLogin());
+                preparedStatement.setString(6, leitor.getPass());
 
-            preparedStatement.executeUpdate();
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                connection.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            connection.close();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
     }
-}
 
     @Override
     public List<Leitor> obterLeitors() {
@@ -130,9 +128,6 @@ public void inserirLeitor(Leitor leitor) {
         
         return leitores;
     }
-
-    
-    
     
     @Override
     public List<Livro> obterLivros() {
@@ -166,19 +161,19 @@ public void inserirLeitor(Leitor leitor) {
     private void saberEstadoLivro(Livro livro) {
        String sql = "SELECT titulo FROM livro WHERE ";
        try {
-        Connection connection = conectar();
-     
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            ResultSet res = preparedStatement.executeQuery();
-            livro.setDisponivel(LivroEstado.getById(res.getInt(1)) == LivroEstado.DISPONIVEL);
+            Connection connection = conectar();
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                ResultSet res = preparedStatement.executeQuery();
+                livro.setDisponivel(LivroEstado.getById(res.getInt(1)) == LivroEstado.DISPONIVEL);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                connection.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            connection.close();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
     }
 
     @Override
