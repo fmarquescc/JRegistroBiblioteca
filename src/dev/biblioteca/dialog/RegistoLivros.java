@@ -78,9 +78,9 @@ public class RegistoLivros extends javax.swing.JDialog {
         }
 
         if (LigaBD.LOGGED_LEITOR != null && livro.isDisponivel()) {
-            requesitarButton.setEnabled(true);
+            requisitarButton.setEnabled(true);
         } else {
-            requesitarButton.setEnabled(false);
+            requisitarButton.setEnabled(false);
         }
 
         if (LigaBD.LOGGED_LEITOR != null && LigaBD.LOGGED_LEITOR.hasLivro(livro) && !livro.isDisponivel()) {
@@ -119,7 +119,7 @@ public class RegistoLivros extends javax.swing.JDialog {
         removeAllButton = new javax.swing.JButton();
         removeLivroButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
-        requesitarButton = new javax.swing.JButton();
+        requisitarButton = new javax.swing.JButton();
         devolverButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -176,11 +176,11 @@ public class RegistoLivros extends javax.swing.JDialog {
             }
         });
 
-        requesitarButton.setText("Requesitar");
-        requesitarButton.setEnabled(false);
-        requesitarButton.addActionListener(new java.awt.event.ActionListener() {
+        requisitarButton.setText("Requisitar");
+        requisitarButton.setEnabled(false);
+        requisitarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                requesitarButtonActionPerformed(evt);
+                requisitarButtonActionPerformed(evt);
             }
         });
 
@@ -203,7 +203,7 @@ public class RegistoLivros extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(removeAllButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(requesitarButton)
+                        .addComponent(requisitarButton)
                         .addGap(3, 3, 3)
                         .addComponent(devolverButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -222,7 +222,7 @@ public class RegistoLivros extends javax.swing.JDialog {
                     .addComponent(removeAllButton)
                     .addComponent(removeLivroButton)
                     .addComponent(addButton)
-                    .addComponent(requesitarButton)
+                    .addComponent(requisitarButton)
                     .addComponent(devolverButton))
                 .addContainerGap())
         );
@@ -262,7 +262,7 @@ public class RegistoLivros extends javax.swing.JDialog {
         new AdicionarLivro(null, true).setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void requesitarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requesitarButtonActionPerformed
+    private void requisitarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requisitarButtonActionPerformed
         if (LigaBD.LOGGED_LEITOR != null) {              
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             String titulo = (String) model.getValueAt(selectedRow, 0);
@@ -277,7 +277,7 @@ public class RegistoLivros extends javax.swing.JDialog {
             LigaBD.LIVROS_UPDATE_EVENT.invoker().run();
             LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Requesitado '" + titulo + "' por " + LigaBD.LOGGED_LEITOR.getNome());
         }
-    }//GEN-LAST:event_requesitarButtonActionPerformed
+    }//GEN-LAST:event_requisitarButtonActionPerformed
 
     private void devolverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolverButtonActionPerformed
         if (LigaBD.LOGGED_LEITOR != null) {
@@ -346,7 +346,7 @@ public class RegistoLivros extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton removeAllButton;
     private javax.swing.JButton removeLivroButton;
-    private javax.swing.JButton requesitarButton;
+    private javax.swing.JButton requisitarButton;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
