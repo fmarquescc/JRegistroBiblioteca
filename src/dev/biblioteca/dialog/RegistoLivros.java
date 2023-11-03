@@ -279,7 +279,7 @@ public class RegistoLivros extends javax.swing.JDialog {
             });
             
             LigaBD.LIVROS_UPDATE_EVENT.invoker().run();
-            LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Requesitado '" + titulo + "' por " + LigaBD.LOGGED_LEITOR.getNome());
+            LigaBD.ACTION_MESSAGE_EVENT.invoker().run("Requisitado '" + titulo + "' por " + LigaBD.LOGGED_LEITOR.getNome());
         }
     }//GEN-LAST:event_requisitarButtonActionPerformed
 
