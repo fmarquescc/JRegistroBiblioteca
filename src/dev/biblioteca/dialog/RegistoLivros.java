@@ -7,6 +7,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -93,10 +95,12 @@ public class RegistoLivros extends javax.swing.JDialog {
     private void load() {
         DefaultTableModel model = (DefaultTableModel) this.table.getModel();
         this.clearTableData(model);
-        for (Livro livro : LigaBD.getBD().obterLivros()) {
+        List<Livro> livros = LigaBD.getBD().obterLivros();
+        for (Livro livro : livros) {
             model.addRow(new Object[] { livro.getTitulo(), livro.getAutor(), livro.getEditora(), livro.getAnolancamento(), livro.isDisponivel() ? "Disponível" : "Indisponível" });
         }
         if (this.selectedRow != -1) table.setRowSelectionInterval(this.selectedRow, this.selectedRow);
+        this.setTitle("Registo de Livros (" + livros.size() + ")");
     }
     
     private void clearTableData(DefaultTableModel tableModel) {
